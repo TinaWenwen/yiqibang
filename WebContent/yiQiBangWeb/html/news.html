@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻</title>
+    <link rel="stylesheet" href="../bootstrap/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/login1.css">
+    <link rel="stylesheet" href="../css/news.css">
+    <script src="../jquery/jquery-3.2.1.min.js"></script>
+    <script src="../bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid header">
+    <div class="row">
+        <div class="col-xs-4">
+            <ul id="left">
+                <li>推荐</li>
+                <li>热点</li>
+                <li>图片</li>
+                <li>科技</li>
+                <li>社会</li>
+                <li>娱乐</li>
+                <li>体育</li>
+                <li>游戏</li>
+                <li>汽车</li>
+                <li>科技</li>
+                <li>财经</li>
+                <li>更多<span class="caret"></span></li>
+            </ul>
+        </div>
+        <div class="col-xs-4 col-xs-offset-4">
+            <ul id="right">
+                <li>反馈</li>
+                <li>下载APP</li>
+                <li>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                        登录
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="wz">
+        <span>首页 / 推荐 / </span><span class="zw">正文</span>
+    </div>
+    <div class="main">
+        <div class="media main1">
+            <div class="media-left media-middle">
+                <a href="#">
+                    <img class="media-object" src="frontImg/dilireba.png" style=" width: 500px;height: 320px;">
+                </a>
+            </div>
+            <div class="media-body mbody">
+                <h3 class="media-heading">迪丽热巴留紫色短发 女神秒变假小子</h3>
+                <h4>网易娱乐10月19日报道
+                    10月18日，改编自日本作家东野圭吾的畅销小说《解忧杂货店》的中国版同名电影发布首批剧照，领衔主演王俊凯、迪丽热巴、李鸿其和董子健，以及特别出演的郝蕾、秦昊和陈都灵等角色造型曝光。而在这些照片中，迪丽热巴以一头紫发出镜，十分抢眼。</h4>
+                <h5 class="h51">中国/娱乐/迪丽热巴</h5>
+                <h5 class="h52">2017/10/19</h5>
+                <h5 class="h53"><img src="frontImg/jubao.png">举报</h5>
+                <h5 class="h54">
+                    分享到 <img src="frontImg/qq.png" alt="">
+                    <img src="frontImg/weixin.png" alt="">
+                    <img src="frontImg/xinlang.png" alt="">
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="pinglun">
+        <p><span>n</span>条评论</p>
+        <div class="div1">
+            <form class="form-inline">
+                <div class="form-group">
+                    <img src="frontImg/pinglun.png" alt="">
+                    <input type="text" class="form-control" id="plq" placeholder="迪丽热巴！！">
+                </div>
+                <button type="submit" class="btn btn-info">评论</button>
+            </form>
+        </div>
+        <div class="pl">
+            <p class="pp"><img src="frontImg/xiaokeai.png" alt=""><span>小可爱</span> <span>1小时前</span>
+            <p class="p1">回去吃鸡去吧</p>
+            <p class="p2">回复</p>
+            <p class="p3"><span>n</span><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></p>
+        </div>
+        <div class="pl">
+            <p class="pp"><img src="frontImg/xiaokeai.png" alt=""><span>小可爱</span> <span>1小时前</span>
+            <p class="p1">回去吃鸡去吧</p>
+            <p class="p2">回复</p>
+            <p class="p3"><span>n</span><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></p>
+        </div>
+        <div class="pl">
+            <p class="pp"><img src="frontImg/xiaokeai.png" alt=""><span>小可爱</span> <span>1小时前</span>
+            <p class="p1">回去吃鸡去吧</p>
+            <p class="p2">回复</p>
+            <p class="p3"><span>n</span><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></p>
+        </div>
+        <p class="p4">查看更多评论</p>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header top">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span class="modal-title" id="myModalLabel">登录账户</span>
+            </div>
+            <div class="modal-body">
+                <div id="container">
+                    <div class="top3">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                                                                      data-toggle="tab">账号登录</a></li>
+                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">短信登录</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                <form class="form-horizontal">
+                                    <div class="form-group sjhm username">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="username" placeholder="用户名/手机/邮箱">
+                                        </div>
+                                    </div>
+                                    <div class="form-group sjhm ">
+                                        <div class="col-sm-12 pwd">
+                                            <input type="text" class="form-control" id="password" placeholder="请输入密码">
+                                            <a href="#">找回密码</a>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">记住密码
+                                    </label>&nbsp;&nbsp;&nbsp;
+                                    <label>
+                                        <input type="checkbox">自动登录
+                                    </label>
+                                    <label> <a href="register.html">注册账号</a></label>
+                                </div>
+                                <div><input type="submit" value="登录" id="dl" class="btn"></div>
+
+                                <div class="pic">
+                                    <div class="order">
+                                        <span style="white-space:pre"></span><span class="line"></span>
+                                        <span style="white-space:pre"></span><span class="txt">其他登录方式</span>
+                                        <span style="white-space:pre"></span><span class="line"></span>
+                                    </div>
+                                    <img src="frontImg/qq.png" alt="">
+                                    <img src="frontImg/weixin.png" alt="">
+                                    <img src="frontImg/xinlang.png" alt="">
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="profile">123</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

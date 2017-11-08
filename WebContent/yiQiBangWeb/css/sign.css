@@ -1,0 +1,124 @@
+/*----样式初始化-----------------*/
+*{
+    padding:0;
+    margin:0;
+}
+body a:hover{
+    text-decoration: none;
+}
+body{
+    background-color: #f1f0ee;
+    min-width: 750px;
+}
+ol,ul,li{
+    list-style: none;
+}
+
+/*--------header样式--------------------------*/
+header{
+    height: 32px;
+    background-color: #1f1f20;
+    text-align: center;
+    line-height: 32px;
+}
+header span{
+    float: left;
+    margin-left:200px;
+    color:#ffffff;
+}
+header a{
+    float:right;
+    margin-right:269px;
+}
+.main{
+    margin-top:54px;
+    margin-left:25%;
+    width:730px;
+}
+.contentDiv{
+    height: 460px;
+    margin-top:30px;
+    background-color: #fdfdfe;
+}
+
+.topDiv{
+     height: 120px;
+     font-size: 20px;
+ }
+.topDiv img{
+    padding-right:10px;
+}
+.phone{
+    float:left;
+    margin:40px 0 0 45px;
+    padding-right: 30px;
+    border-right:1px solid grey;
+    color: #289ddb;
+}
+.email{
+    float:left;
+    margin:40px 0 0 20px;
+    color: #999999;
+}
+/*--------mid-------------------------------------*/
+.number{
+    height: 34px;
+    margin-bottom: 30px;
+    line-height: 34px;
+}
+.midDiv .pre{
+    float:left;
+    margin-right: 30px;
+}
+.midDiv .numIpt{
+    float:left;
+    width: 238px;
+    height: 34px;
+}
+.midDiv .tips{
+    float:left;
+    margin-left: 20px;
+}
+.numIpt1{
+    float:left;
+    margin-left:14px;
+    width: 130px;
+}
+.number button{
+    float:left;
+    margin-left:14px;
+    background-color: #fdfdfe;
+    color:#cccccc;
+    font-size: 16px;
+    outline: none;
+    width:97px;
+    height: 34px;
+}
+.selectDiv{
+    margin-left:85px;
+}
+.selectDiv .checkboxInput{
+    float:left;
+    margin-right:5px;
+}
+.btn{
+    width: 239px;
+    height: 45px;
+    margin:40px 0 0 85px;
+}
+/*--------footer----------------------------------------------*/
+.footer{
+    font-size: 12px;
+    color: #b3b3b3;
+    margin:36px 0 30px;
+}
+.leftSpan{
+    float:left;
+}
+.rightNav ul li{
+    float:right;
+    padding:5px;
+}
+.rightNav ul li a {
+    color: #b3b3b3;
+}

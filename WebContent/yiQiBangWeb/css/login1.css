@@ -1,0 +1,104 @@
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+}
+.top{
+	background-color: #2985cd;
+	 color:#ffffff;
+}
+#content {
+    width: 500px;
+    height: 440px;
+    margin: 50px auto;
+    background: white;
+}
+
+.top3 {
+    margin-top: 15px;
+}
+
+#container {
+    width: 252px;
+    margin: 0 auto;
+}
+
+#username, #password, #dl {
+    width: 252px;
+    height: 34px;
+    margin-top: 10px;
+}
+
+.pwd {
+    position: relative;
+}
+
+.pwd > a {
+    color: #999999;
+    position: absolute;
+    right: 25px;
+    top: 17px;
+
+}
+
+.checkbox {
+    color: #999999;
+}
+
+#dl {
+    background: #2985CE;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    border: none;
+}
+
+.pic {
+    margin-top: 70px;
+}
+
+.order {
+    height: 50px;
+    line-height: 60px;
+}
+
+.order .line {
+    display: inline-block;
+    width: 82px;
+    border-top: 1px solid #ccc;
+}
+
+.order .txt {
+    vertical-align: -8%;
+    font-size: 13px;
+    color: #999999;
+}
+.pic{
+	margin:30px 0 20px 0;
+}
+.pic img {
+    margin-top: 13px;
+    width: 32px;
+    height: 32px;
+    margin-left: 35px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    border: none;
+    color: #989898;
+}
+
+.nav li {
+    width: 126px;
+    text-align: center;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    border-bottom: 2px solid #2986CC;
+    color: #2986CC;
+}

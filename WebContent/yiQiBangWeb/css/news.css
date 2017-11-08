@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 14px;
+}
+
+ul {
+    list-style: none;
+    color: #FFFFFF;
+    line-height: 32px;
+    text-align: center;
+}
+
+.header {
+    background: black;
+    height: 32px;
+}
+
+#left li {
+    float: left;
+    margin-left: 10px;
+
+}
+
+#right {
+    margin-right: 70px;
+}
+
+#right li {
+    float: right;
+    margin-left: 20px;
+    font-size: 12px;
+}
+
+#right li button {
+    width: 48px;
+    height: 33px;
+    background: #299CDB;
+    margin-top: -4px;
+}
+
+.wz {
+    margin-top: 20px;
+    margin-bottom: 22px;
+    color: #999;
+}
+
+.zw {
+    color: #2986ce;
+}
+
+.main {
+    width: 70%;
+    height: 360px;
+    border: 1px solid #CCCCCC;
+    padding-top: 22px;
+}
+
+.mbody {
+    padding-left: 13px;
+}
+
+h3 {
+    font-size: 14px;
+    color: #333;
+}
+
+h4 {
+    font-size: 12px;
+    margin-top: 24px;
+    color: #333;
+}
+
+h5 {
+    font-size: 10px;
+    color: #818181;
+}
+
+.h51 {
+    margin-top: 10px
+}
+
+.h52 {
+    margin-top: 80px
+}
+
+.h53 {
+    margin-top: 8px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid #CCCCCC
+}
+
+.h54 {
+    padding-top: 10px;
+}
+
+.h54 img {
+    margin-left: 10px;
+}
+
+.pinglun {
+    width: 450px;
+}
+
+.pinglun:first-child {
+    margin-top: 20px;
+    margin-bottom: 14px;
+    color: #7f7f7f;
+    font-size: 12px;
+}
+
+.pinglun > p span {
+    color: #2986ce;
+}
+
+.div1 {
+    padding-bottom: 25px;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+#plq {
+    height: 28px;
+    width: 340px;
+}
+
+.btn {
+    width: 70px;
+    height: 28px;
+    line-height: 0;
+}
+
+.pl {
+    border-bottom: 1px solid #CCCCCC;
+    margin-top: 10px;
+}
+
+.pl p {
+    height: 25px;
+    line-height: 20px;
+    margin-bottom: 0;
+}
+
+.pp span {
+    margin-left: 15px;
+    line-height: 25px;
+    color: #2986ce;
+}
+
+.pp span:last-child {
+    color: #818181;
+    font-size: 10px;
+}
+
+.p1 {
+    margin-left: 35px;
+    color: #818181;
+}
+
+.p2 {
+    display: inline-block;
+    margin-left: 35px;
+}
+
+.p3 {
+    float: right;
+}
+
+.p3 span {
+    color: #818181;
+}
+
+.p4 {
+    height: 20px;
+    font-size: 14px;
+    color: #2986ce;
+    text-align: center;
+    line-height: 20px;
+    background: #CCCCCC;
+    margin-top: 20px;
+}
+.top{
+    padding-top: 0;
+    height: 36px;
+    background: #2986CE;
+}
+.top span{
+    color: white;
+    line-height: 36px;
+}

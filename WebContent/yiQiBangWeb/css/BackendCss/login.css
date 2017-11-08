@@ -1,0 +1,36 @@
+body{
+    background-color: #1c304a;
+    min-width:1000px;
+}
+
+label{
+    color: white;
+}
+.logoImg{
+    margin: 20px 0 0 35%;
+}
+.my_panel {
+	margin-top: 100px;
+	background-color: #142234;
+	border:none;
+	width:600px;
+}
+
+.my_login_f {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#validate_img {
+	height: 32px;
+	width: 85px;
+}
+#basic-addon3{
+  padding:0;
+}
+#basic-code{
+  width:40%;
+}
+#tip {
+    color: red;
+}

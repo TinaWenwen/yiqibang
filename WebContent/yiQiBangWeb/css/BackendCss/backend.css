@@ -1,0 +1,159 @@
+/*----all css-----------------*/
+*{
+    padding:0;
+    margin:0;
+}
+body a:hover{
+    text-decoration: none;
+}
+body{
+    background-color: #f1f0ee;
+}
+ol,ul,li{
+    list-style: none;
+}
+
+/*----header-------------------------------*/
+header{
+    height:60px;
+    background-color: #1d314a;
+    line-height: 60px;
+    color: #bebebe;
+}
+.rightDiv span{
+    margin-right:20px;
+}
+.userImg, .search{
+    float:left;
+}
+.userImg img{
+    margin-left: 20px;
+}
+.search input{
+    width:135px;
+    height:32px;
+    background-color: #1b2531;
+    border: none;
+    margin-left:400px;
+}
+.search ::-webkit-input-placeholder{
+    color: #bebebe;
+}
+.search img{
+    margin-left:-19px;
+}
+.rightDiv{
+    float:right;
+}
+.rightDiv img{
+    margin-right: 25px;
+}
+/*-------leftContext---------------------*/
+.leftContext{
+    width:140px;
+    height: 520px;
+    float:left;
+    background-color: #1b2531;
+    color: #bebebe;
+}
+.leftContext li a{
+	color: #bebebe;
+}
+.leftContext li{
+    height:36px;
+    line-height: 36px;
+    font-size: 12px;
+}
+.leftContext li.active, .leftContext li:hover{
+    background: #244771;
+}
+.leftContext li.active .sanjiaoImg{
+	display:block;
+}
+.leftContext li .sanjiaoImg{
+    display:none;
+	float:right;
+	margin:8px -5px 0 0;
+}
+.leftContext li .navImg{
+    margin:0 14px;
+}
+.leftContext>img{
+    width:120px;
+    margin:250px 10px 0 10px;
+}
+.my_container{
+	width:1140px;
+	margin:30px auto;
+}
+/*----main----------------*/
+.main{
+    height: 520px;
+    background-color: white;
+}
+.tableTop ul, .searchUser{
+    float:left;
+}
+.addDiv{
+    float:right;
+    margin-right:50px;
+    width: 60px;
+    height: 26px;
+    border-radius: 10px;
+    background-color: white;
+    line-height: 26px;
+    text-align: center;
+    margin-top: 5px;
+}
+.tableTop{
+    height: 41px;
+    background-color: #ececec;
+    line-height: 36px;
+}
+.tableTop ul{
+    margin-left: 60px;
+}
+.searchUser{
+    margin-left:200px;
+}
+.searchUser input{
+    height: 26px;
+}
+.searchUser img{
+    border-left:1px solid grey;
+    height: 26px;
+    margin-left: -32px;
+}
+.addDiv span{
+    border-radius: 20px;
+    background-color: #fda401;
+    color:white;
+    font-weight: 300;
+}
+.table{
+    float:left;
+    width:1000px;
+    /*margin-top:-10px;*/
+    text-align: center;
+}
+th{
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

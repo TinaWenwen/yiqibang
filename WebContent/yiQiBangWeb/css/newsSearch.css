@@ -1,0 +1,203 @@
+/*----样式初始化-----------------*/
+*{
+    padding:0;
+    margin:0;
+}
+body a:hover{
+    text-decoration: none;
+}
+body{
+    background-color: #f1f0ee;
+    min-width: 1200px;
+}
+ol,ul,li{
+    list-style: none;
+}
+/*--------header样式------------------------------*/
+header{
+    height:32px;
+    background-color: black;
+  /*  overflow: hidden;*/
+}
+header img{
+    padding:17px 11px;
+    margin-left:20px;
+    background-color:#289ddb;
+    float:left;
+}
+header div{
+    float:right;
+    margin-right: 30px;
+}
+header div a{
+    font-size: 12px;
+    font-weight: 800;
+    color: white;
+    padding:8px 11px;
+    line-height: 32px;
+}
+header a:hover{
+    background-color:#289ddb;
+}
+/*--------search样式---------------------*/
+.search{
+    width:552px;
+    margin:34px auto 39px;
+}
+.search input{
+    width: 452px;
+    height:44px;
+}
+.search a>img{
+    padding:10px 38px;
+    margin-left:-5px;
+    margin-top:-2px;
+    background-color: #398fe6;
+}
+/*------container属性-------------------------------*/
+.container{
+    width: 1200px;
+    padding:0;
+}
+/*------left---------------*/
+.container .leftDiv{
+    width:147px;
+    height:432px;
+    float:left;
+}
+.leftDiv a{
+    display: block;
+    height:35px;
+    text-align: center;
+    line-height: 35px;
+    color:black;
+}
+a.select{
+    background-color: #398fe6;
+    color:white;
+}
+/*----------middle---------------------*/
+.container .middle{
+    width:714px;
+    height:1000px;
+    margin-left: 15px;
+  /*  background-color: #0f0f0f;*/
+    float:left;
+}
+.banner{
+    height:260px;
+    border-bottom: 2px solid #c7c6c6;
+}
+.banner img{
+    width:714px;
+    height:240px;
+}
+ol{
+    margin-bottom:-15px;
+}
+.carousel-caption{
+    width:714px;
+    right: 0;
+    left:0;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom:-30px;
+}
+.middle .carousel-indicators .active{
+    background-color: #299bda;
+}
+.middle .glyphicon{
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 1.3;
+}
+.news{
+    width:714px;
+    height:210px;
+    border-bottom: 2px solid #c7c6c6;
+}
+.news p{
+    font-size: 16px;
+    font-weight: 600;
+    margin-top:10px;
+    color:#333333;
+}
+.newsImgs img:nth-child(3){
+    float:right;
+}
+.newsImgs img:nth-child(2){
+    margin-left: 12px;
+}
+.comments{
+    margin-top: 10px;
+}
+.downNew{
+    width: 714px;
+    height:166px;
+    margin-bottom: 100px;
+    border-bottom: 2px solid #c7c6c6;
+}
+.downNew img{
+    margin-top:12px;
+    float:left;
+}
+.newsTitle{
+    float:left;
+    margin:52px 0 29px 14px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.downNew .comments{
+    float:left;
+    margin:0 0 55px 16px;
+}
+.downNew .comments img{
+   margin: 0 5px 0 0;
+}
+/*---------------right----------*/
+.container .rightDiv{
+    width:242px;
+    float:right;
+}
+.rightNews{
+    background-color: #f1f1f1;
+}
+.hours{
+    margin-bottom: -10px;
+}
+.hours p{
+    font-size: 20px;
+    font-weight: 600;
+    padding:10px 0 1px 10px;
+}
+.rightNew{
+    border-top:2px solid #c7c6c6;
+}
+.rightNew img{
+    padding:10px 0 10px 10px;
+    float:left;
+}
+.rigNewsTitle p{
+    font-size:12px;
+    padding:20px 22px 23px 5px;
+    margin-left:76px;
+}
+.rigDownLists{
+    width: 242px;
+    background-color: #f1f1f1;
+}
+.more p{
+    font-size: 20px;
+    font-weight: 600;
+    padding:10px 0 5px 10px;
+}
+.rigDownLists ul{
+    float:left;
+    margin:0 0 25px 8px;
+}
+.rigDownLists li{
+    float: left;
+    padding:0 8px 12px 0;
+}

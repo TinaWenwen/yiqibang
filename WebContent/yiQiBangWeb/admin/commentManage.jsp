@@ -1,0 +1,76 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>评论管理</title>
+<link rel="stylesheet" href="../bootstrap/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/BackendCss/backend.css">
+<script src="../jquery/jquery-3.2.1.min.js"></script>
+<script src="../bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+	<div class="my_container">
+        <%@ include file="header.jsp" %>
+
+        <div class="context">
+            <%@ include file="menu.jsp" %>
+
+            <div class="main">
+                <div class="tableTop">
+                    <div class="searchUser">
+                        <input type="text" placeholder="输入搜索内容">
+                        <img src="../html/backendImg/public/fangdajing.png">
+                    </div>
+                    <div class="addDiv">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        添加
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active">
+                        <table class="table table-bordered">
+                            <thead>
+                            <th>序号</th>
+                            <th>评论新闻</th>
+                            <th>评论用户</th>
+                            <th>类型</th>
+                            <th>评分</th>
+                            <th>评论内容</th>
+                            <th>状态</th>
+                            <th>点赞数</th>
+                            <th>评论时间</th>
+                            <th>操作</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td><img src="../html/backendImg/public/xiugai.png"></a>
+                                <img src="../html/backendImg/public/shanchu.png"></a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+
+<script>
+$(function(){
+	$('.leftContext li:eq(2)').addClass('active');
+});
+</script>
+</body>
+</html>

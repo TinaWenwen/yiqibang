@@ -1,0 +1,151 @@
+
+/*-----header-------------------*/
+.modal-content{
+    width: 500px;
+    height:440px;
+    margin:70px auto;
+}
+.modal-header{
+    height:36px;
+    background-color: #2985cd;
+    line-height: 36px;
+    padding-top: 8px;
+}
+.modal-title{
+    float:left;
+    font-size: 14px;
+    color:#ffffff;
+}
+.modal-header > button > span{
+    color:#ffffff;
+}
+
+.loginWay{
+    width:253px;
+    height:36px;
+    margin:20px 0 0 105px;
+    float:left;
+    text-align: center;
+    line-height: 36px;
+    overflow: hidden;
+}
+.loginWay .accountLogin{
+    width: 125px;
+    height:36px;
+    float:left;
+    border-bottom:2px solid #2985cd;
+
+}
+.loginWay .accountLogin span{
+    color:#2985cd;
+}
+.loginWay .msgLogin{
+    width: 125px;
+    height:36px;
+    color:black;
+    float:left;
+    border-bottom:2px solid #d9d9da;
+}
+.login .loginWay span{
+    text-align: center;
+    padding-right:30px;
+    color:black;
+}
+.dropdown{
+    width: 252px;
+    height: 34px;
+    border:1px solid black;
+    margin:75px 0 0 105px;
+}
+.pwdDiv{
+    width: 252px;
+    height: 34px;
+    border:1px solid black;
+    margin:5px 0 0 105px;
+}
+.dropdown span{
+    color:grey;
+}
+
+#username{
+    margin-top:5px;
+    width: 230px;
+    border:none;
+    outline: none;
+}
+#pwd{
+    margin-top:5px;
+    width: 180px;
+    border:none;
+    outline: none;
+}
+.dropdown #pwd span{
+    padding-left:-20px;
+    color:black;
+}
+.selectDiv{
+    width:150px;
+    float:left;
+    margin:5px 0 0 105px;
+}
+.sign p{
+    margin:7px 0 0 300px;
+}
+.loginBtnDiv{
+    width:252px;
+    height:33px;
+    background-color: #2984cd;
+    color:white;
+    margin:10px 0 0 105px;
+    text-align: center;
+    line-height: 33px;
+}
+
+/*---------底部-------------------*/
+.other{
+    width: 252px;
+    float:left;
+    margin:70px 0 13px 105px;
+    text-align: center;
+}
+.line{
+    height:0;
+    border-top:1px solid #999;
+}
+.other p{
+    width:100px;
+    margin-top:-10px;
+    margin-left: 30%;
+    background-color: #fdfdfe;
+}
+.footer{
+    width:252px;
+    margin:70px 0 0 105px;
+}
+.footer img{
+    padding:0 16px;
+}
+.firstImg{
+    margin-left:18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
