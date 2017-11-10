@@ -17,6 +17,14 @@ public class Admin {
 		this.status = status;
 		this.userId = userId;
 	}
+	
+	
+	public Admin(int level, int status, int userId) {
+		super();
+		this.level = level;
+		this.status = status;
+		this.userId = userId;
+	}
 	public int getId() {
 		return id;
 	}

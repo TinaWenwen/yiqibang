@@ -11,4 +11,12 @@
        <result property="status" column="state"/>
        <result property="userId" column="u_id"/>
     </resultMap>
+    
+    <insert id="insert" parameterType="Admin">
+    	insert into t_admin(u_id,state,level)
+    	values (#{userId},#{status},#{level})
+    	<selectKey resultType="Integer" order="AFTER" keyProperty="id">
+    		select LAST_INSERT_ID() as id
+    	</selectKey>
+    </insert> 
 </mapper>

@@ -67,6 +67,8 @@
                                 <td>1</td>
                                 <td>1</td>
                                 <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
                                 <td><a href=""><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a href=""><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>

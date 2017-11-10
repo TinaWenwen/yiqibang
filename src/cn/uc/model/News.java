@@ -1,24 +1,29 @@
 package cn.uc.model;
 
+import java.util.Date;
+
 public class News {
 	private int id;
-	private int userId;
+	private int typeId;
 	private String title;
 	private String source;
 	private String content;
-	private String createTime;
+	private Date createTime;
 	private int commCount;
 	private int readCount;
 	private String author;
 	private int shareCount;
 	private boolean ifHot;
 	private boolean ifReport;
-	
-	public News(int id, int userId, String title, String source, String content, String createTime, int commCount,
+	public News() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public News(int id, int typeId, String title, String source, String content, Date createTime, int commCount,
 			int readCount, String author, int shareCount, boolean ifHot, boolean ifReport) {
 		super();
 		this.id = id;
-		this.userId = userId;
+		this.typeId = typeId;
 		this.title = title;
 		this.source = source;
 		this.content = content;
@@ -30,21 +35,17 @@ public class News {
 		this.ifHot = ifHot;
 		this.ifReport = ifReport;
 	}
-	public News() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserId() {
-		return userId;
+	public int getTypeId() {
+		return typeId;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
 	}
 	public String getTitle() {
 		return title;
@@ -64,10 +65,10 @@ public class News {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(String createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 	public int getCommCount() {
@@ -108,11 +109,10 @@ public class News {
 	}
 	@Override
 	public String toString() {
-		return "News [id=" + id + ", userId=" + userId + ", title=" + title + ", source=" + source + ", content="
+		return "News [id=" + id + ", typeId=" + typeId + ", title=" + title + ", source=" + source + ", content="
 				+ content + ", createTime=" + createTime + ", commCount=" + commCount + ", readCount=" + readCount
 				+ ", author=" + author + ", shareCount=" + shareCount + ", ifHot=" + ifHot + ", ifReport=" + ifReport
 				+ "]";
 	}
-	
 	
 }

@@ -1,11 +1,13 @@
 package cn.uc.model;
 
+import java.util.Date;
+
 public class Comment {
 	private int id;
 	private int newsId;
 	private int userId;
 	private String content;
-	private String commTime;
+	private Date commTime;
 	private int supportCount;
 	private int score;
 	private int status;
@@ -13,7 +15,7 @@ public class Comment {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Comment(int id, int newsId, int userId, String content, String commTime, int supportCount, int score,
+	public Comment(int id, int newsId, int userId, String content, Date commTime, int supportCount, int score,
 			int status) {
 		super();
 		this.id = id;
@@ -49,10 +51,10 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getCommTime() {
+	public Date getCommTime() {
 		return commTime;
 	}
-	public void setCommTime(String commTime) {
+	public void setCommTime(Date commTime) {
 		this.commTime = commTime;
 	}
 	public int getSupportCount() {

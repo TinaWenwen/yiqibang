@@ -13,7 +13,7 @@ public class MyBatisUtils {
 	static SqlSessionFactory factory=null;
 	static String config="config.xml";
 	
-	//��ȡӦ��Ψһ��factory����
+	//获取应用唯一的factory对象
 	private static SqlSessionFactory factory(){
 		if(factory==null){
 			InputStream is = MyBatisUtils.class.getClassLoader().getResourceAsStream(config);
@@ -22,7 +22,7 @@ public class MyBatisUtils {
 		return factory;
 	}
 	
-	//ʹ��Ӧ��Ψһ��factory�����һ��SqlSession����
+	//使用应用唯一的factory对象打开一个SqlSession对象
 	public static SqlSession openSession(){
 		return factory().openSession();
 	}
