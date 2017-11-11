@@ -35,6 +35,7 @@ public class Constants {
 	
 	 //Admin管理员的操作语句路径
 	 public static final String ADMINMAPPER_SELECTALL = ROOT + ADMIN_MAPPER + SELECTALL;
+	 public static final String ADMINMAPPER_INSERT = ROOT + ADMIN_MAPPER + INSERT;
 }
 
 

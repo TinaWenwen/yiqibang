@@ -22,10 +22,12 @@ public class AdminServlet extends BaseServlet {
 		HttpSession session = request.getSession();
 		String code1 = (String) session.getAttribute("code1");
 		
+		//从AdminDao中将用户输入的用户名密码跟数据库中的对比 
+		
 		//验证
 		try{
 			if(code != null && code.equals(code1)){
-				System.out.println("验证码正确！");
+//				System.out.println("验证码正确！");
 				if("tina".equals(username) && "1234".equals(password)){
 					response.sendRedirect(request.getContextPath()+"/yiQiBangWeb/admin/admin.jsp");
 				}else{
@@ -37,11 +39,12 @@ public class AdminServlet extends BaseServlet {
 				response.sendRedirect(request.getContextPath()+"/yiQiBangWeb/admin/login.jsp");
 			}
 		}catch(Exception e){
+			e.printStackTrace();
 			System.out.println("跳转失败");
 		}
-		
 	}
-
+	
+	
 }
 
 

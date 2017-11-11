@@ -4,15 +4,14 @@
   
 <%!
 		List<Admin> data;
-		/* Admin[] data = {new Admin(1, 1, "tina", "2017-10-29")}; */
 %>  
 <%
- 		/* data = (List<Admin>)application.getAttribute("admin_list");
+ 		data = (List<Admin>)application.getAttribute("admin_list");
 		if(data == null){
 			data = new ArrayList<Admin>();
-			data.add(new Admin(1, 1, "tina", "2017-10-29"));
+			data.add(new Admin());
 			application.setAttribute("admin_list", data);
-		} */
+		} 
 %>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,5 +1,7 @@
 package cn.uc.model;
 
+import java.util.Date;
+
 public class Member {
 
 	private int id;
@@ -11,10 +13,10 @@ public class Member {
 	private String email;
 	private String headImg;
 	private int status;
-	private String createTime;
-	private String birthday;
+	private Date createTime;
+	private Date birthday;
 	private String remark;
-	private String updateTime;
+	private Date updateTime;
 	private int provinceId;
 	private int cityId;
 	private int areaId;
@@ -26,8 +28,8 @@ public class Member {
 	}
 
 	public Member(int id, String userName, String nickName, String passWord, int sex, String phone, String email,
-			String headImg, int status, String createTime, String birthday, String remark, String updateTime,
-			int provinceId, int cityId, int areaId, boolean isAdmin) {
+			String headImg, int status, Date createTime, Date birthday, String remark, Date updateTime, int provinceId,
+			int cityId, int areaId, boolean isAdmin) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -120,19 +122,19 @@ public class Member {
 		this.status = status;
 	}
 
-	public String getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(String createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
@@ -144,11 +146,11 @@ public class Member {
 		this.remark = remark;
 	}
 
-	public String getUpdateTime() {
+	public Date getUpdateTime() {
 		return updateTime;
 	}
 
-	public void setUpdateTime(String updateTime) {
+	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
 
@@ -193,5 +195,4 @@ public class Member {
 				+ areaId + ", isAdmin=" + isAdmin + "]";
 	}
 
-	
 }
