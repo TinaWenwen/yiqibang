@@ -20,5 +20,13 @@
   </environments>
   <mappers>
     <mapper resource="cn/uc/mapper/AdminMapper.xml"/>
+    <mapper resource="cn/uc/mapper/MemberMapper.xml"/>
+    <mapper resource="cn/uc/mapper/NewsMapper.xml"/>
+    <mapper resource="cn/uc/mapper/NewsTypeMapper.xml"/>
+    <mapper resource="cn/uc/mapper/CommentMapper.xml"/>
+    <mapper resource="cn/uc/mapper/PictureMapper.xml"/>
+    <mapper resource="cn/uc/mapper/AreasMapper.xml"/>
+    <mapper resource="cn/uc/mapper/CitiesMapper.xml"/>
+    <mapper resource="cn/uc/mapper/ProvincesMapper.xml"/>
   </mappers>
 </configuration>
