@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import cn.uc.dao.AdminDao;
-import cn.uc.model.Admin;
+import cn.uc.model.TAdmin;
 import cn.uc.util.Constants;
 import cn.uc.util.MyBatisUtils;
 import cn.uc.util.Result;
@@ -15,7 +15,7 @@ public class AdminDaoImpl implements AdminDao {
 	public Result selectAllAdmin() {
 		Result result = new Result();
 		SqlSession session = MyBatisUtils.openSession();
-		List<Admin> adminList = session.selectList(Constants.ADMINMAPPER_SELECTALL);
+		List<TAdmin> adminList = session.selectList(Constants.ADMINMAPPER_SELECTALL);
 		session.close();
 		if(adminList != null){
 			result.setRetCode(Constants.RETCODE_SUCCESS);
@@ -29,7 +29,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public Result insertAdmin(Admin admin) {
+	public Result insertAdmin(TAdmin admin) {
 		Result result = new Result();
 		SqlSession session = MyBatisUtils.openSession();
 		int row = session.insert(Constants.ADMINMAPPER_INSERT,admin);

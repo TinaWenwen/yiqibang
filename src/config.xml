@@ -19,12 +19,12 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="cn/uc/mapper/AdminMapper.xml"/>
-    <mapper resource="cn/uc/mapper/MemberMapper.xml"/>
-    <mapper resource="cn/uc/mapper/NewsMapper.xml"/>
-    <mapper resource="cn/uc/mapper/NewsTypeMapper.xml"/>
-    <mapper resource="cn/uc/mapper/CommentMapper.xml"/>
-    <mapper resource="cn/uc/mapper/PictureMapper.xml"/>
+    <mapper resource="cn/uc/mapper/TAdminMapper.xml"/>
+    <mapper resource="cn/uc/mapper/TUserMapper.xml"/>
+    <mapper resource="cn/uc/mapper/TNewsMapper.xml"/>
+    <mapper resource="cn/uc/mapper/TTypeMapper.xml"/>
+    <mapper resource="cn/uc/mapper/TCommentMapper.xml"/>
+    <mapper resource="cn/uc/mapper/TPicMapper.xml"/>
     <mapper resource="cn/uc/mapper/AreasMapper.xml"/>
     <mapper resource="cn/uc/mapper/CitiesMapper.xml"/>
     <mapper resource="cn/uc/mapper/ProvincesMapper.xml"/>

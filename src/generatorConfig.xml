@@ -20,19 +20,19 @@
 
 		<!--数据库连接信息 -->
 		<jdbcConnection driverClass="${driver}" connectionURL="${url}"
-			userId="${username}" password="${password}">
+			userId="${user}" password="${password}">
 		</jdbcConnection>
 
 		<!--生成的model包路径  就是实体类 -->
 		<javaModelGenerator targetPackage="${beans}" targetProject="${project}">
 			<!-- 是否有子包   true有子包   false没有子包 (一般默认不要动)-->
-			<property name="enableSubPackages" value="ture" />
+			<property name="enableSubPackages" value="true" />
 			<!-- 时间格式 -->
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
 		<!--生成xml mapper文件 路径 -->
-		<sqlMapGenerator targetPackage="${dao}" targetProject="${project}">
+		<sqlMapGenerator targetPackage="${mapper}" targetProject="${project}">
 			<!-- 是否有子包 -->
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
@@ -61,42 +61,42 @@
 		<!-- 有多个表就复制改下表名就可以了！ -->
  		<table tableName="cities" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
-			enableSelectByExample="true" selectByExampleQueryId="false">
+			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
 		
 		<table tableName="provinces" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
-			enableSelectByExample="true" selectByExampleQueryId="false">
+			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
 		
 		<table tableName="t_admin" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
-			enableSelectByExample="true" selectByExampleQueryId="false">
+			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
 		
 		<table tableName="t_comment" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
-			enableSelectByExample="true" selectByExampleQueryId="false">
+			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
 		
 		<table tableName="t_news" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
-			enableSelectByExample="true" selectByExampleQueryId="false">
+			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
 		
 		<table tableName="t_pic" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
-			enableSelectByExample="true" selectByExampleQueryId="false">
+			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
 		
 		<table tableName="t_type" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
-			enableSelectByExample="true" selectByExampleQueryId="false">
+			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
 		
 		<table tableName="t_user" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
-			enableSelectByExample="true" selectByExampleQueryId="false">
+			enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
 		
 		

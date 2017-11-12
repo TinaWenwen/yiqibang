@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 public class AdminServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
    
+	
 	public void adminLogin(HttpServletRequest request,HttpServletResponse response){
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -44,7 +45,10 @@ public class AdminServlet extends BaseServlet {
 		}
 	}
 	
-	
+	public void getAllAdmin(HttpServletRequest request,HttpServletResponse response){
+		System.out.println("getAllAdmin");
+		
+	}
 }
 
 

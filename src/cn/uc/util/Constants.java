@@ -14,14 +14,14 @@ public class Constants {
 	public static final String ROOT = "cn.uc.mapper";
 	
 	//mapper映射文件的名称
-	public static final String ADMIN_MAPPER = ".AdminMapper";
+	public static final String ADMIN_MAPPER = ".TAdminMapper";
 	public static final String AREAS_MAPPER = ".AreasMapper";
 	public static final String CITIES_MAPPER = ".CitiesMapper";
-	public static final String COMMENT_MAPPER = ".CommentMapper";
-	public static final String MEMBER_MAPPER = ".MemberMapper";
-	public static final String NEWS_MAPPER = ".NewsMapper";
-	public static final String NEWSTYPE_MAPPER = ".NewsTypeMapper";
-	public static final String PIC_MAPPER = ".PictureMapper";
+	public static final String COMMENT_MAPPER = ".TCommentMapper";
+	public static final String MEMBER_MAPPER = ".TUserMapper";
+	public static final String NEWS_MAPPER = ".TNewsMapper";
+	public static final String NEWSTYPE_MAPPER = ".TTypeMapper";
+	public static final String PIC_MAPPER = ".TPicMapper";
 	public static final String PROVINCES_MAPPER = ".ProvincesMapper";
 	
 	//定义操作的sql语句的id名称
