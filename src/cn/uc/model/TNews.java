@@ -386,4 +386,35 @@ public class TNews {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+	public TNews() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public TNews(Integer typeId, String title, String source, Date createtime, Integer commcount, Integer readcount,
+			String author, Integer sharecount, Boolean ifhot, Boolean ifreport, String content) {
+		super();
+		this.typeId = typeId;
+		this.title = title;
+		this.source = source;
+		this.createtime = createtime;
+		this.commcount = commcount;
+		this.readcount = readcount;
+		this.author = author;
+		this.sharecount = sharecount;
+		this.ifhot = ifhot;
+		this.ifreport = ifreport;
+		this.content = content;
+	}
+
+	@Override
+	public String toString() {
+		return "TNews [id=" + id + ", typeId=" + typeId + ", title=" + title + ", source=" + source + ", createtime="
+				+ createtime + ", commcount=" + commcount + ", readcount=" + readcount + ", author=" + author
+				+ ", sharecount=" + sharecount + ", ifhot=" + ifhot + ", ifreport=" + ifreport + ", content=" + content
+				+ "]";
+	}
+    
+    
 }

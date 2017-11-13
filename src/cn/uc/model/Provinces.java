@@ -96,4 +96,11 @@ public class Provinces {
     public void setProvince(String province) {
         this.province = province == null ? null : province.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Provinces [id=" + id + ", provinceid=" + provinceid + ", province=" + province + "]";
+	}
+    
+    
 }

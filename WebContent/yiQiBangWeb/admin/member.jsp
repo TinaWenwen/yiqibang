@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
-    pageEncoding="UTF-8" import="cn.uc.model.Member"%>
-  
+    pageEncoding="UTF-8" import="cn.uc.model.TUser,
+    java.util.*,
+    cn.uc.dao.TUserMapper,
+    cn.uc.dao.impl.TUserMapperImpl,
+    cn.uc.util.Result"%>
+    
+ <%!
+ 	List<TUser> data;
+ 	Result result = new Result();
+ 	TUserMapper userDao = new TUserMapperImpl();
+ %> 
+ <%
+ 	result = userDao.selectAllUser();
+ 	data = (List<TUser>)result.getRetData();
+ %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,32 +64,30 @@
                             <th>修改时间</th>
                             <th>头像</th>
                             <th>备注</th>
-                            <th>设为管理员</th>
                             <th>操作</th>
                             </thead>
                             <tbody>
-                            
+                            <% for(int i = 0; i < data.size(); i++) {%>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><%=i+1 %></td>
+                                <td><%=data.get(i).getUsername() %></td>
+                                <td><%=data.get(i).getNickname() %></td>
+                                <td><%=data.get(i).getSex() %></td>
+                                <td><%=data.get(i).getBirthday() %></td>
+                                <td><%=data.get(i).getProvinceid() %>/<%=data.get(i).getCityid() %>/<%=data.get(i).getAreaid() %></td>
+                                <td><%=data.get(i).getBindtel() %></td>
+                                <td><%=data.get(i).getEmail() %></td>
+                                <td><%=data.get(i).getState() %></td>
+                                <td><%=data.get(i).getCreatetime() %></td>
+                                <td><%=data.get(i).getUpdate() %></td>
+                                <td><%=data.get(i).getHeadimg() %></td>
+                                <td><%=data.get(i).getRemark() %></td>
                                 <td>
                                 <a href=""><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a href=""><img src="../html/backendImg/public/shanchu.png"></a>
                                 </td>
                             </tr>
-                          
+                          <% } %>
                             </tbody>
                         </table>
                     </div>

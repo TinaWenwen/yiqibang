@@ -258,4 +258,29 @@ public class TComment {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+	public TComment(Integer nId, Integer uId, String content, Date createtime, Integer thumbscount, Integer score,
+			Integer status) {
+		super();
+		this.nId = nId;
+		this.uId = uId;
+		this.content = content;
+		this.createtime = createtime;
+		this.thumbscount = thumbscount;
+		this.score = score;
+		this.status = status;
+	}
+
+	public TComment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "TComment [id=" + id + ", nId=" + nId + ", uId=" + uId + ", content=" + content + ", createtime="
+				+ createtime + ", thumbscount=" + thumbscount + ", score=" + score + ", status=" + status + "]";
+	}
+    
+    
 }
