@@ -1,18 +1,21 @@
 
 <%@ page language="java" contentType="text/html;charset=UTF-8"
-    pageEncoding="UTF-8" import="cn.uc.model.Admin,java.util.*"%>
+    pageEncoding="UTF-8" import="cn.uc.model.TAdmin,
+    java.util.*,
+    cn.uc.dao.TAdminMapper,
+    cn.uc.dao.impl.TAdminMapperImpl,
+    cn.uc.util.Result,
+    cn.uc.util.DateSimpleStr"%>
   
 <%!
-		List<Admin> data;
+		List<TAdmin> data;
+ 	    Result result = new Result();
+ 		TAdminMapper adminDao = new TAdminMapperImpl(); 
 %>  
 <%
- 		data = (List<Admin>)application.getAttribute("admin_list");
-		if(data == null){
-			data = new ArrayList<Admin>();
-			data.add(new Admin());
-			application.setAttribute("admin_list", data);
-		} 
-%>
+ 		result = adminDao.selectAllAdmin();
+		data = (List<TAdmin>)result.getRetData();
+%> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +25,7 @@
     <link rel="stylesheet" href="../css/BackendCss/backend.css">
     <script src="../jquery/jquery-3.2.1.min.js"></script>
     <script src="../bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../js/date_util.js"></script>
 </head>
 <body>
 	<div class="my_container">
@@ -57,18 +61,18 @@
                             <th>操作</th>
                             </thead>
                             <tbody>
-                             <% for(int i = 0; i < data.size(); i++) {%>
+                            <% for(int i = 0; i < data.size(); i++) {%>
                             <tr>
                                 <td><%=i+1%></td>
                                 <td><%=data.get(i).getLevel()%></td>
-                                <td><%=data.get(i).getStatus()%></td>
-                                <td></td>
-                                <td></td>
+                                <td><%=data.get(i).getState()?"禁用":"可用"%></td>
+                                <td><%=data.get(i).getUser().getUsername() %></td>
+                                <td><%=DateSimpleStr.getStringDate(data.get(i).getUser().getCreatetime()) %></td>
                                 <td><a href="<%=request.getContextPath()%>/admin/deleteMember?id=<%=i%>"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a href="<%=request.getContextPath()%>/admin/deleteMember?id=<%=i%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
                             <% } %>
-                            </tbody>
+                            </tbody> 
                         </table>
                     </div>
                 </div>

@@ -36,6 +36,13 @@
     id, type_id, title, source, createtime, commcount, readcount, author, sharecount, 
     ifhot, ifreport
   </sql>
+  <select id="selectAll" resultMap="BaseResultMap" >
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_news
+  </select>
   <sql id="Blob_Column_List" >
     <!--
       WARNING - @mbggenerated

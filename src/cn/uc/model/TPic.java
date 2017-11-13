@@ -192,4 +192,26 @@ public class TPic {
     public void setSource(String source) {
         this.source = source == null ? null : source.trim();
     }
+
+	public TPic() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public TPic(Integer nId, String path, String info, String author, String source) {
+		super();
+		this.nId = nId;
+		this.path = path;
+		this.info = info;
+		this.author = author;
+		this.source = source;
+	}
+
+	@Override
+	public String toString() {
+		return "TPic [id=" + id + ", nId=" + nId + ", path=" + path + ", info=" + info + ", author=" + author
+				+ ", source=" + source + "]";
+	}
+    
+    
 }

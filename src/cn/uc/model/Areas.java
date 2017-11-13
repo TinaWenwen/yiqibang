@@ -128,4 +128,11 @@ public class Areas {
     public void setCityid(String cityid) {
         this.cityid = cityid == null ? null : cityid.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Areas [id=" + id + ", areaid=" + areaid + ", area=" + area + ", cityid=" + cityid + "]";
+	}
+    
+
 }

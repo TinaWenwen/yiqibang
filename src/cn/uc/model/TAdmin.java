@@ -5,7 +5,7 @@ public class TAdmin {
     private Integer id;
 
     
-    private Integer uId;
+    private TUser user;
 
    
     private Boolean state;
@@ -18,48 +18,51 @@ public class TAdmin {
         return id;
     }
 
-   
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    
-    public Integer getuId() {
-        return uId;
-    }
+	public TUser getUser() {
+		return user;
+	}
 
-    
-    public void setuId(Integer uId) {
-        this.uId = uId;
-    }
 
-    
-    public Boolean getState() {
-        return state;
-    }
+	public void setUser(TUser user) {
+		this.user = user;
+	}
 
-   
-    public void setState(Boolean state) {
-        this.state = state;
-    }
 
-    public Integer getLevel() {
-        return level;
-    }
+	public Boolean getState() {
+		return state;
+	}
 
-   
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
+
+	public void setState(Boolean state) {
+		this.state = state;
+	}
+
+
+	public Integer getLevel() {
+		return level;
+	}
+
+
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 
 	public TAdmin() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public TAdmin(Integer uId, Boolean state, Integer level) {
+
+	public TAdmin(TUser user, Boolean state, Integer level) {
 		super();
-		this.uId = uId;
+		this.user = user;
 		this.state = state;
 		this.level = level;
 	}
@@ -67,8 +70,7 @@ public class TAdmin {
 
 	@Override
 	public String toString() {
-		return "TAdmin [id=" + id + ", uId=" + uId + ", state=" + state + ", level=" + level + "]";
+		return "TAdmin [id=" + id + ", user=" + user + ", state=" + state + ", level=" + level + "]";
 	}
-    
-    
+
 }

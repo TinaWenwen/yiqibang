@@ -128,4 +128,11 @@ public class Cities {
     public void setProvinceid(String provinceid) {
         this.provinceid = provinceid == null ? null : provinceid.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Cities [id=" + id + ", cityid=" + cityid + ", city=" + city + ", provinceid=" + provinceid + "]";
+	}
+    
+    
 }

@@ -36,6 +36,30 @@ public class Constants {
 	 //Admin管理员的操作语句路径
 	 public static final String ADMINMAPPER_SELECTALL = ROOT + ADMIN_MAPPER + SELECTALL;
 	 public static final String ADMINMAPPER_INSERT = ROOT + ADMIN_MAPPER + INSERT;
+	 
+	 //user的操作语句路径
+	 public static final String USERMAPPER_SELECTALL = ROOT + MEMBER_MAPPER + SELECTALL;
+	 
+	 //news的操作语句路径
+	 public static final String NEWSMAPPER_SELECTALL = ROOT + NEWS_MAPPER + SELECTALL;
+	 
+	 //comment的操作语句路径
+	 public static final String COMMMAPPER_SELECTALL = ROOT + COMMENT_MAPPER + SELECTALL;
+	 
+	 //newtype的操作语句路径
+	 public static final String TYPEMAPPER_SELECTALL = ROOT + NEWSTYPE_MAPPER + SELECTALL;
+	 
+	 //pic的操作路径
+	 public static final String PICMAPPER_SELECTALL = ROOT + PIC_MAPPER + SELECTALL;
+	 
+	 //areas的操作路径
+	 public static final String AREASMAPPER_SELECTALL = ROOT + AREAS_MAPPER + SELECTALL;
+	 
+	 //cities的操作路径
+	 public static final String CITIESMAPPER_SELECTALL = ROOT + CITIES_MAPPER + SELECTALL;
+	 
+	 //Provinces的操作路径
+	 public static final String PROVINCESMAPPER_SELECTALL = ROOT + PROVINCES_MAPPER + SELECTALL;
 }
 
 

@@ -19,6 +19,11 @@
     -->
     id, provinceid, province
   </sql>
+  <select id="selectAll" resultMap="BaseResultMap" >
+  	select 
+    <include refid="Base_Column_List" />
+    from provinces
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
