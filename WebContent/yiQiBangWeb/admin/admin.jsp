@@ -4,13 +4,21 @@
     java.util.*,
     cn.uc.dao.TAdminMapper,
     cn.uc.dao.impl.TAdminMapperImpl,
+<<<<<<< HEAD
     cn.uc.util.Result,
     cn.uc.util.DateSimpleStr"%>
+=======
+    cn.uc.util.Result"%>
+>>>>>>> 93eebef81e5506515290b32b9e2d0c772064b76e
   
 <%!
 		List<TAdmin> data;
  	    Result result = new Result();
+<<<<<<< HEAD
  		TAdminMapper adminDao = new TAdminMapperImpl(); 
+=======
+ 		TAdminMapper adminDao = new TAdminMapperImpl(); 		
+>>>>>>> 93eebef81e5506515290b32b9e2d0c772064b76e
 %>  
 <%
  		result = adminDao.selectAllAdmin();
@@ -66,8 +74,13 @@
                                 <td><%=i+1%></td>
                                 <td><%=data.get(i).getLevel()%></td>
                                 <td><%=data.get(i).getState()?"禁用":"可用"%></td>
+<<<<<<< HEAD
                                 <td><%=data.get(i).getUser().getUsername() %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getUser().getCreatetime()) %></td>
+=======
+                                <td><%=data.get(i).getuId() %></td>
+                                <td></td>
+>>>>>>> 93eebef81e5506515290b32b9e2d0c772064b76e
                                 <td><a href="<%=request.getContextPath()%>/admin/deleteMember?id=<%=i%>"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a href="<%=request.getContextPath()%>/admin/deleteMember?id=<%=i%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
