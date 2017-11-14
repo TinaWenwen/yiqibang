@@ -7,6 +7,8 @@ public interface TAdminMapper {
    
 	Result selectAllAdmin();
 	
+	Result selectAdminByLike(String likeStr);
+	
     int deleteByPrimaryKey(Integer id);
 
    

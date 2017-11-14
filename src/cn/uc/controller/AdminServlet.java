@@ -6,6 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cn.uc.dao.TAdminMapper;
+import cn.uc.dao.impl.TAdminMapperImpl;
+import cn.uc.util.Result;
+import cn.uc.util.WriteResultToCilent;
+
 /**
  * Servlet implementation class AdminServlet
  */
@@ -13,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class AdminServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
    
-	
+	TAdminMapper adminDao = new TAdminMapperImpl();
 	public void adminLogin(HttpServletRequest request,HttpServletResponse response){
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -45,9 +50,10 @@ public class AdminServlet extends BaseServlet {
 		}
 	}
 	
-	public void getAllAdmin(HttpServletRequest request,HttpServletResponse response){
-		System.out.println("getAllAdmin");
-		
+	public void adminGetByLike(HttpServletRequest request,HttpServletResponse response){
+		String likeStr = request.getParameter("likeStr");
+		Result result = adminDao.selectAdminByLike("%"+likeStr+"%");
+		WriteResultToCilent.writeMethod(result,response);
 	}
 }
 

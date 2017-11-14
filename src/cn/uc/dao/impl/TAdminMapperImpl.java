@@ -65,6 +65,22 @@ public class TAdminMapperImpl implements TAdminMapper {
 		return result;
 	}
 
+	@Override
+	public Result selectAdminByLike(String likeStr) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		result.setRetMsg(false);
+		SqlSession session = MyBatisUtils.openSession();
+		List<TAdmin> admin = session.selectList(Constants.ADMINMAPPER_SELECTBYLIKE, likeStr);
+		session.close();
+		if (admin!=null) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(admin);
+		}
+		return result;
+	}
+
 }
 
 

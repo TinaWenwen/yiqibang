@@ -9,7 +9,7 @@ import net.sf.json.JSONObject;
 
 public class WriteResultToCilent {
 	
-	public void writeMethod(Object obj,HttpServletResponse response){
+	public static void writeMethod(Object obj,HttpServletResponse response){
 		PrintWriter out = null;
 		try {
 			out = response.getWriter();

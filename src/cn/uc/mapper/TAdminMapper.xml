@@ -8,9 +8,13 @@
       This element was generated on Sun Nov 12 17:27:42 CST 2017.
     -->
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="u_id" property="uId" jdbcType="INTEGER" />
     <result column="state" property="state" jdbcType="BIT" />
     <result column="level" property="level" jdbcType="INTEGER" />
+    <association property="user" javaType="TUser">
+    	<id column="id" property="id" jdbcType="INTEGER" />
+    	<result column="username" property="username" jdbcType="VARCHAR" />
+    	<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    </association>
   </resultMap>
   <sql id="Base_Column_List" >
     <!--
@@ -21,8 +25,12 @@
     id, u_id, state, level
   </sql>
   <select id="selectAll" resultMap="BaseResultMap" >
-  	select  <include refid="Base_Column_List" />
-  	from t_admin
+  	select * from t_admin join t_user on t_admin.u_id=t_user.id
+  </select>
+  <select id="selectByLike" resultMap="BaseResultMap"  parameterType="java.lang.String">
+  	select * from t_admin join t_user on t_admin.u_id=t_user.id 
+  	where username like #{likeStr}
+  	or level like #{likeStr} 
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--

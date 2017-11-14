@@ -1,8 +1,8 @@
 package cn.uc.yiqibang.test;
 
-import static org.junit.Assert.*;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import cn.uc.dao.TAdminMapper;
@@ -13,6 +13,8 @@ import cn.uc.util.Result;
 public class AdminTest {
 
 	TAdminMapper adminDao = new TAdminMapperImpl();
+	
+	@Ignore
 	@Test
 	public void selectAllAdmin() {
 		Result result = adminDao.selectAllAdmin();
@@ -20,4 +22,10 @@ public class AdminTest {
 		Assert.assertNotNull(result.getRetData());
 	}
 
+	@Test
+	public void selectAdminByLike(){
+		Result result = adminDao.selectAdminByLike("%2%");
+		System.out.println(result.getRetData());
+		Assert.assertNotNull(result.getRetData());
+	}
 }
