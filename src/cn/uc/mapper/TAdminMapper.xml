@@ -26,11 +26,14 @@
   </sql>
   <select id="selectAll" resultMap="BaseResultMap" >
   	select * from t_admin join t_user on t_admin.u_id=t_user.id
+<<<<<<< HEAD
   </select>
   <select id="selectByLike" resultMap="BaseResultMap"  parameterType="java.lang.String">
   	select * from t_admin join t_user on t_admin.u_id=t_user.id 
   	where username like #{likeStr}
   	or level like #{likeStr} 
+=======
+>>>>>>> 191bbf127225a96e1832b000f4a29d69626c354e
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--

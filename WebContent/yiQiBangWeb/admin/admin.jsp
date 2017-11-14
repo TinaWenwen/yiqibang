@@ -4,13 +4,30 @@
     java.util.*,
     cn.uc.dao.TAdminMapper,
     cn.uc.dao.impl.TAdminMapperImpl,
+<<<<<<< HEAD
     cn.uc.util.Result,
     cn.uc.util.DateSimpleStr"%>
+=======
+<<<<<<< HEAD
+    cn.uc.util.Result,
+    cn.uc.util.DateSimpleStr"%>
+=======
+    cn.uc.util.Result"%>
+>>>>>>> 93eebef81e5506515290b32b9e2d0c772064b76e
+>>>>>>> 191bbf127225a96e1832b000f4a29d69626c354e
   
 <%!
 		List<TAdmin> data;
  	    Result result = new Result();
+<<<<<<< HEAD
  		TAdminMapper adminDao = new TAdminMapperImpl(); 
+=======
+<<<<<<< HEAD
+ 		TAdminMapper adminDao = new TAdminMapperImpl(); 
+=======
+ 		TAdminMapper adminDao = new TAdminMapperImpl(); 		
+>>>>>>> 93eebef81e5506515290b32b9e2d0c772064b76e
+>>>>>>> 191bbf127225a96e1832b000f4a29d69626c354e
 %>  
 <%
  		result = adminDao.selectAllAdmin();
@@ -25,6 +42,7 @@
     <link rel="stylesheet" href="../css/BackendCss/backend.css">
     <script src="../jquery/jquery-3.2.1.min.js"></script>
     <script src="../bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
     
     <script>
 		function searchAdminByLike() {
@@ -53,6 +71,9 @@
 			});
 		}
 	</script>
+=======
+    <script src="../js/date_util.js"></script>
+>>>>>>> 191bbf127225a96e1832b000f4a29d69626c354e
 </head>
 <body>
 	<div class="my_container">
@@ -93,8 +114,18 @@
                                 <td><%=i+1%></td>
                                 <td><%=data.get(i).getLevel()%></td>
                                 <td><%=data.get(i).getState()?"禁用":"可用"%></td>
+<<<<<<< HEAD
                                 <td><%=data.get(i).getUser().getUsername() %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getUser().getCreatetime()) %></td>
+=======
+<<<<<<< HEAD
+                                <td><%=data.get(i).getUser().getUsername() %></td>
+                                <td><%=DateSimpleStr.getStringDate(data.get(i).getUser().getCreatetime()) %></td>
+=======
+                                <td><%=data.get(i).getuId() %></td>
+                                <td></td>
+>>>>>>> 93eebef81e5506515290b32b9e2d0c772064b76e
+>>>>>>> 191bbf127225a96e1832b000f4a29d69626c354e
                                 <td><a href="<%=request.getContextPath()%>/admin/deleteMember?id=<%=i%>"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a href="<%=request.getContextPath()%>/admin/deleteMember?id=<%=i%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
