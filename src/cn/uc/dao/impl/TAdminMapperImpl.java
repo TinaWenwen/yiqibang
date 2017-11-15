@@ -1,6 +1,8 @@
 package cn.uc.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -69,9 +71,10 @@ public class TAdminMapperImpl implements TAdminMapper {
 	public Result selectAdminByLike(String likeStr) {
 		Result result = new Result();
 		result.setRetCode(Constants.RETCODE_FAILED);
-		result.setRetMsg(false);
 		SqlSession session = MyBatisUtils.openSession();
-		List<TAdmin> admin = session.selectList(Constants.ADMINMAPPER_SELECTBYLIKE, likeStr);
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("likeStr", likeStr);
+		List<TAdmin> admin = session.selectList(Constants.ADMINMAPPER_SELECTBYLIKE, params);
 		session.close();
 		if (admin!=null) {
 			result.setRetCode(Constants.RETCODE_SUCCESS);

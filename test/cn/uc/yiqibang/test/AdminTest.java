@@ -24,7 +24,7 @@ public class AdminTest {
 
 	@Test
 	public void selectAdminByLike(){
-		Result result = adminDao.selectAdminByLike("%2%");
+		Result result = adminDao.selectAdminByLike("%%");
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
 	}
