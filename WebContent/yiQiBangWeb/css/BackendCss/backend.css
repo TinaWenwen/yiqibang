@@ -140,7 +140,9 @@ th{
     text-align: center;
 }
 
-
+.main #myPagination{
+	margin:300px 0 0 650px;
+}
 
 
 

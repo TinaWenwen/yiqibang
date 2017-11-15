@@ -9,6 +9,8 @@ public class Constants {
 	//响应码
 	public static final int RETCODE_SUCCESS = 0;
 	public static final int RETCODE_FAILED = 2000;
+	//每页显示的10个
+	public static final int PAGE_SIZE = 1;
 	
 	//映射文件.xml的包根路径
 	public static final String ROOT = "cn.uc.mapper";
@@ -30,6 +32,8 @@ public class Constants {
 	public static final String DELETE = ".deleteByPrimaryKey";
 	public static final String UPDATE = ".update";
 	public static final String INSERT = ".insert";
+	public static final String SELECT_BY_PAGE = ".selectByPage";
+	public static final String SELECT_COUNTS = ".selectAllCounts";
 	
 	//---------------------------------------------------------------------------------------
 	
@@ -37,7 +41,8 @@ public class Constants {
 	 public static final String ADMINMAPPER_SELECTALL = ROOT + ADMIN_MAPPER + SELECTALL;
 	 public static final String ADMINMAPPER_SELECTBYLIKE = ROOT + ADMIN_MAPPER + SELECT_BY_LIKE;
 	 public static final String ADMINMAPPER_INSERT = ROOT + ADMIN_MAPPER + INSERT;
-	 
+	 public static final String ADMINMAPPER_SELECT_COUNT = ROOT + ADMIN_MAPPER + SELECT_COUNTS;
+	 public static final String ADMINMAPPER_SELECT_BYPAGE = ROOT + ADMIN_MAPPER + SELECT_BY_PAGE;
 	 //user的操作语句路径
 	 public static final String USERMAPPER_SELECTALL = ROOT + MEMBER_MAPPER + SELECTALL;
 	 

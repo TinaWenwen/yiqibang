@@ -14,18 +14,28 @@ public class AdminTest {
 
 	TAdminMapper adminDao = new TAdminMapperImpl();
 	
-	@Ignore
+	/*@Ignore
 	@Test
 	public void selectAllAdmin() {
 		Result result = adminDao.selectAllAdmin();
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
-	}
+	}*/
 
+	@Ignore
 	@Test
 	public void selectAdminByLike(){
-		Result result = adminDao.selectAdminByLike("%%");
+		Result result = adminDao.selectAdminByLike("%%",1);
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
 	}
+	
+	@Ignore
+	@Test
+	public void selectCounts(){
+		Result result = adminDao.selectAllCounts("%t%");
+		System.out.println(result.getRetData());
+		Assert.assertNotNull(result.getRetData());
+	}
+	
 }

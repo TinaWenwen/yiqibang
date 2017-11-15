@@ -50,11 +50,6 @@ public class AdminServlet extends BaseServlet {
 		}
 	}
 	
-	public void adminGetByLike(HttpServletRequest request,HttpServletResponse response){
-		String likeStr = request.getParameter("likeStr");
-		Result result = adminDao.selectAdminByLike("%"+likeStr+"%");
-		WriteResultToCilent.writeMethod(result,response);
-	}
 }
 
 

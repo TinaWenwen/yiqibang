@@ -50,7 +50,7 @@ public class TAdminMapperImpl implements TAdminMapper {
 		return 0;
 	}
 
-	@Override
+	/*@Override
 	public Result selectAllAdmin() {
 		Result result = new Result();
 		SqlSession session = MyBatisUtils.openSession();
@@ -66,14 +66,16 @@ public class TAdminMapperImpl implements TAdminMapper {
 		}
 		return result;
 	}
-
+*/
 	@Override
-	public Result selectAdminByLike(String likeStr) {
+	public Result selectAdminByLike(String likeStr, int pageNum) {
 		Result result = new Result();
 		result.setRetCode(Constants.RETCODE_FAILED);
 		SqlSession session = MyBatisUtils.openSession();
 		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("likeStr", likeStr);
+		params.put("likeStr", "%"+likeStr+"%");
+		params.put("startIndex",Constants.PAGE_SIZE * (pageNum -1));
+		params.put("pageSize", Constants.PAGE_SIZE);
 		List<TAdmin> admin = session.selectList(Constants.ADMINMAPPER_SELECTBYLIKE, params);
 		session.close();
 		if (admin!=null) {
@@ -81,6 +83,21 @@ public class TAdminMapperImpl implements TAdminMapper {
 			result.setRetMsg(true);
 			result.setRetData(admin);
 		}
+		return result;
+	}
+	
+	//根据查询 得到查询的数据有多少条
+	public Result selectAllCounts(String likeStr) {
+		Result result = new Result();
+		SqlSession session = MyBatisUtils.openSession();
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("likeStr", "%"+likeStr+"%");
+		int counts = session.selectOne(Constants.ADMINMAPPER_SELECT_COUNT, params);
+		session.close();
+		//这里无需判断 已经在jsp页面进行最大最小值判断
+		result.setRetCode(Constants.RETCODE_SUCCESS);
+		result.setRetMsg(true);
+		result.setRetData(counts);
 		return result;
 	}
 

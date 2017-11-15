@@ -24,11 +24,19 @@
     -->
     id, u_id, state, level
   </sql>
-  <select id="selectAll" resultMap="BaseResultMap" >
-  	select * from t_admin join t_user on t_admin.u_id=t_user.id
-  </select>
+  
   <select id="selectByLike" resultMap="BaseResultMap"  parameterType="java.util.Map">
-  	select * from t_admin join t_user on t_admin.u_id=t_user.id 
+  	select * from t_admin join t_user on t_admin.u_id=t_user.id
+  	<where>
+  		<if test="likeStr != '' and likeStr != null">
+  			username like #{likeStr}
+  			or level like #{likeStr}
+  		</if>
+  	</where>
+  	limit #{startIndex},#{pageSize}
+  </select>
+  <select id="selectAllCounts" resultType="java.lang.Integer"  parameterType="java.util.Map">
+  	select count(1) from t_admin join t_user on t_admin.u_id=t_user.id 
   	<where>
   		<if test="likeStr != '' and likeStr != null">
   			username like #{likeStr}
@@ -36,6 +44,11 @@
   		</if>
   	</where>
   </select>
+  
+  <!-- <select id="selectByPage" resultMap="BaseResultMap">
+  	select * from t_admin join t_user on t_admin.u_id=t_user.id 
+  	limit #{startIndex},#{pageSize}
+  </select> -->
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
