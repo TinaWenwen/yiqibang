@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,15 +9,16 @@
 <script src="../jquery/jquery-3.2.1.min.js"></script>
 <script src="../bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
 <style>
-	body{
-		background:#F1F0EE;
-	}
-	.main{
-		width:40%;
-		margin:40px 0 0 40px;
-		border:1px solid gray;
-		padding:10px;
-	}
+body {
+	background: #F1F0EE;
+}
+
+.main {
+	width: 40%;
+	margin: 40px 0 0 40px;
+	border: 1px solid gray;
+	padding: 10px;
+}
 </style>
 </head>
 <body>

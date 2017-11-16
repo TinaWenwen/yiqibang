@@ -80,7 +80,7 @@
                     </form>
                     
                     <div class="addDiv">
-                        <span class="glyphicon glyphicon-plus"></span>
+                        <a href="adminEdit.jsp"><span class="glyphicon glyphicon-plus"></span></a>
                         添加
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                                 <td><%=data.get(i).getState()?"禁用":"可用"%></td>
                                 <td><%=data.get(i).getUser().getUsername() %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getUser().getCreatetime()) %></td>
-                                <td><a href="adminInsert.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
+                                <td><a href="adminEdit.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a href="<%=request.getContextPath()%>/admin/delete?id=<%=i%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
                             <% } %>

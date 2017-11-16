@@ -80,7 +80,7 @@
                     </div>
                     </form>
                     <div class="addDiv">
-                        <span class="glyphicon glyphicon-plus"></span>
+                        <a href="userEdit.jsp"><span class="glyphicon glyphicon-plus"></span></a>
                         添加
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                                 <td><%=data.get(i).getHeadimg() %></td>
                                 <td><%=data.get(i).getRemark() %></td>
                                 <td>
-                                <a href="userInsert.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
+                                <a href="userEdit.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a href=""><img src="../html/backendImg/public/shanchu.png"></a>
                                 </td>
                             </tr>

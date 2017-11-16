@@ -69,7 +69,7 @@
                     </div>
                 </form>
                     <div class="addDiv">
-                        <span class="glyphicon glyphicon-plus"></span>
+                        <a href="typeEdit.jsp"><span class="glyphicon glyphicon-plus"></span></a>
                         添加
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                                 <td><%=i+1%></td>
                                 <td><%=data.get(i).getName() %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getCreateTime()) %></td>
-                                <td><a href="typeInsert.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
+                                <td><a href="typeEdit.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
                             <% } %>

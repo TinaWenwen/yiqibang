@@ -75,7 +75,7 @@
                     </div>
                     </form>
                     <div class="addDiv">
-                        <span class="glyphicon glyphicon-plus"></span>
+                        <a href="newsEdit.jsp"><span class="glyphicon glyphicon-plus"></span></a>
                         添加
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                                 <td><%=data.get(i).getContent() %></td>
                                 <td><%=data.get(i).getIfhot()?"是":"否" %></td>
                                 <td><%=data.get(i).getIfreport()?"是":"否" %></td>
-                                <td><a href=""><img src="../html/backendImg/public/xiugai.png"></a>
+                                <td><a href="newsEdit.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a href=""><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
                             <% } %>
