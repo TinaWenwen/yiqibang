@@ -7,7 +7,7 @@ public interface AreasMapper {
    
 	
 	
-	Result selectAllAreas();
+	Result selectAreaByAreaId(String areaid);
 	
     int deleteByPrimaryKey(Integer id);
 

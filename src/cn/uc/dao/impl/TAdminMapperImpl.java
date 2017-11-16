@@ -33,9 +33,20 @@ public class TAdminMapperImpl implements TAdminMapper {
 	}
 
 	@Override
-	public TAdmin selectByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result selectByPrimaryKey(Integer id) {
+		Result result = new Result();
+		SqlSession session = MyBatisUtils.openSession();
+		List<TAdmin> adminList = session.selectList(Constants.ADMINMAPPER_SELECT_BYID, id);
+		session.close();
+		if(adminList != null){
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(adminList);
+		}else{
+			result.setRetCode(Constants.RETCODE_FAILED);
+			result.setRetMsg(false);
+		}
+		return result;
 	}
 
 	@Override
@@ -89,6 +100,7 @@ public class TAdminMapperImpl implements TAdminMapper {
 	//根据查询 得到查询的数据有多少条
 	public Result selectAllCounts(String likeStr) {
 		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
 		SqlSession session = MyBatisUtils.openSession();
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("likeStr", "%"+likeStr+"%");

@@ -5,7 +5,11 @@ import cn.uc.util.Result;
 
 public interface TUserMapper {
     
-	Result selectAllUser();
+	Result selectUserByLike(String likeStr, int pageNum);
+	
+	Result selectAllCounts(String likeStr);
+	
+	Result selectNameById(Integer id);
 	
     int deleteByPrimaryKey(Integer id);
 
@@ -16,8 +20,7 @@ public interface TUserMapper {
     int insertSelective(TUser record);
 
     
-    TUser selectByPrimaryKey(Integer id);
-
+    Result selectByPrimaryKey(Integer id);
    
     int updateByPrimaryKeySelective(TUser record);
 

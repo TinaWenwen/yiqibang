@@ -5,7 +5,7 @@ import cn.uc.util.Result;
 
 public interface CitiesMapper {
     
-	Result selectAllCities();
+	Result selectCityById(String cityId);
 	
     int deleteByPrimaryKey(Integer id);
 

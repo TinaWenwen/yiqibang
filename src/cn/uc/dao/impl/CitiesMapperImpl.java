@@ -12,22 +12,7 @@ import cn.uc.util.Result;
 
 public class CitiesMapperImpl implements CitiesMapper {
 
-	@Override
-	public Result selectAllCities() {
-		Result result = new Result();
-		SqlSession session = MyBatisUtils.openSession();
-		List<Cities> cityList = session.selectList(Constants.CITIESMAPPER_SELECTALL);
-		session.close();
-		if(cityList != null){
-			result.setRetCode(Constants.RETCODE_SUCCESS);
-			result.setRetMsg(true);
-			result.setRetData(cityList);
-		}else{
-			result.setRetCode(Constants.RETCODE_FAILED);
-			result.setRetMsg(false);
-		}
-		return result;
-	}
+	
 
 	@Override
 	public int deleteByPrimaryKey(Integer id) {
@@ -63,6 +48,21 @@ public class CitiesMapperImpl implements CitiesMapper {
 	public int updateByPrimaryKey(Cities record) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Result selectCityById(String cityId) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		String city = session.selectOne(Constants.CITY_GETBY_CITYID, cityId);
+		session.close();
+		if (city != null) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(city);
+		}
+		return result;
 	}
 
 }

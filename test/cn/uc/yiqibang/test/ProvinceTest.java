@@ -15,8 +15,8 @@ public class ProvinceTest {
 	ProvincesMapper provinceDao = new ProvincesMapperImpl();
 	
 	@Test
-	public void selectAllProvinces() {
-		Result result = provinceDao.selectAllProvinces();
+	public void selectProvinceById() {
+		Result result = provinceDao.selectProvinceById("110000");
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
 	}

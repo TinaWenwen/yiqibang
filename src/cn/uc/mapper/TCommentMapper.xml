@@ -8,13 +8,16 @@
       This element was generated on Sun Nov 12 17:27:42 CST 2017.
     -->
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="n_id" property="nId" jdbcType="INTEGER" />
-    <result column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="u_id" property="userid" jdbcType="INTEGER"/>
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
     <result column="thumbscount" property="thumbscount" jdbcType="INTEGER" />
     <result column="score" property="score" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <association property="tnew" javaType="TNews">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="title" property="title" jdbcType="VARCHAR"></result>
+	</association >
   </resultMap>
   <sql id="Base_Column_List" >
     <!--
@@ -28,6 +31,27 @@
   	select 
     <include refid="Base_Column_List" />
     from t_comment
+  </select>
+  <select id="selectByLike" resultMap="BaseResultMap"  parameterType="java.util.Map">
+  	select * from t_comment inner join t_news on t_comment.n_id=t_news.id 
+  	<where>
+  		<if test="likeStr != '' and likeStr != null">
+  			title like #{likeStr}
+  			or score like #{likeStr}
+  			or t_comment.content like #{likeStr}
+  		</if>
+  	</where>
+  	limit #{startIndex},#{pageSize}
+  </select>
+  <select id="selectAllCounts" resultType="java.lang.Integer"  parameterType="java.util.Map">
+  	select count(1) from t_comment inner join t_news on t_comment.n_id=t_news.id 
+  	<where>
+  		<if test="likeStr != '' and likeStr != null">
+  			title like #{likeStr}
+  			or score like #{likeStr}
+  			or t_comment.content like #{likeStr}
+  		</if>
+  	</where>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--

@@ -22,7 +22,7 @@ public interface TAdminMapper {
     int insertSelective(TAdmin record);
 
     
-    TAdmin selectByPrimaryKey(Integer id);
+    Result selectByPrimaryKey(Integer id);
 
    
     int updateByPrimaryKeySelective(TAdmin record);

@@ -13,4 +13,13 @@ public class DateSimpleStr {
 		}
 		return result;
 	}
+	
+	public static String getBirthDate(Date dateTime){
+		String result = "";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		if(dateTime != null){
+			result = sdf.format(dateTime);
+		}
+		return result;
+	}
 }

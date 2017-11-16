@@ -5,7 +5,7 @@ import cn.uc.util.Result;
 
 public interface ProvincesMapper {
     
-	Result selectAllProvinces();
+	Result selectProvinceById(String provinceid);
 	
     int deleteByPrimaryKey(Integer id);
 

@@ -19,6 +19,9 @@
     -->
     id, provinceid, province
   </sql>
+  <select id="selectNameById" resultType="java.lang.String" parameterType="java.lang.String">
+  	select province from provinces where provinceid = #{provinceid}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
   	select 
     <include refid="Base_Column_List" />

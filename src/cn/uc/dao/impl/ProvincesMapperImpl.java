@@ -12,22 +12,6 @@ import cn.uc.util.Result;
 
 public class ProvincesMapperImpl implements ProvincesMapper {
 
-	@Override
-	public Result selectAllProvinces() {
-		Result result = new Result();
-		SqlSession session = MyBatisUtils.openSession();
-		List<Provinces> provincesList = session.selectList(Constants.PROVINCESMAPPER_SELECTALL);
-		session.close();
-		if(provincesList != null){
-			result.setRetCode(Constants.RETCODE_SUCCESS);
-			result.setRetMsg(true);
-			result.setRetData(provincesList);
-		}else{
-			result.setRetCode(Constants.RETCODE_FAILED);
-			result.setRetMsg(false);
-		}
-		return result;
-	}
 
 	@Override
 	public int deleteByPrimaryKey(Integer id) {
@@ -63,6 +47,21 @@ public class ProvincesMapperImpl implements ProvincesMapper {
 	public int updateByPrimaryKey(Provinces record) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Result selectProvinceById(String provinceid) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		String province = session.selectOne(Constants.PROVINCE_GETBY_PROVINCEID, provinceid);
+		session.close();
+		if (province != null) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(province);
+		}
+		return result;
 	}
 
 }

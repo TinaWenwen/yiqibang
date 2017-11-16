@@ -14,7 +14,7 @@ public class UserTest {
 
 	@Test
 	public void selectAllUser() {
-		Result result = userDao.selectAllUser();
+		Result result = userDao.selectByPrimaryKey(1);
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
 	}

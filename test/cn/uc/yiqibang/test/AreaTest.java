@@ -11,8 +11,8 @@ public class AreaTest {
 
 	AreasMapper areaDao = new AreasMapperImpl();
 	@Test
-	public void selectAllAreas() {
-		Result result = areaDao.selectAllAreas();
+	public void selectAreaById() {
+		Result result = areaDao.selectAreaByAreaId("110101");
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
 	}

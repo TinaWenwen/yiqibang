@@ -14,13 +14,13 @@ public class AdminTest {
 
 	TAdminMapper adminDao = new TAdminMapperImpl();
 	
-	/*@Ignore
+	@Ignore
 	@Test
-	public void selectAllAdmin() {
-		Result result = adminDao.selectAllAdmin();
+	public void selectAdminById() {
+		Result result = adminDao.selectByPrimaryKey(1);
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
-	}*/
+	}
 
 	@Ignore
 	@Test

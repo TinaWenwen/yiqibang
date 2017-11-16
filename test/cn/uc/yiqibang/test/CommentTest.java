@@ -3,6 +3,7 @@ package cn.uc.yiqibang.test;
 
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -13,9 +14,11 @@ import cn.uc.util.Result;
 public class CommentTest {
 
 	TCommentMapper commentDao = new TCommentMapperImpl();
+	
+	
 	@Test
-	public void selectAllComment() {
-		Result result = commentDao.selectAllComment();
+	public void selectCommByLike() {
+		Result result = commentDao.selectByLike("", 1);
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
 	}

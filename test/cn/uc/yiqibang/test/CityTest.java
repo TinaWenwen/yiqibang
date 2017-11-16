@@ -12,8 +12,8 @@ public class CityTest {
 
 	CitiesMapper cityDao = new CitiesMapperImpl();
 	@Test
-	public void selectAllCities() {
-		Result result = cityDao.selectAllCities();
+	public void selectCityById() {
+		Result result = cityDao.selectCityById("110100");
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
 	}

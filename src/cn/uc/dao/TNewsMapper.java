@@ -8,6 +8,10 @@ public interface TNewsMapper {
 
 	Result selectAllNews();
 	
+	Result selectNewsByLike(String likeStr, int pageNum);
+	
+	Result selectAllCounts(String likeStr);
+	
     int deleteByPrimaryKey(Integer id);
 
     /**

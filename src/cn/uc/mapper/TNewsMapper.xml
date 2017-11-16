@@ -8,7 +8,6 @@
       This element was generated on Sun Nov 12 17:27:42 CST 2017.
     -->
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="type_id" property="typeId" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="source" property="source" jdbcType="VARCHAR" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
@@ -18,6 +17,10 @@
     <result column="sharecount" property="sharecount" jdbcType="INTEGER" />
     <result column="ifhot" property="ifhot" jdbcType="BIT" />
     <result column="ifreport" property="ifreport" jdbcType="BIT" />
+    <association property="type" javaType="TType">
+    	<id column="id" property="id" jdbcType="INTEGER" />
+    	<result column="name" property="name" jdbcType="VARCHAR"/>
+    </association>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="cn.uc.model.TNews" extends="BaseResultMap" >
     <!--
@@ -36,13 +39,6 @@
     id, type_id, title, source, createtime, commcount, readcount, author, sharecount, 
     ifhot, ifreport
   </sql>
-  <select id="selectAll" resultMap="BaseResultMap" >
-  	select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from t_news
-  </select>
   <sql id="Blob_Column_List" >
     <!--
       WARNING - @mbggenerated
@@ -51,6 +47,31 @@
     -->
     content
   </sql>
+  <select id="selectByLike" resultMap="BaseResultMap"  parameterType="java.util.Map">
+  	select * from t_news join t_type on t_news.type_id=t_type.id
+  	<where>
+  		<if test="likeStr != '' and likeStr != null">
+  			name like #{likeStr}
+  			or title like #{likeStr}
+  			or source like #{likeStr}
+  			or author like #{likeStr}
+  			or content like #{likeStr}
+  		</if>
+  	</where>
+  	limit #{startIndex},#{pageSize}
+  </select>
+  <select id="selectAllCounts" resultType="java.lang.Integer"  parameterType="java.util.Map">
+  	select count(1) from t_news join t_type on t_news.type_id=t_type.id
+  	<where>
+  		<if test="likeStr != '' and likeStr != null">
+  			name like #{likeStr}
+  			or title like #{likeStr}
+  			or source like #{likeStr}
+  			or author like #{likeStr}
+  			or content like #{likeStr}
+  		</if>
+  	</where>
+  </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated

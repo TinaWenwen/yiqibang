@@ -28,9 +28,9 @@
 		//获取当前查询的数据的最大页数
 		countsResult = adminDao.selectAllCounts(searchStr);
 		int counts = (int)countsResult.getRetData();
-		System.out.println(counts);
+		//System.out.println(counts);
 		maxPage = (int)Math.ceil((float)counts / Constants.PAGE_SIZE);
-		System.out.println(maxPage);
+		//System.out.println(maxPage);
 		try{
 			pageParam = Integer.parseInt(pageStr);
 			if (pageParam <= 0){
@@ -103,7 +103,7 @@
                                 <td><%=data.get(i).getState()?"禁用":"可用"%></td>
                                 <td><%=data.get(i).getUser().getUsername() %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getUser().getCreatetime()) %></td>
-                                <td><a href="<%=request.getContextPath()%>/admin/update?id=<%=i%>"><img src="../html/backendImg/public/xiugai.png"></a>
+                                <td><a href="adminInsert.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a href="<%=request.getContextPath()%>/admin/delete?id=<%=i%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
                             <% } %>
@@ -144,7 +144,7 @@
     	var options = {
     		bootstrapMajorVersion : 3,
     		currentPage: <%=pageParam %>,
-    		totalPages: <%=maxPage %>,
+    		totalPages: <%=Math.max(1, maxPage) %>,
     		pageUrl: function(type, page, current){
     			var params = getParams();
     			params['page'] = page;

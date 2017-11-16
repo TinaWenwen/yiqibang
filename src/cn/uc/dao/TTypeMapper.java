@@ -7,6 +7,10 @@ public interface TTypeMapper {
 
 
 	Result selectAllType();
+
+	Result selectTypeByLike(String likeStr, int pageNum);
+	
+	Result selectAllCounts(String likeStr);
 	
     int deleteByPrimaryKey(Integer id);
 

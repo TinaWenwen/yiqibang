@@ -20,6 +20,9 @@
     -->
     id, cityid, city, provinceid
   </sql>
+  <select id="selectNameById" resultType="java.lang.String" parameterType="java.lang.String">
+  	select city from cities where cityid = #{cityid}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
   	select 
     <include refid="Base_Column_List" />

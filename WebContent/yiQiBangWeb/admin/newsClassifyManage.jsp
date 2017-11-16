@@ -1,5 +1,47 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="cn.uc.model.TType,
+    java.util.*,
+    cn.uc.dao.TTypeMapper,
+    cn.uc.dao.impl.TTypeMapperImpl,
+    cn.uc.util.Result,
+    cn.uc.util.DateSimpleStr,
+    cn.uc.util.Constants"%>
+ 
+<%!
+	List<TType> data;
+	Result result = new Result();
+ 	Result countsResult = new Result();
+ 	TTypeMapper typeDao = new TTypeMapperImpl();
+%>
+<%
+	String searchStr = request.getParameter("searchStr");
+	String pageStr = request.getParameter("page");
+
+	int pageParam;
+	int maxPage;
+	if (searchStr == null){
+		searchStr = "";
+	}
+
+	countsResult = typeDao.selectAllCounts(searchStr);
+	int counts = (int)countsResult.getRetData();
+  	maxPage = (int)Math.ceil((float)counts / Constants.PAGE_SIZE);
+
+	try{
+		pageParam = Integer.parseInt(pageStr);
+		if (pageParam <= 0){
+			pageParam = 1;
+		}
+		if (pageParam > maxPage){
+			pageParam = maxPage;
+		}
+	}catch  (NumberFormatException e){
+		pageParam = 1;
+		}
+
+	result = typeDao.selectTypeByLike(searchStr,pageParam);
+	data = (List<TType>)result.getRetData();
+%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -9,6 +51,7 @@
 <link rel="stylesheet" href="../css/BackendCss/backend.css">
 <script src="../jquery/jquery-3.2.1.min.js"></script>
 <script src="../bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bootstrap/bootstrap/js/bootstrap-paginator.min.js"></script>
 </head>
 <body>
 	<div class="my_container">
@@ -19,10 +62,12 @@
 
             <div class="main">
                 <div class="tableTop">
+                <form method="get">
                     <div class="searchUser">
-                        <input type="text" placeholder="输入搜索内容">
-                        <img src="../html/backendImg/public/fangdajing.png">
+                        <input type="text" placeholder="新闻类型" name="searchStr">
+                        <img src="../html/backendImg/public/fangdajing.png" id="selectImg">
                     </div>
+                </form>
                     <div class="addDiv">
                         <span class="glyphicon glyphicon-plus"></span>
                         添加
@@ -38,21 +83,60 @@
                             <th>操作</th>
                             </thead>
                             <tbody>
+                            <% for(int i = 0; i < data.size(); i++) {%>
                             <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td><img src="../html/backendImg/public/xiugai.png"></a>
-                                <img src="../html/backendImg/public/shanchu.png"></a></td>
+                                <td><%=i+1%></td>
+                                <td><%=data.get(i).getName() %></td>
+                                <td><%=DateSimpleStr.getStringDate(data.get(i).getCreateTime()) %></td>
+                                <td><a href="typeInsert.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
+                                <a><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
+                            <% } %>
                             </tbody>
                         </table>
+                        <ul id="myPagination"></ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<script>
+    jQuery(document).ready(function(){
+    	jQuery('#selectImg').click(function(e){
+    		jQuery('form').submit();
+      	}); 
+    	
+    	//获取当前页面GET参数
+    	var getParams = function(key) {
+    		var map = {};
+    		var arr = location.search.slice(1).split('&');
+    		for(var i = 0; i < arr.length; i++) {
+    			if (arr[i] == '') continue;
+    			var tmp = arr[i].split('=');
+    			map[tmp[0]] = tmp[1] ? tmp[1] : '';
+    		}
+    		
+    		if (key) {
+    			return map[key];
+    		} else {
+    			return map;
+    		}
+    	}
 
+    	var options = {
+    		bootstrapMajorVersion : 3,
+    		currentPage: <%=pageParam %>,
+    		totalPages: <%=Math.max(1, maxPage) %>,
+    		pageUrl: function(type, page, current){
+    			var params = getParams();
+    			params['page'] = page;
+    			return location.origin + location.pathname + '?' + $.param(params);
+    		}
+    	}
+
+    	$('#myPagination').bootstrapPaginator(options);	
+    });
+</script>
 <script>
 $(function(){
 	$('.leftContext li:eq(4)').addClass('active');
