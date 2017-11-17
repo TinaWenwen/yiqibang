@@ -6,48 +6,47 @@
     cn.uc.util.Result,
     cn.uc.util.DateSimpleStr,
     cn.uc.util.Constants"%>
-    
- <%!
-	List<TUser> data;
- 	Result result = new Result();
- 	Result countsResult = new Result();
- 	TUserMapper userDao = new TUserMapperImpl();
- 	AreasMapper areaDao = new AreasMapperImpl();
- 	CitiesMapper cityDao = new CitiesMapperImpl();
- 	ProvincesMapper provinceDao = new ProvincesMapperImpl();
- 	
- %> 
- <%
-		//获取传来的查询条件
-		String searchStr = request.getParameter("searchStr");
-		//获取传来的页码参数
-		String pageStr = request.getParameter("page");
-		//当前显示的页码
-		int pageParam;
-		int maxPage;
-		if (searchStr == null){
-			searchStr = "";
-		}
-		
-		countsResult = userDao.selectAllCounts(searchStr);
-		int counts = (int)countsResult.getRetData();
-		maxPage = (int)Math.ceil((float)counts / Constants.PAGE_SIZE);
-		try{
-			pageParam = Integer.parseInt(pageStr);
-			if (pageParam <= 0){
-				pageParam = 1;
-			}
-			if (pageParam > maxPage){
-				pageParam = maxPage;
-			}
-		}catch  (NumberFormatException e){
+
+<%!List<TUser> data;
+	Result result = new Result();
+	Result countsResult = new Result();
+	TUserMapper userDao = new TUserMapperImpl();
+	AreasMapper areaDao = new AreasMapperImpl();
+	CitiesMapper cityDao = new CitiesMapperImpl();
+	ProvincesMapper provinceDao = new ProvincesMapperImpl();%>
+<%
+	//获取传来的查询条件
+	String searchStr = request.getParameter("searchStr");
+	//获取传来的页码参数
+	String pageStr = request.getParameter("page");
+	//当前显示的页码
+	int pageParam;
+	int maxPage;
+	if (searchStr == null) {
+		searchStr = "";
+	}
+
+	countsResult = userDao.selectAllCounts(searchStr);
+	int counts = (int) countsResult.getRetData();
+	maxPage = (int) Math.ceil((float) counts / Constants.PAGE_SIZE);
+	try {
+		pageParam = Integer.parseInt(pageStr);
+		if (pageParam <= 0) {
 			pageParam = 1;
 		}
- 	
- 	result = userDao.selectUserByLike(searchStr, pageParam);
- 	data = (List<TUser>)result.getRetData();
- 	
- %>
+		if (pageParam > maxPage) {
+			pageParam = maxPage;
+		}
+	} catch (NumberFormatException e) {
+		pageParam = 1;
+	}
+	
+	/* System.out.println("共有" + counts + "条数据");
+	System.out.println("一共有" + maxPage + "页");*/
+	System.out.println("当前页为" + pageParam); 
+	result = userDao.selectUserByLike(searchStr, pageParam);
+	data = (List<TUser>) result.getRetData();
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +75,7 @@
                     <form method="get">
                     <div class="searchUser">
                         <input type="text" placeholder="昵称/用户名/手机" name="searchStr">
-                        <img src="../html/backendImg/public/fangdajing.png" id="selectImg">
+                        <a id="selectImg"><img src="../html/backendImg/public/fangdajing.png"></a>
                     </div>
                     </form>
                     <div class="addDiv">
@@ -110,7 +109,7 @@
                                 <td><%=data.get(i).getUsername() %></td>
                                 <td><%=data.get(i).getNickname() %></td>
                                 <td><%=data.get(i).getSex()?"男":"女" %></td>
-                                <td><%=DateSimpleStr.getBirthDate(data.get(i).getBirthday())%></td>
+                                <td><%=data.get(i).getBirthday()%></td>
                                 <td><%=provinceDao.selectProvinceById("" + (data.get(i).getProvinceid()) + "").getRetData() %>/<%=cityDao.selectCityById(("" + data.get(i).getCityid() +"")).getRetData()%>/<%=areaDao.selectAreaByAreaId(("" + data.get(i).getAreaid() + "")).getRetData() %></td>
                                 <td><%=data.get(i).getBindtel() %></td>
                                 <td><%=data.get(i).getEmail() %></td>

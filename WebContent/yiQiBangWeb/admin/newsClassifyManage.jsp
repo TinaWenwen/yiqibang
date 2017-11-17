@@ -38,7 +38,10 @@
 	}catch  (NumberFormatException e){
 		pageParam = 1;
 		}
-
+	
+	/* System.out.println("共有" + counts + "条数据");
+	System.out.println("一共有" + maxPage + "页");
+	System.out.println("当前页为" + pageParam); */
 	result = typeDao.selectTypeByLike(searchStr,pageParam);
 	data = (List<TType>)result.getRetData();
 %>
@@ -65,7 +68,7 @@
                 <form method="get">
                     <div class="searchUser">
                         <input type="text" placeholder="新闻类型" name="searchStr">
-                        <img src="../html/backendImg/public/fangdajing.png" id="selectImg">
+                        <a id="selectImg"><img src="../html/backendImg/public/fangdajing.png"></a>
                     </div>
                 </form>
                     <div class="addDiv">

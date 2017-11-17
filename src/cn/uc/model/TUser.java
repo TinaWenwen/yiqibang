@@ -5,49 +5,35 @@ import java.util.Date;
 public class TUser {
     
     private Integer id;
-
-    
+ 
     private String username;
 
-   
     private String nickname;
 
     private String password;
 
-   
     private Boolean sex;
-
-    
+ 
     private String bindtel;
 
-   
     private String email;
-
-    
+ 
     private String headimg;
 
-    
     private Boolean state;
 
-   
     private Date createtime;
 
-    
-    private Date birthday;
-
-    
+    private String birthday;
+  
     private String remark;
-
-    
+ 
     private Date update;
 
-    
     private Integer provinceid;
-
-    
+ 
     private Integer cityid;
 
-    
     private Integer areaid;
 
     
@@ -149,12 +135,12 @@ public class TUser {
     }
 
     
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
     
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -216,7 +202,7 @@ public class TUser {
 
 
 	public TUser(String username, String nickname, String password, Boolean sex, String bindtel, String email,
-			String headimg, Boolean state, Date createtime, Date birthday, String remark, Date update,
+			String headimg, Boolean state, Date createtime, String birthday, String remark, Date update,
 			Integer provinceid, Integer cityid, Integer areaid) {
 		super();
 		this.username = username;
@@ -237,7 +223,7 @@ public class TUser {
 	}
 
 	public TUser(String username, String nickname, String password, Boolean sex, String bindtel, String email,
-			String headimg, Boolean state, Date createtime, Date birthday, String remark, Date update) {
+			String headimg, Boolean state, Date createtime, String birthday, String remark) {
 		super();
 		this.username = username;
 		this.nickname = nickname;
@@ -250,7 +236,7 @@ public class TUser {
 		this.createtime = createtime;
 		this.birthday = birthday;
 		this.remark = remark;
-		this.update = update;
+	
 	}
 
 

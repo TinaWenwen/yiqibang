@@ -43,6 +43,7 @@ public class Constants {
 	 public static final String ADMINMAPPER_SELECTBYLIKE = ROOT + ADMIN_MAPPER + SELECT_BY_LIKE;
 	 public static final String ADMINMAPPER_INSERT = ROOT + ADMIN_MAPPER + INSERT;
 	 public static final String ADMINMAPPER_SELECT_COUNT = ROOT + ADMIN_MAPPER + SELECT_COUNTS;
+	 public static final String ADMINMAPPER_DELETE = ROOT + ADMIN_MAPPER + DELETE;
 	 //user的操作语句路径
 	 public static final String USERMAPPER_SELECTBYLIKE = ROOT + MEMBER_MAPPER + SELECT_BY_LIKE;
 	 public static final String USERMAPPER_SELECT_COUNT = ROOT + MEMBER_MAPPER + SELECT_COUNTS;
@@ -69,13 +70,13 @@ public class Constants {
 	 
 	 //areas的操作路径
 	 public static final String AREA_GETBY_AREAID = ROOT + AREAS_MAPPER + SELECT_NAMEBYID;
-	 
+	 public static final String AREA_SELECTALL = ROOT + AREAS_MAPPER + SELECTALL;
 	 //cities的操作路径
 	 public static final String CITY_GETBY_CITYID = ROOT + CITIES_MAPPER + SELECT_NAMEBYID;
-	 
+	 public static final String CITY_SELECTALL = ROOT + CITIES_MAPPER + SELECTALL;
 	 //Provinces的操作路径
 	 public static final String PROVINCE_GETBY_PROVINCEID = ROOT + PROVINCES_MAPPER + SELECT_NAMEBYID;
-
+	 public static final String PROVINCE_SELECTALL = ROOT + PROVINCES_MAPPER + SELECTALL;
 }
 
 

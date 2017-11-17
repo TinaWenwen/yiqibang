@@ -14,42 +14,6 @@ public class ProvincesMapperImpl implements ProvincesMapper {
 
 
 	@Override
-	public int deleteByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insert(Provinces record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insertSelective(Provinces record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Provinces selectByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int updateByPrimaryKeySelective(Provinces record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateByPrimaryKey(Provinces record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public Result selectProvinceById(String provinceid) {
 		Result result = new Result();
 		result.setRetCode(Constants.RETCODE_FAILED);
@@ -60,6 +24,21 @@ public class ProvincesMapperImpl implements ProvincesMapper {
 			result.setRetCode(Constants.RETCODE_SUCCESS);
 			result.setRetMsg(true);
 			result.setRetData(province);
+		}
+		return result;
+	}
+
+	@Override
+	public Result selectAll() {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		List<Provinces> proList = session.selectList(Constants.PROVINCE_SELECTALL);
+		session.close();
+		if (proList != null) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(proList);
 		}
 		return result;
 	}

@@ -14,6 +14,7 @@ import cn.uc.dao.TUserMapper;
 import cn.uc.dao.impl.TAdminMapperImpl;
 import cn.uc.dao.impl.TUserMapperImpl;
 import cn.uc.util.Result;
+import cn.uc.util.WriteResultToCilent;;
 
 /**
  * Servlet implementation class AdminServlet
@@ -65,21 +66,6 @@ public class AdminServlet extends BaseServlet {
 		
 		Result result = adminDao.insertSelective(uid, status, level);
 		
-		/*PrintWriter out;
-		try {
-			out = response.getWriter();
-			if(result.isRetMsg()){
-				out.println("添加成功,2秒后跳转到主页。。。。");
-			}else{
-				out.println("添加失败，2秒后跳转到主页。。。。");
-			}
-			
-	          
-			response.sendRedirect(request.getContextPath()+"/yiQiBangWeb/admin/admin.jsp");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		PrintWriter out;
 		response.setHeader("refresh", "3;url=" +request.getContextPath()+ "/yiQiBangWeb/admin/admin.jsp");
 		try {
@@ -94,7 +80,16 @@ public class AdminServlet extends BaseServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+	}
+	
+	public void adminDelete(HttpServletRequest request, HttpServletResponse response){
+		int id = Integer.parseInt(request.getParameter("id"));
+		Result result = adminDao.deleteByPrimaryKey(id);
+		WriteResultToCilent.writeMethod(result, response);
+	}
+	
+	public void adminUpdate(HttpServletRequest request, HttpServletResponse response){
+		
 	}
 	
 }

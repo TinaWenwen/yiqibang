@@ -7,46 +7,47 @@
     cn.uc.util.Result,
     cn.uc.util.DateSimpleStr,
     cn.uc.util.Constants"%>
-  
+
 <%!
-		List<TAdmin> data;
- 	    Result result = new Result();
- 	    Result countsResult = new Result();
- 		TAdminMapper adminDao = new TAdminMapperImpl(); 
-%>  
+	List<TAdmin> data;
+	Result result = new Result();
+	Result countsResult = new Result();
+	TAdminMapper adminDao = new TAdminMapperImpl();%>
 <%
-		//获取传来的查询条件
-		String searchStr = request.getParameter("searchStr");
-		//获取传来的页码参数
-		String pageStr = request.getParameter("page");
-		//当前显示的页码
-		int pageParam;
-		int maxPage;
-		if (searchStr == null){
-			searchStr = "";
-		}
-		//获取当前查询的数据的最大页数
-		countsResult = adminDao.selectAllCounts(searchStr);
-		int counts = (int)countsResult.getRetData();
-		//System.out.println(counts);
-		maxPage = (int)Math.ceil((float)counts / Constants.PAGE_SIZE);
-		//System.out.println(maxPage);
-		try{
-			pageParam = Integer.parseInt(pageStr);
-			if (pageParam <= 0){
-				pageParam = 1;
-			}
-			if (pageParam > maxPage){
-				pageParam = maxPage;
-			}
-		}catch  (NumberFormatException e){
+	//获取传来的查询条件
+	String searchStr = request.getParameter("searchStr");
+	//获取传来的页码参数
+	String pageStr = request.getParameter("page");
+	//当前显示的页码
+	int pageParam;
+	int maxPage;
+	if (searchStr == null) {
+		searchStr = "";
+	}
+	//获取当前查询的数据的最大页数
+	countsResult = adminDao.selectAllCounts(searchStr);
+	int counts = (int) countsResult.getRetData();
+
+	maxPage = (int) Math.ceil((float) counts / Constants.PAGE_SIZE);
+	try {
+		pageParam = Integer.parseInt(pageStr);
+		if (pageParam <= 0) {
 			pageParam = 1;
 		}
-		
-		//获取查询列表
- 		result = adminDao.selectAdminByLike(searchStr,pageParam);
-		data = (List<TAdmin>)result.getRetData();
-%> 
+		if (pageParam > maxPage) {
+			pageParam = maxPage;
+		}
+	} catch (NumberFormatException e) {
+		pageParam = 1;
+	}
+	
+	/* System.out.println("共有" + counts + "条数据");
+	System.out.println("一共有" + maxPage + "页");
+	System.out.println("当前页为" + pageParam); */
+	//获取查询列表
+	result = adminDao.selectAdminByLike(searchStr, pageParam);
+	data = (List<TAdmin>) result.getRetData();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,7 +76,7 @@
                     <form method="get">
                     <div class="searchUser">
                     	<input type="text" placeholder="用户名/级别" name="searchStr">
-                        <img src="../html/backendImg/public/fangdajing.png" id="selectImg">
+                        <a id="selectImg"><img src="../html/backendImg/public/fangdajing.png"></a>
                     </div>
                     </form>
                     
@@ -104,7 +105,7 @@
                                 <td><%=data.get(i).getUser().getUsername() %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getUser().getCreatetime()) %></td>
                                 <td><a href="adminEdit.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
-                                <a href="<%=request.getContextPath()%>/admin/delete?id=<%=i%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
+                                <a class="deleteBtn" data-id="<%=data.get(i).getId()%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
                             <% } %>
                             </tbody> 
@@ -119,46 +120,74 @@
     </div>
 </body>
 <script>
-    jQuery(document).ready(function(){
-    	jQuery('#selectImg').click(function(e){
-    		jQuery('form').submit();
-      	}); 
-    	
-    	//获取当前页面GET参数
-    	var getParams = function(key) {
-    		var map = {};
-    		var arr = location.search.slice(1).split('&');
-    		for(var i = 0; i < arr.length; i++) {
-    			if (arr[i] == '') continue;
-    			var tmp = arr[i].split('=');
-    			map[tmp[0]] = tmp[1] ? tmp[1] : '';
-    		}
-    		
-    		if (key) {
-    			return map[key];
-    		} else {
-    			return map;
-    		}
-    	}
+	jQuery(document).ready(
+			function() {
+				//绑定条件查询事件
+				jQuery('#selectImg').click(function(e) {
+					jQuery('form').submit();
+				});
+				//删除绑定事件
+				$('.deleteBtn').click(function(e) {
+					if (!confirm('确认删除？')) {
+						return false;
+					}
+					var id = $(this).data('id');
+					$.ajax({
+						url : "/yiQiBang/AdminServlet",
+						data : {
+							action : "adminDelete",
+							id : id
+						},
+						dataType : "json",
+						timeout : 5000,
+						type : "post",
+						success : function(data) {
+							if (data.retCode == 0) {
+								location.reload();
+							}
+						},
+						error : function(e) {
+							alert("删除失败" + e);
+						},
+					});
+				});
+				//获取当前页面GET参数
+				var getParams = function(key) {
+					var map = {};
+					var arr = location.search.slice(1).split('&');
+					for (var i = 0; i < arr.length; i++) {
+						if (arr[i] == '')
+							continue;
+						var tmp = arr[i].split('=');
+						map[tmp[0]] = tmp[1] ? tmp[1] : '';
+					}
 
-    	var options = {
-    		bootstrapMajorVersion : 3,
-    		currentPage: <%=pageParam %>,
-    		totalPages: <%=Math.max(1, maxPage) %>,
-    		pageUrl: function(type, page, current){
-    			var params = getParams();
-    			params['page'] = page;
-    			return location.origin + location.pathname + '?' + $.param(params);
-    		}
-    	}
+					if (key) {
+						return map[key];
+					} else {
+						return map;
+					}
+				}
 
-    	$('#myPagination').bootstrapPaginator(options);	
-    });
+				var options = {
+					bootstrapMajorVersion : 3,
+					currentPage : <%=pageParam%>,
+					totalPages : <%=Math.max(1, maxPage)%>,
+					pageUrl : function(type, page, current) {
+						var params = getParams();
+						params['page'] = page;
+						return location.origin + location.pathname + '?'
+								+ $.param(params);
+					}
+				}
+
+				$('#myPagination').bootstrapPaginator(options);
+			});
 </script>
 <script>
-$(function(){
-	$('.leftContext li:eq(0)').addClass('active');
-});
+	$(function() {
+		$('.leftContext li:eq(0)').addClass('active');
+	});
 </script>
 </html>
 

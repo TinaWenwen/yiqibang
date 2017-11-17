@@ -14,7 +14,7 @@ public interface TAdminMapper {
 	
 	Result insertSelective(int uid, boolean state, int level);
 	
-    int deleteByPrimaryKey(Integer id);
+    Result deleteByPrimaryKey(Integer id);
 
    
     int insert(TAdmin record);

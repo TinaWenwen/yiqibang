@@ -24,11 +24,5 @@ public class UserTest {
 		Assert.assertNotNull(result.getRetData());
 	}
 
-	@Test
-	public void insertUser(){
-		TUser user = new TUser("张三6","小三6","123",true,"123456","123@qq.com","",true,new Date(),new Date(),"啦啦啦",null);
-		Result result = userDao.insertSelective(user);
-		System.out.println(result.isRetMsg());
-		Assert.assertTrue(result.isRetMsg());
-	}
+
 }

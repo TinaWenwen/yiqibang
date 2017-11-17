@@ -48,7 +48,7 @@ body {
 				</select>
 			</div>
 			<button type="submit" class="btn btn-primary">确认</button>
-			<button type="button" class="btn btn-primary">取消</button>
+			<input type="button" class="btn btn-primary" value="取消" onClick="location.href='admin.jsp'"/>
 		</form>
 	</div>
 </body>

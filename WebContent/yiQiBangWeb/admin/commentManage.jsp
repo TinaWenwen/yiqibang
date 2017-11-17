@@ -72,7 +72,7 @@
                  <form method="get">
                     <div class="searchUser">
                         <input type="text" placeholder="新闻/评分/内容" name="searchStr">
-                        <img src="../html/backendImg/public/fangdajing.png" id="selectImg">
+                        <a id="selectImg"><img src="../html/backendImg/public/fangdajing.png"></a>
                     </div>
                   </form>
                    <!--  <div class="addDiv">

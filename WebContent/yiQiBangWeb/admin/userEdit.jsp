@@ -1,5 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="cn.uc.model.*,
+    cn.uc.dao.*,
+    cn.uc.dao.impl.*,
+    java.util.*,
+    cn.uc.util.Result,
+    cn.uc.util.DateSimpleStr,
+    cn.uc.util.Constants"%>
+<%!
+	List<Provinces> proList;
+	List<Cities> cityList;
+	List<Areas> areaList;
+	ProvincesMapper proDao = new ProvincesMapperImpl();
+	CitiesMapper cityDao = new CitiesMapperImpl();
+	AreasMapper areaDao = new AreasMapperImpl();
+%>    
+<%
+	proList = (List<Provinces>)proDao.selectAll().getRetData();
+	cityList = (List<Cities>)cityDao.selectAll().getRetData();
+	areaList = (List<Areas>)areaDao.selectAll().getRetData();
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,91 +43,72 @@ body {
 <body>
 
 	<div class="main">
-		<form>
+		<form action="<%=request.getContextPath() %>/UserServlet?action=userInsert" method=post>
 			<div class="form-group">
-				<label for="exampleInputEmail1">邮箱</label> <input
-					type="email" class="form-control" id="InputEmail1"
+				<label>邮箱</label> <input
+					type="email" name="email" class="form-control" id="InputEmail1"
 					placeholder="Email">
 			</div>
 			<div class="form-group">
-				<label for="exampleInputUsername">用户名</label> <input
-					type="text" class="form-control" id="InputUsername"
+				<label>用户名</label> <input
+					type="text" name="username" class="form-control" id="InputUsername"
 					placeholder="用户名">
 			</div>
 			<div class="form-group">
 				<label>昵称</label> <input
-					type="text" class="form-control" id="InputNickname"
+					type="text" name="nikcname" class="form-control" id="InputNickname"
 					placeholder="昵称">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">密码</label> <input
-					type="password" class="form-control" id="InputPassword"
+					type="password" name="password" class="form-control" id="InputPassword"
 					placeholder="Password">
 			</div>
 			<div class="form-group">
 				<label>电话号码</label> <input
-					type="number" class="form-control" id="InputPhone"
+					type="number" name="phone" class="form-control" id="InputPhone"
 					placeholder="telephone">
 			</div>
 			<div class="form-group">
 				<label>性别:   </label> 
 				<label class="radio-inline">
-				 <input type="radio" name="ifHot" id="yes" value="true" checked>男
+				 <input type="radio" name="sex" id="yes" value="1" checked>男
 				</label> 
 				<label class="radio-inline">
-				 <input type="radio" name="ifHot" id="no" value="false">女
+				 <input type="radio" name="sex" id="no" value="0">女
 				</label>
 			</div>
 			<div class="form-group">
 				<label>生日</label>
-				<input type="text" class="form-control" id="iptBirthday"
-					placeholder="2017/11/01">
+				<input type="text" name="birthday" class="form-control" id="iptBirthday"
+					placeholder="2017-11-01">
 			</div>
 			<div class="form-group">
-				<label>地址</label> 
-				<select class="form-control" id="province">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-				</select>
-				<select class="form-control" id="city">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-				</select>
-				<select class="form-control" id="area">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-				</select>
+				<label>地址</label>
+				<input type="text" name="address" class="form-control"
+					placeholder="地址">
 			</div>
 			<div class="form-group">
 				<label>状态:   </label> 
 				<label class="radio-inline">
-				 <input type="radio" name="ifDisable" id="yesState" value="true" checked>禁用
+				 <input type="radio" name="isDisable" id="yesState" value="1" checked>禁用
 				</label> 
 				<label class="radio-inline">
-				 <input type="radio" name="ifDisable" id="noState" value="false">可用
+				 <input type="radio" name="isDisable" id="noState" value="0">可用
 				</label>
 			</div>
 			<div class="form-group">
 				<label>备注</label>
-				<input type="text" class="form-control" id="iptRemark"
+				<input type="text" name="remark" class="form-control" id="iptRemark"
 					placeholder="备注">
 			</div>
 			<div class="form-group">
-				<label for="exampleInputFile">上传头像</label> <input type="file"
+				<label>上传头像</label> <input type="file" name="headImg"
 					id="exampleInputFile">
 			</div>
 			
 			<button type="submit" class="btn btn-primary">确认</button>
-			<button type="button" class="btn btn-primary">取消</button>
+			<input type="button" class="btn btn-primary" value="取消" onClick="location.href='member.jsp'"/>
 		</form>
 	</div>
 

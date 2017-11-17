@@ -17,7 +17,7 @@
     <result column="headimg" property="headimg" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="BIT" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
-    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="update" property="update" jdbcType="TIMESTAMP" />
     <result column="provinceid" property="provinceid" jdbcType="INTEGER" />
@@ -183,7 +183,7 @@
         #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="birthday != null" >
-        #{birthday,jdbcType=TIMESTAMP},
+        #{birthday,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -238,7 +238,7 @@
         createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="birthday != null" >
-        birthday = #{birthday,jdbcType=TIMESTAMP},
+        birthday = #{birthday,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
