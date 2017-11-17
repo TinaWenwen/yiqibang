@@ -236,6 +236,23 @@ public class TUser {
 		this.areaid = areaid;
 	}
 
+	public TUser(String username, String nickname, String password, Boolean sex, String bindtel, String email,
+			String headimg, Boolean state, Date createtime, Date birthday, String remark, Date update) {
+		super();
+		this.username = username;
+		this.nickname = nickname;
+		this.password = password;
+		this.sex = sex;
+		this.bindtel = bindtel;
+		this.email = email;
+		this.headimg = headimg;
+		this.state = state;
+		this.createtime = createtime;
+		this.birthday = birthday;
+		this.remark = remark;
+		this.update = update;
+	}
+
 
 	@Override
 	public String toString() {

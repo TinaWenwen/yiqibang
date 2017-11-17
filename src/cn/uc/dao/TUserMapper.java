@@ -11,17 +11,16 @@ public interface TUserMapper {
 	
 	Result selectNameById(Integer id);
 	
-    int deleteByPrimaryKey(Integer id);
-
+	Result selectIdByName(String name);
+	
+	Result selectByPrimaryKey(Integer id);
+	
+    Result deleteByPrimaryKey(Integer id);
     
+    Result insertSelective(TUser record);
+ 
     int insert(TUser record);
 
-   
-    int insertSelective(TUser record);
-
-    
-    Result selectByPrimaryKey(Integer id);
-   
     int updateByPrimaryKeySelective(TUser record);
 
     int updateByPrimaryKey(TUser record);

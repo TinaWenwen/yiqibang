@@ -59,6 +59,9 @@
   <select id="selectUserNameById" resultType="java.lang.String" parameterType="java.lang.Integer">
   select username from t_user where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectIdByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+  select id from t_user where username = #{name}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select * from t_user
     where id = #{id,jdbcType=INTEGER}

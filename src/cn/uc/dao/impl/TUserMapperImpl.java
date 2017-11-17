@@ -16,24 +16,12 @@ import cn.uc.util.Result;
 public class TUserMapperImpl implements TUserMapper {
 
 	
-
-	@Override
-	public int deleteByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	@Override
 	public int insert(TUser record) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
-	public int insertSelective(TUser record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public Result selectByPrimaryKey(Integer id) {
@@ -109,6 +97,44 @@ public class TUserMapperImpl implements TUserMapper {
 			result.setRetCode(Constants.RETCODE_SUCCESS);
 			result.setRetMsg(true);
 			result.setRetData(username);
+		}
+		return result;
+	}
+
+
+	@Override
+	public Result deleteByPrimaryKey(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Result insertSelective(TUser record) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.insert(Constants.USERMAPPER_INSERT, record);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
+		return result;
+	}
+
+
+	@Override
+	public Result selectIdByName(String name) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		Integer id = session.selectOne(Constants.USERMAPPER_SELECTID_BYNAME, name);
+		if (id != null) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(id);
 		}
 		return result;
 	}

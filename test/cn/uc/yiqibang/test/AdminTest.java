@@ -1,12 +1,16 @@
 package cn.uc.yiqibang.test;
 
 
+import java.util.Date;
+
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import cn.uc.dao.TAdminMapper;
 import cn.uc.dao.impl.TAdminMapperImpl;
+import cn.uc.model.TAdmin;
+import cn.uc.model.TUser;
 import cn.uc.util.Result;
 
 
@@ -37,5 +41,6 @@ public class AdminTest {
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
 	}
+	
 	
 }

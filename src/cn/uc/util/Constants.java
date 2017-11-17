@@ -10,7 +10,7 @@ public class Constants {
 	public static final int RETCODE_SUCCESS = 0;
 	public static final int RETCODE_FAILED = 2000;
 	//每页显示的10个
-	public static final int PAGE_SIZE = 1;
+	public static final int PAGE_SIZE = 5;
 	
 	//映射文件.xml的包根路径
 	public static final String ROOT = "cn.uc.mapper";
@@ -31,8 +31,7 @@ public class Constants {
 	public static final String SELECT_BY_LIKE = ".selectByLike";
 	public static final String DELETE = ".deleteByPrimaryKey";
 	public static final String UPDATE = ".update";
-	public static final String INSERT = ".insert";
-	public static final String SELECT_BY_PAGE = ".selectByPage";
+	public static final String INSERT = ".insertSelective";
 	public static final String SELECT_COUNTS = ".selectAllCounts";
 	public static final String SELECT_NAMEBYID = ".selectNameById";
 	public static final String SELECT_BYID = ".selectByPrimaryKey";
@@ -49,7 +48,8 @@ public class Constants {
 	 public static final String USERMAPPER_SELECT_COUNT = ROOT + MEMBER_MAPPER + SELECT_COUNTS;
 	 public static final String USERMAPPER_SELECT_BYID = ROOT + MEMBER_MAPPER + SELECT_BYID;
 	 public static final String USERMAPPER_SELECTNAME_BYID = ROOT + MEMBER_MAPPER +".selectUserNameById";
-	 
+	 public static final String USERMAPPER_INSERT = ROOT + MEMBER_MAPPER + INSERT;
+	 public static final String USERMAPPER_SELECTID_BYNAME = ROOT + MEMBER_MAPPER +".selectIdByName";
 	 //news的操作语句路径
 	 public static final String NEWSMAPPER_SELECTALL = ROOT + NEWS_MAPPER + SELECTALL;
 	 public static final String NEWSMAPPER_SELECTBYLIKE = ROOT + NEWS_MAPPER + SELECT_BY_LIKE;

@@ -1,15 +1,19 @@
 package cn.uc.controller;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import cn.uc.dao.TAdminMapper;
+import cn.uc.dao.TUserMapper;
 import cn.uc.dao.impl.TAdminMapperImpl;
+import cn.uc.dao.impl.TUserMapperImpl;
 import cn.uc.util.Result;
-import cn.uc.util.WriteResultToCilent;
 
 /**
  * Servlet implementation class AdminServlet
@@ -19,7 +23,9 @@ public class AdminServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
    
 	TAdminMapper adminDao = new TAdminMapperImpl();
-	public void adminLogin(HttpServletRequest request,HttpServletResponse response){
+	TUserMapper userDao = new TUserMapperImpl();
+	
+	public void adminLogin(HttpServletRequest request, HttpServletResponse response){
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String code = request.getParameter("code");
@@ -48,6 +54,47 @@ public class AdminServlet extends BaseServlet {
 			e.printStackTrace();
 			System.out.println("跳转失败");
 		}
+	}
+	
+	public void adminInsert(HttpServletRequest request, HttpServletResponse response){
+		String userName = request.getParameter("username").trim();
+		int uid = (int) userDao.selectIdByName(userName).getRetData();
+		String state = request.getParameter("isDisable");
+		boolean status = (state == "0") ? false : true;
+		int level = Integer.parseInt(request.getParameter("level"));
+		
+		Result result = adminDao.insertSelective(uid, status, level);
+		
+		/*PrintWriter out;
+		try {
+			out = response.getWriter();
+			if(result.isRetMsg()){
+				out.println("添加成功,2秒后跳转到主页。。。。");
+			}else{
+				out.println("添加失败，2秒后跳转到主页。。。。");
+			}
+			
+	          
+			response.sendRedirect(request.getContextPath()+"/yiQiBangWeb/admin/admin.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		PrintWriter out;
+		response.setHeader("refresh", "3;url=" +request.getContextPath()+ "/yiQiBangWeb/admin/admin.jsp");
+		try {
+			out = response.getWriter();
+			if(result.isRetMsg()){
+				out.println("添加成功,3秒后跳转到主页。。。。");
+			}else{
+				out.println("添加失败！3秒后跳转到主页。。。。");
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 }

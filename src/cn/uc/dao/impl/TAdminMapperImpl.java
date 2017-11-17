@@ -26,11 +26,6 @@ public class TAdminMapperImpl implements TAdminMapper {
 		return 0;
 	}
 
-	@Override
-	public int insertSelective(TAdmin record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public Result selectByPrimaryKey(Integer id) {
@@ -61,23 +56,6 @@ public class TAdminMapperImpl implements TAdminMapper {
 		return 0;
 	}
 
-	/*@Override
-	public Result selectAllAdmin() {
-		Result result = new Result();
-		SqlSession session = MyBatisUtils.openSession();
-		List<TAdmin> adminList = session.selectList(Constants.ADMINMAPPER_SELECTALL);
-		session.close();
-		if(adminList != null){
-			result.setRetCode(Constants.RETCODE_SUCCESS);
-			result.setRetMsg(true);
-			result.setRetData(adminList);
-		}else{
-			result.setRetCode(Constants.RETCODE_FAILED);
-			result.setRetMsg(false);
-		}
-		return result;
-	}
-*/
 	@Override
 	public Result selectAdminByLike(String likeStr, int pageNum) {
 		Result result = new Result();
@@ -110,6 +88,25 @@ public class TAdminMapperImpl implements TAdminMapper {
 		result.setRetCode(Constants.RETCODE_SUCCESS);
 		result.setRetMsg(true);
 		result.setRetData(counts);
+		return result;
+	}
+
+	@Override
+	public Result insertSelective(int uid, boolean state, int level) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("uId", uid);
+		params.put("state", state);
+		params.put("level", level);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.insert(Constants.ADMINMAPPER_INSERT, params);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
 		return result;
 	}
 
