@@ -33,42 +33,7 @@ public class TTypeMapperImpl implements TTypeMapper {
 		return result;
 	}
 
-	@Override
-	public int deleteByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insert(TType record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insertSelective(TType record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public TType selectByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int updateByPrimaryKeySelective(TType record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateByPrimaryKey(TType record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	@Override
 	public Result selectTypeByLike(String likeStr, int pageNum) {
 		Result result = new Result();
@@ -102,6 +67,66 @@ public class TTypeMapperImpl implements TTypeMapper {
 		result.setRetMsg(true);
 		result.setRetData(counts);
 		return result;
+	}
+
+
+	@Override
+	public Result deleteByPrimaryKey(Integer id) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.delete(Constants.TYPEMAPPER_DELETE, id);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
+		return result;
+	}
+
+
+	@Override
+	public int insert(TType record) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public Result insertSelective(TType record) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.insert(Constants.TYPEMAPPER_INSERT, record);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
+		return result;
+	}
+
+
+	@Override
+	public TType selectByPrimaryKey(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Result updateByPrimaryKeySelective(TType record) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Result updateByPrimaryKey(TType record) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -23,14 +23,14 @@ body {
 </head>
 <body>
 	<div class="main">
-		<form>
+		<form action="<%=request.getContextPath() %>/TypeServlet?action=typeInsert" method=post>
 			<div class="form-group">
 				<label>新闻类型</label> 
-				<input type="text" class="form-control" id="InputType"
+				<input type="text" class="form-control" id="InputType" name="type"
 					placeholder="新闻类型">
 			</div>
 			<button type="submit" class="btn btn-primary">确认</button>
-			<button type="button" class="btn btn-primary">取消</button>
+			<input type="button" class="btn btn-primary" value="取消" onClick="location.href='newsClassifyManage.jsp'"/>
 		</form>
 	</div>
 </body>

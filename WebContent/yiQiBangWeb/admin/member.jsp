@@ -43,7 +43,7 @@
 	
 	/* System.out.println("共有" + counts + "条数据");
 	System.out.println("一共有" + maxPage + "页");*/
-	System.out.println("当前页为" + pageParam); 
+	/* System.out.println("当前页为" + pageParam);  */
 	result = userDao.selectUserByLike(searchStr, pageParam);
 	data = (List<TUser>) result.getRetData();
 %>
@@ -108,19 +108,19 @@
                                 <td><%=i+1 %></td>
                                 <td><%=data.get(i).getUsername() %></td>
                                 <td><%=data.get(i).getNickname() %></td>
-                                <td><%=data.get(i).getSex()?"男":"女" %></td>
+                                <td><%=data.get(i).getSex()? "男" : "女" %></td>
                                 <td><%=data.get(i).getBirthday()%></td>
                                 <td><%=provinceDao.selectProvinceById("" + (data.get(i).getProvinceid()) + "").getRetData() %>/<%=cityDao.selectCityById(("" + data.get(i).getCityid() +"")).getRetData()%>/<%=areaDao.selectAreaByAreaId(("" + data.get(i).getAreaid() + "")).getRetData() %></td>
                                 <td><%=data.get(i).getBindtel() %></td>
                                 <td><%=data.get(i).getEmail() %></td>
-                                <td><%=data.get(i).getState()?"禁用":"可用" %></td>
+                                <td><%=data.get(i).getState()? "禁用" : "可用" %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getCreatetime()) %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getUpdate()) %></td>
                                 <td><%=data.get(i).getHeadimg() %></td>
                                 <td><%=data.get(i).getRemark() %></td>
                                 <td>
                                 <a href="userEdit.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
-                                <a href=""><img src="../html/backendImg/public/shanchu.png"></a>
+                                <a class="deleteBtn" data-id="<%=data.get(i).getId()%>"><img src="../html/backendImg/public/shanchu.png"></a>
                                 </td>
                             </tr>
                           <% } %>
@@ -133,49 +133,77 @@
             </div>
         </div>
    </div>
-<script>
-    jQuery(document).ready(function(){
-    	jQuery('#selectImg').click(function(e){
-    		jQuery('form').submit();
-      	}); 
-    	
-    	//获取当前页面GET参数
-    	var getParams = function(key) {
-    		var map = {};
-    		var arr = location.search.slice(1).split('&');
-    		for(var i = 0; i < arr.length; i++) {
-    			if (arr[i] == '') continue;
-    			var tmp = arr[i].split('=');
-    			map[tmp[0]] = tmp[1] ? tmp[1] : '';
-    		}
-    		
-    		if (key) {
-    			return map[key];
-    		} else {
-    			return map;
-    		}
-    	}
-
-    	var options = {
-    		bootstrapMajorVersion : 3,
-    		currentPage: <%=pageParam %>,
-    		totalPages: <%=Math.max(1, maxPage) %>,
-    		pageUrl: function(type, page, current){
-    			var params = getParams();
-    			params['page'] = page;
-    			return location.origin + location.pathname + '?' + $.param(params);
-    		}
-    	}
-
-    	$('#myPagination').bootstrapPaginator(options);	
-    });
-</script>
-<script>
-$(function(){
-	$('.leftContext li:eq(0)').addClass('active');
-});
-</script>
 </body>
+<script>
+	jQuery(document).ready(
+			function() {
+				//绑定条件查询事件
+				jQuery('#selectImg').click(function(e) {
+					jQuery('form').submit();
+				});
+				//删除绑定事件
+				$('.deleteBtn').click(function(e) {
+					if (!confirm('确认删除？')) {
+						return false;
+					}
+					var id = $(this).data('id');
+					$.ajax({
+						url : "/yiQiBang/UserServlet",
+						data : {
+							action : "userDelete",
+							id : id
+						},
+						dataType : "json",
+						timeout : 5000,
+						type : "post",
+						success : function(data) {
+							if (data.retCode == 0) {
+								location.reload();
+							}
+						},
+						error : function(e) {
+							alert("删除失败" + e);
+						}
+					});
+				});
+				//获取当前页面GET参数
+				var getParams = function(key) {
+					var map = {};
+					var arr = location.search.slice(1).split('&');
+					for (var i = 0; i < arr.length; i++) {
+						if (arr[i] == '')
+							continue;
+						var tmp = arr[i].split('=');
+						map[tmp[0]] = tmp[1] ? tmp[1] : '';
+					}
+
+					if (key) {
+						return map[key];
+					} else {
+						return map;
+					}
+				}
+
+				var options = {
+					bootstrapMajorVersion : 3,
+					currentPage : <%=pageParam%>,
+					totalPages : <%=Math.max(1, maxPage)%>,
+					pageUrl : function(type, page, current) {
+						var params = getParams();
+						params['page'] = page;
+						return location.origin + location.pathname + '?'
+								+ $.param(params);
+					}
+				}
+
+				$('#myPagination').bootstrapPaginator(options);
+			});
+</script>
+<script>
+	$(function() {
+		$('.leftContext li:eq(0)').addClass('active');
+	});
+</script>
 </html>
 
 

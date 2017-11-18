@@ -61,7 +61,7 @@ public class AdminServlet extends BaseServlet {
 		String userName = request.getParameter("username").trim();
 		int uid = (int) userDao.selectIdByName(userName).getRetData();
 		String state = request.getParameter("isDisable");
-		boolean status = (state == "0") ? false : true;
+		boolean status = (state == "0") ? true : false;
 		int level = Integer.parseInt(request.getParameter("level"));
 		
 		Result result = adminDao.insertSelective(uid, status, level);

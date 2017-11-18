@@ -104,8 +104,17 @@ public class TUserMapperImpl implements TUserMapper {
 
 	@Override
 	public Result deleteByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.delete(Constants.USERMAPPER_DELETE, id);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
+		return result;
 	}
 
 

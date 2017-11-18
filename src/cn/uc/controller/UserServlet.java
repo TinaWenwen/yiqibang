@@ -15,6 +15,7 @@ import cn.uc.dao.impl.TAdminMapperImpl;
 import cn.uc.dao.impl.TUserMapperImpl;
 import cn.uc.model.TUser;
 import cn.uc.util.Result;
+import cn.uc.util.WriteResultToCilent;
 
 /**
  * Servlet implementation class UserServlet
@@ -33,11 +34,13 @@ public class UserServlet extends BaseServlet {
 		String password = request.getParameter("password").trim();
 		String phone = request.getParameter("phone").trim();
 		String sex = request.getParameter("sex");
-		boolean isMan = (sex == "0") ? false : true;
+		System.out.println(sex);
+		boolean isMan = (sex == "0")? true : false;
+		System.out.println(isMan);
 		String birthday = request.getParameter("birthday").trim();
 		String address = request.getParameter("address").trim();
 		String state = request.getParameter("isDisable");
-		boolean status = (state == "0") ? false : true;
+		boolean status = (state == "0") ? true : false;
 		String remark = request.getParameter("remark").trim();
 		String headImg = request.getParameter("headImg");
 		
@@ -45,7 +48,6 @@ public class UserServlet extends BaseServlet {
 		user.setBindtel(phone);
 		user.setBirthday(birthday);
 		user.setCreatetime(new Date());
-		/*user.setUpdate(new Date());*/
 		user.setEmail(email);
 		user.setHeadimg(headImg);
 		user.setNickname(nickName);
@@ -70,5 +72,11 @@ public class UserServlet extends BaseServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void userDelete(HttpServletRequest request, HttpServletResponse response){
+		int id = Integer.parseInt(request.getParameter("id"));
+		Result result = userDao.deleteByPrimaryKey(id);
+		WriteResultToCilent.writeMethod(result, response);
 	}
 }

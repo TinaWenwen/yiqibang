@@ -89,7 +89,6 @@ public class TAdminMapperImpl implements TAdminMapper {
 	public Result insertSelective(int uid, boolean state, int level) {
 		Result result = new Result();
 		result.setRetCode(Constants.RETCODE_FAILED);
-		result.setRetMsg(false);
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("uId", uid);
 		params.put("state", state);
@@ -110,8 +109,6 @@ public class TAdminMapperImpl implements TAdminMapper {
 	public Result deleteByPrimaryKey(Integer id) {
 		Result result = new Result();
 		result.setRetCode(Constants.RETCODE_FAILED);
-
-		// 删除新闻
 		SqlSession session = MyBatisUtils.openSession();
 		int row = session.delete(Constants.ADMINMAPPER_DELETE, id);
 		session.commit();

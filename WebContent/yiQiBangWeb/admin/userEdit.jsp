@@ -6,7 +6,7 @@
     cn.uc.util.Result,
     cn.uc.util.DateSimpleStr,
     cn.uc.util.Constants"%>
-<%!
+<%-- <%!
 	List<Provinces> proList;
 	List<Cities> cityList;
 	List<Areas> areaList;
@@ -18,7 +18,7 @@
 	proList = (List<Provinces>)proDao.selectAll().getRetData();
 	cityList = (List<Cities>)cityDao.selectAll().getRetData();
 	areaList = (List<Areas>)areaDao.selectAll().getRetData();
-%>    
+%>     --%>
 <!DOCTYPE html>
 <html>
 <head>
