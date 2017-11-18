@@ -21,7 +21,7 @@ public interface TUserMapper {
  
     int insert(TUser record);
 
-    int updateByPrimaryKeySelective(TUser record);
+    Result updateByPrimaryKeySelective(TUser record);
 
     int updateByPrimaryKey(TUser record);
 }

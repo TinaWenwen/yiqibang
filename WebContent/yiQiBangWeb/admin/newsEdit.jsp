@@ -1,5 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="cn.uc.model.TType,
+    cn.uc.dao.TTypeMapper,
+    cn.uc.dao.impl.TTypeMapperImpl,
+    java.util.*,
+    cn.uc.util.Result,
+    cn.uc.util.Constants"%>
+ 
+<%!
+List<TType> typeData;
+Result result = new Result();
+TTypeMapper typeDao = new TTypeMapperImpl();
+%>
+
+<%
+result = typeDao.selectAllType();
+typeData = (List<TType>) result.getRetData();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,51 +39,49 @@ body {
 </head>
 <body>
 	<div class="main">
-		<form>
+		<form action="<%=request.getContextPath() %>/NewsServlet?action=newsInsert" method=post>
 			<div class="form-group">
-				<label>类型</label> <select class="form-control" id="newType">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+				<label>类型</label> <select class="form-control" id="newType" name="newType">
+				<% for(int i = 0; i < typeData.size(); i++) {%>
+					<option value="<%=typeData.get(i).getId() %>"><%=typeData.get(i).getName() %></option>
+				<% } %>
 				</select>
 			</div>
 			<div class="form-group">
 				<label>标题</label> <input type="text"
-					class="form-control" id="titile" placeholder="请输入标题">
+					class="form-control" name="title" id="titile" placeholder="请输入标题">
 			</div>
 			<div class="form-group">
 				<label>作者</label> <input type="text"
-					class="form-control" id="author" placeholder="请输入作者">
+					class="form-control" name="author" id="author" placeholder="请输入作者">
 			</div>
 			<div class="form-group">
 				<label>来源</label> <input type="text"
-					class="form-control" id="source" placeholder="请输入新闻来源">
+					class="form-control" name="source" id="source" placeholder="请输入新闻来源">
 			</div>
 			<div class="form-group">
 				<label>新闻内容</label> 
-				<textarea rows="10" cols="30" class="form-control"></textarea>
+				<textarea rows="10" cols="30" name="content" class="form-control"></textarea>
 			</div>
 		
 			<div class="form-group">
 				<label>是否热门: </label> <label class="radio-inline"> <input
-					type="radio" name="ifHot" id="yes" value="true" checked>是
+					type="radio" name="isHot" id="yes" value="1" checked>是
 				</label> <label class="radio-inline"> <input type="radio"
-					name="ifHot" id="no" value="false">否
+					name="isHot" id="no" value="0">否
 				</label>
 			</div>
 
 			<div class="form-group">
 				<label>是否举报: </label> <label class="radio-inline"> <input
-					type="radio" name="ifReport" id="yes" value="true" checked>是
+					type="radio" name="isReport" id="yes" value="1" checked>是
 				</label> <label class="radio-inline"> <input type="radio"
-					name="ifReport" id="no" value="false">否
+					name="isReport" id="no" value="0">否
 				</label>
 			</div>
 
 			<button type="submit" class="btn btn-primary">确认</button>
-			<button type="button" class="btn btn-primary">取消</button>
+			<input type="button" class="btn btn-primary" value="取消" onClick="location.href='newsManage.jsp'"/>
 		</form>
 	</div>
 </body>

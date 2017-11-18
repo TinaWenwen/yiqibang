@@ -118,7 +118,7 @@
                                 <td><%=data.get(i).getIfhot()?"是":"否" %></td>
                                 <td><%=data.get(i).getIfreport()?"是":"否" %></td>
                                 <td><a href="newsEdit.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
-                                <a href=""><img src="../html/backendImg/public/shanchu.png"></a></td>
+                                <a class="deleteBtn" data-id="<%=data.get(i).getId()%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
                             <% } %>
                             </tbody>
@@ -134,7 +134,31 @@
     	jQuery('#selectImg').click(function(e){
     		jQuery('form').submit();
       	}); 
-    	
+    	//删除绑定事件
+		$('.deleteBtn').click(function(e) {
+			if (!confirm('确认删除？')) {
+				return false;
+			}
+			var id = $(this).data('id');
+			$.ajax({
+				url : "/yiQiBang/NewsServlet",
+				data : {
+					action : "newsDelete",
+					id : id
+				},
+				dataType : "json",
+				timeout : 5000,
+				type : "post",
+				success : function(data) {
+					if (data.retCode == 0) {
+						location.reload();
+					}
+				},
+				error : function(e) {
+					alert("删除失败" + e);
+				}
+			});
+		});
     	//获取当前页面GET参数
     	var getParams = function(key) {
     		var map = {};

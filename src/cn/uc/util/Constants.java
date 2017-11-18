@@ -30,7 +30,7 @@ public class Constants {
 	public static final String SELECTALL = ".selectAll";
 	public static final String SELECT_BY_LIKE = ".selectByLike";
 	public static final String DELETE = ".deleteByPrimaryKey";
-	public static final String UPDATE = ".update";
+	public static final String UPDATE = ".updateByPrimaryKeySelective";
 	public static final String INSERT = ".insertSelective";
 	public static final String SELECT_COUNTS = ".selectAllCounts";
 	public static final String SELECT_NAMEBYID = ".selectNameById";
@@ -52,15 +52,19 @@ public class Constants {
 	 public static final String USERMAPPER_INSERT = ROOT + MEMBER_MAPPER + INSERT;
 	 public static final String USERMAPPER_SELECTID_BYNAME = ROOT + MEMBER_MAPPER +".selectIdByName";
 	 public static final String USERMAPPER_DELETE = ROOT + MEMBER_MAPPER + DELETE;
+	 public static final String USERMAPPER_UPDATE = ROOT + MEMBER_MAPPER + UPDATE;
 	 //news的操作语句路径
 	 public static final String NEWSMAPPER_SELECTALL = ROOT + NEWS_MAPPER + SELECTALL;
 	 public static final String NEWSMAPPER_SELECTBYLIKE = ROOT + NEWS_MAPPER + SELECT_BY_LIKE;
 	 public static final String NEWSMAPPER_SELECT_COUNT = ROOT + NEWS_MAPPER + SELECT_COUNTS;
-	 
+	 public static final String NEWSMAPPER_INSERT = ROOT + NEWS_MAPPER + INSERT;
+	 public static final String NEWSMAPPER_DELETE = ROOT + NEWS_MAPPER + DELETE;
 	 //comment的操作语句路径
 	 public static final String COMMMAPPER_SELECTBYLIKE = ROOT + COMMENT_MAPPER + SELECT_BY_LIKE;
 	 public static final String COMMMAPPER_SELECT_COUNT = ROOT + COMMENT_MAPPER + SELECT_COUNTS;
-	 
+	 public static final String COMMMAPPER_DELETE = ROOT + COMMENT_MAPPER + DELETE;
+	 public static final String COMMMAPPER_SELECTBYID = ROOT + COMMENT_MAPPER + SELECT_BYID;
+	 public static final String COMMMAPPER_UPDATE = ROOT + COMMENT_MAPPER + UPDATE;
 	 //newtype的操作语句路径
 	 public static final String TYPEMAPPER_SELECTALL = ROOT + NEWSTYPE_MAPPER + SELECTALL;
 	 public static final String TYPEMAPPER_SELECTBYLIKE = ROOT + NEWSTYPE_MAPPER + SELECT_BY_LIKE;

@@ -27,12 +27,12 @@ public class TUserMapperImpl implements TUserMapper {
 	public Result selectByPrimaryKey(Integer id) {
 		Result result = new Result();
 		SqlSession session = MyBatisUtils.openSession();
-		List<TUser> userList = session.selectList(Constants.USERMAPPER_SELECT_BYID, id);
+		TUser user = session.selectOne(Constants.USERMAPPER_SELECT_BYID, id);
 		session.close();
-		if(userList != null){
+		if(user != null){
 			result.setRetCode(Constants.RETCODE_SUCCESS);
 			result.setRetMsg(true);
-			result.setRetData(userList);
+			result.setRetData(user);
 		}else{
 			result.setRetCode(Constants.RETCODE_FAILED);
 			result.setRetMsg(false);
@@ -41,9 +41,18 @@ public class TUserMapperImpl implements TUserMapper {
 	}
 
 	@Override
-	public int updateByPrimaryKeySelective(TUser record) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Result updateByPrimaryKeySelective(TUser record) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.insert(Constants.USERMAPPER_UPDATE, record);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
+		return result;
 	}
 
 	@Override

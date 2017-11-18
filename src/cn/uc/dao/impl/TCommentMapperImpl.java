@@ -33,9 +33,18 @@ public class TCommentMapperImpl implements TCommentMapper {
 	}*/
 
 	@Override
-	public int deleteByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Result deleteByPrimaryKey(Integer id) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.delete(Constants.COMMMAPPER_DELETE, id);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
+		return result;
 	}
 
 	@Override
@@ -51,15 +60,35 @@ public class TCommentMapperImpl implements TCommentMapper {
 	}
 
 	@Override
-	public TComment selectByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result selectByPrimaryKey(Integer id) {
+		Result result = new Result();
+		SqlSession session = MyBatisUtils.openSession();
+		TComment comm = session.selectOne(Constants.COMMMAPPER_SELECTBYID,id);
+		session.close();
+		if(comm != null){
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(comm);
+		}else{
+			result.setRetCode(Constants.RETCODE_FAILED);
+			result.setRetMsg(false);
+		}
+		return result;
 	}
 
 	@Override
-	public int updateByPrimaryKeySelective(TComment record) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Result updateByPrimaryKeySelective(TComment record) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.insert(Constants.COMMMAPPER_UPDATE, record);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
+		return result;
 	}
 
 	@Override

@@ -119,7 +119,7 @@
                                 <td><%=data.get(i).getHeadimg() %></td>
                                 <td><%=data.get(i).getRemark() %></td>
                                 <td>
-                                <a href="userEdit.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
+                                <a href="userEdit.jsp?id=<%=data.get(i).getId()%>"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a class="deleteBtn" data-id="<%=data.get(i).getId()%>"><img src="../html/backendImg/public/shanchu.png"></a>
                                 </td>
                             </tr>

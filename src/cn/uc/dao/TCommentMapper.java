@@ -10,7 +10,7 @@ public interface TCommentMapper {
 	
 	Result selectAllCounts(String likeStr);
 	
-    int deleteByPrimaryKey(Integer id);
+	Result deleteByPrimaryKey(Integer id);
 
    
     int insert(TComment record);
@@ -19,10 +19,10 @@ public interface TCommentMapper {
     int insertSelective(TComment record);
 
    
-    TComment selectByPrimaryKey(Integer id);
+    Result selectByPrimaryKey(Integer id);
 
     
-    int updateByPrimaryKeySelective(TComment record);
+    Result updateByPrimaryKeySelective(TComment record);
 
     
     int updateByPrimaryKey(TComment record);

@@ -14,6 +14,7 @@ public class BaseServlet extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
+		
 		if(action==null || "".equals(action)){//判断用户请求是否添加action参数
 			response.getWriter().println("请求参数非法，必须携带action表明操作意图");
 		}else{
@@ -23,13 +24,15 @@ public class BaseServlet extends HttpServlet {
 				method.invoke(this,request,response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
 				response.getWriter().println("请求参数值错误，没有该操作");
 			} 
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		/*System.out.println(request.getParameterMap().values());*/
 		doGet(request, response);
 		
 	}

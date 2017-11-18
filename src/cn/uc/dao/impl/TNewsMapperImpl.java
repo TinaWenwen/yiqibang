@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import cn.uc.dao.TNewsMapper;
+import cn.uc.model.NewsMap;
 import cn.uc.model.TAdmin;
 import cn.uc.model.TNews;
 import cn.uc.util.Constants;
@@ -32,11 +33,6 @@ public class TNewsMapperImpl implements TNewsMapper {
 		return result;
 	}
 
-	@Override
-	public int deleteByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int insert(TNews record) {
@@ -44,11 +40,6 @@ public class TNewsMapperImpl implements TNewsMapper {
 		return 0;
 	}
 
-	@Override
-	public int insertSelective(TNews record) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public TNews selectByPrimaryKey(Integer id) {
@@ -106,6 +97,40 @@ public class TNewsMapperImpl implements TNewsMapper {
 		result.setRetCode(Constants.RETCODE_SUCCESS);
 		result.setRetMsg(true);
 		result.setRetData(counts);
+		return result;
+	}
+
+
+	@Override
+	public Result deleteByPrimaryKey(Integer id) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.delete(Constants.NEWSMAPPER_DELETE, id);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
+		return result;
+	}
+
+
+	@Override
+	public Result insertSelective(NewsMap record) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		// 添加新闻
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.insert(Constants.NEWSMAPPER_INSERT, record);
+		/*System.out.println(row);System.out.println(record.getId());System.exit(0);*/
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
 		return result;
 	}
 
