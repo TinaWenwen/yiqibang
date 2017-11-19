@@ -40,6 +40,10 @@
 <link rel="stylesheet" href="../bootstrap/bootstrap/dist/css/bootstrap.min.css">
 <script src="../jquery/jquery-3.2.1.min.js"></script>
 <script src="../bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- 配置文件 -->
+<script type="text/javascript" src="../ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="../ueditor/ueditor.all.js"></script>
 <style>
 body {
 	background: #F1F0EE;
@@ -78,8 +82,10 @@ body {
 					class="form-control" name="source" id="source" value="<%=newsData.getSource() %>" placeholder="请输入新闻来源">
 			</div>
 			<div class="form-group">
-				<label>新闻内容</label> 
-				<textarea rows="10" cols="30" name="content" value="<%=newsData.getContent() %>" class="form-control"></textarea>
+				<label>新闻内容</label>
+				<script id="content_container" name="content" type="text/plain">
+				<%=newsData.getContent() %>
+    			</script>
 			</div>
 		
 			<div class="form-group">
@@ -102,5 +108,12 @@ body {
 			<input type="button" class="btn btn-primary" value="取消" onClick="location.href='newsManage.jsp'"/>
 		</form>
 	</div>
+	<script>
+	jQuery(document).ready(function() {
+		var ue = UE.getEditor('content_container', {
+			initialFrameHeight : 350
+		});
+	});
+	</script>
 </body>
 </html>
