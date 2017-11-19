@@ -25,12 +25,12 @@ public class TAdminMapperImpl implements TAdminMapper {
 	public Result selectByPrimaryKey(Integer id) {
 		Result result = new Result();
 		SqlSession session = MyBatisUtils.openSession();
-		List<TAdmin> adminList = session.selectList(Constants.ADMINMAPPER_SELECT_BYID, id);
+		TAdmin admin = session.selectOne(Constants.ADMINMAPPER_SELECT_BYID, id);
 		session.close();
-		if(adminList != null){
+		if(admin != null){
 			result.setRetCode(Constants.RETCODE_SUCCESS);
 			result.setRetMsg(true);
-			result.setRetData(adminList);
+			result.setRetData(admin);
 		}else{
 			result.setRetCode(Constants.RETCODE_FAILED);
 			result.setRetMsg(false);
@@ -39,9 +39,23 @@ public class TAdminMapperImpl implements TAdminMapper {
 	}
 
 	@Override
-	public int updateByPrimaryKeySelective(TAdmin record) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Result updateByPrimaryKeySelective(int id, int uid, boolean state, int level) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("id", id);
+		params.put("uid", uid);
+		params.put("state", state);
+		params.put("level", level);
+		int row = session.update(Constants.ADMINMAPPER_UPDATE, params);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
+		return result;
 	}
 
 	@Override
@@ -116,6 +130,23 @@ public class TAdminMapperImpl implements TAdminMapper {
 		if (row > 0) {
 			result.setRetCode(Constants.RETCODE_SUCCESS);
 			result.setRetMsg(true);
+		}
+		return result;
+	}
+
+	@Override
+	public Result selectByUid(int uid) {
+		Result result = new Result();
+		SqlSession session = MyBatisUtils.openSession();
+		TAdmin admin = session.selectOne(Constants.ADMINMAPPER_SELECT_BYUID, uid);
+		session.close();
+		if(admin != null){
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(admin);
+		}else{
+			result.setRetCode(Constants.RETCODE_FAILED);
+			result.setRetMsg(false);
 		}
 		return result;
 	}

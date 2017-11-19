@@ -73,7 +73,7 @@
                 <div class="tableTop">
                 <form method="get">
                     <div class="searchUser">
-                        <input type="text" placeholder="类型/来源/标题/作者/内容" name="searchStr" style="width: 200px;">
+                        <input type="text" placeholder="类型/来源/标题/作者/内容" value="<%=searchStr %>" name="searchStr" style="width: 200px;">
                         <a id="selectImg"><img src="../html/backendImg/public/fangdajing.png"></a>
                     </div>
                     </form>
@@ -117,7 +117,7 @@
                                 <td><%=data.get(i).getContent() %></td>
                                 <td><%=data.get(i).getIfhot()?"是":"否" %></td>
                                 <td><%=data.get(i).getIfreport()?"是":"否" %></td>
-                                <td><a href="newsEdit.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
+                                <td><a href="newsEdit.jsp?id=<%=data.get(i).getId()%>"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a class="deleteBtn" data-id="<%=data.get(i).getId()%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
                             <% } %>

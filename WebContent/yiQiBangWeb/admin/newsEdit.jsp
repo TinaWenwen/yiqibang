@@ -1,20 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="cn.uc.model.TType,
+    cn.uc.model.TNews,
     cn.uc.dao.TTypeMapper,
+    cn.uc.dao.TNewsMapper,
+    cn.uc.dao.impl.TNewsMapperImpl,
     cn.uc.dao.impl.TTypeMapperImpl,
     java.util.*,
     cn.uc.util.Result,
     cn.uc.util.Constants"%>
- 
-<%!
-List<TType> typeData;
-Result result = new Result();
-TTypeMapper typeDao = new TTypeMapperImpl();
-%>
+
+<%!List<TType> typeData;
+	TNews newsData = new TNews();
+	TNewsMapper newsDao = new TNewsMapperImpl();
+	Result result = new Result();
+	TTypeMapper typeDao = new TTypeMapperImpl();
+	int id = 0;%>
 
 <%
-result = typeDao.selectAllType();
-typeData = (List<TType>) result.getRetData();
+	result = typeDao.selectAllType();
+	typeData = (List<TType>) result.getRetData();
+
+	//判断id是否存在，区分编辑还是新增
+	try {
+		id = Integer.parseInt(request.getParameter("id"));
+	} catch (NumberFormatException e) {
+		id = 0;
+	}
+	//编辑
+	if (id > 0) {
+		newsData = (TNews) newsDao.selectByPrimaryKey(id).getRetData();
+		System.out.print(newsData.getType());
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -39,44 +55,46 @@ body {
 </head>
 <body>
 	<div class="main">
-		<form action="<%=request.getContextPath() %>/NewsServlet?action=newsInsert" method=post>
+		<form action="<%=request.getContextPath() %>/NewsServlet?action=newsEdit" method=post>
+			<input type="hidden" name="id" value="<%=id%>">
 			<div class="form-group">
-				<label>类型</label> <select class="form-control" id="newType" name="newType">
+				<label>类型</label>
+				<select class="form-control" id="newType" name="newType">
 				<% for(int i = 0; i < typeData.size(); i++) {%>
-					<option value="<%=typeData.get(i).getId() %>"><%=typeData.get(i).getName() %></option>
-				<% } %>
+					<option value="<%=typeData.get(i).getId() %>" <%=newsData.getType().getId().equals(typeData.get(i).getId()) ? "selected" : null %>><%=typeData.get(i).getName() %></option>
+				<%} %>
 				</select>
 			</div>
 			<div class="form-group">
 				<label>标题</label> <input type="text"
-					class="form-control" name="title" id="titile" placeholder="请输入标题">
+					class="form-control" name="title" id="titile" value="<%=newsData.getTitle() %>" placeholder="请输入标题">
 			</div>
 			<div class="form-group">
 				<label>作者</label> <input type="text"
-					class="form-control" name="author" id="author" placeholder="请输入作者">
+					class="form-control" name="author" id="author" value="<%=newsData.getAuthor() %>" placeholder="请输入作者">
 			</div>
 			<div class="form-group">
 				<label>来源</label> <input type="text"
-					class="form-control" name="source" id="source" placeholder="请输入新闻来源">
+					class="form-control" name="source" id="source" value="<%=newsData.getSource() %>" placeholder="请输入新闻来源">
 			</div>
 			<div class="form-group">
 				<label>新闻内容</label> 
-				<textarea rows="10" cols="30" name="content" class="form-control"></textarea>
+				<textarea rows="10" cols="30" name="content" value="<%=newsData.getContent() %>" class="form-control"></textarea>
 			</div>
 		
 			<div class="form-group">
 				<label>是否热门: </label> <label class="radio-inline"> <input
-					type="radio" name="isHot" id="yes" value="1" checked>是
+					type="radio" name="isHot" id="yes" value="1" <%=newsData.getIfhot()? "checked" : null %>>是
 				</label> <label class="radio-inline"> <input type="radio"
-					name="isHot" id="no" value="0">否
+					name="isHot" id="no" value="0" <%=!newsData.getIfhot()? "checked" : null %>>否
 				</label>
 			</div>
 
 			<div class="form-group">
 				<label>是否举报: </label> <label class="radio-inline"> <input
-					type="radio" name="isReport" id="yes" value="1" checked>是
+					type="radio" name="isReport" id="yes" value="1" <%=newsData.getIfreport()? "checked" : null %>>是
 				</label> <label class="radio-inline"> <input type="radio"
-					name="isReport" id="no" value="0">否
+					name="isReport" id="no" value="0" <%=!newsData.getIfreport()? "checked" : null %>>否
 				</label>
 			</div>
 

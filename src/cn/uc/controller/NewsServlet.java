@@ -23,8 +23,22 @@ public class NewsServlet extends BaseServlet {
 
 	TNewsMapper newsDao = new TNewsMapperImpl();
 	
-	public void newsInsert(HttpServletRequest request, HttpServletResponse response){
+	public void newsEdit(HttpServletRequest request, HttpServletResponse response){
+		int id = 0;
+		try{
+			id = Integer.parseInt(request.getParameter("id"));
+		} catch (NumberFormatException e){
+			
+		}
+		
 		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e){
+			return;
+		}
+		
+		
 		int typeId = 0;
 		try {
 			out = response.getWriter();
@@ -39,28 +53,43 @@ public class NewsServlet extends BaseServlet {
 		String source = request.getParameter("source");
 		String content = request.getParameter("content");
 		String isHot = request.getParameter("isHot");
-		boolean ifHot = (isHot == "0") ? false : true;
+		boolean ifHot = isHot.equals("0") ? false : true;
 		String isReport = request.getParameter("isReport");
-		boolean ifReport = (isReport == "0") ? false : true;
+		boolean ifReport = isReport.equals("0") ? false : true;
 		
-		NewsMap news = new NewsMap();
-		news.setAuthor(author);
-		news.setContent(content);
-		news.setCreatetime(new Date());
-		news.setIfhot(ifHot);
-		news.setIfreport(ifReport);
-		news.setSource(source);
-		news.setTitle(title);
-		news.setTypeid(typeId);
-		Result result = newsDao.insertSelective(news);
+		Result result = null;
+		if (id <= 0) {
+			NewsMap news = new NewsMap();
+			news.setAuthor(author);
+			news.setContent(content);
+			news.setCreatetime(new Date());
+			news.setIfhot(ifHot);
+			news.setIfreport(ifReport);
+			news.setSource(source);
+			news.setTitle(title);
+			news.setTypeid(typeId);
+			result = newsDao.insertSelective(news);
+		}else{
+			NewsMap news = new NewsMap();
+			news.setId(id);
+			news.setAuthor(author);
+			news.setContent(content);
+			news.setIfhot(ifHot);
+			news.setIfreport(ifReport);
+			news.setSource(source);
+			news.setTitle(title);
+			news.setTypeid(typeId);
+			result = newsDao.updateByPrimaryKeySelective(news);
+		}
+		
 		
 		response.setHeader("refresh", "3;url=" +request.getContextPath()+ "/yiQiBangWeb/admin/newsManage.jsp");
 		try {
 			out = response.getWriter();
 			if(result.isRetMsg()){
-				out.println("添加成功,3秒后跳转到主页。。。。");
+				out.println("添加成功,3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/newsManage.jsp\">跳转到主页</a>。。。。");
 			}else{
-				out.println("添加失败！3秒后跳转到主页。。。。");
+				out.println("添加失败！3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/newsManage.jsp\">跳转到主页</a>。。。。");
 			}
 			
 		} catch (IOException e) {

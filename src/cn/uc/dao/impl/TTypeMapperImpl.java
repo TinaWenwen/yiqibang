@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import cn.uc.dao.TTypeMapper;
 import cn.uc.model.Areas;
+import cn.uc.model.TAdmin;
 import cn.uc.model.TType;
 import cn.uc.model.TUser;
 import cn.uc.util.Constants;
@@ -110,16 +111,36 @@ public class TTypeMapperImpl implements TTypeMapper {
 
 
 	@Override
-	public TType selectByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result selectByPrimaryKey(Integer id) {
+		Result result = new Result();
+		SqlSession session = MyBatisUtils.openSession();
+		TType type = session.selectOne(Constants.TYPEMAPPER_SELECTBYID, id);
+		session.close();
+		if(type != null){
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(type);
+		}else{
+			result.setRetCode(Constants.RETCODE_FAILED);
+			result.setRetMsg(false);
+		}
+		return result;
 	}
 
 
 	@Override
 	public Result updateByPrimaryKeySelective(TType record) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.update(Constants.TYPEMAPPER_UPDATE, record);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
+		return result;
 	}
 
 

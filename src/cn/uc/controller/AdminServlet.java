@@ -57,28 +57,50 @@ public class AdminServlet extends BaseServlet {
 		}
 	}
 	
-	public void adminInsert(HttpServletRequest request, HttpServletResponse response){
+	public void adminEdit(HttpServletRequest request, HttpServletResponse response){
+		
+		int id = 0;
+		try{
+			id = Integer.parseInt(request.getParameter("id"));
+		} catch (NumberFormatException e){
+			
+		}
+		
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e){
+			return;
+		}
+		
 		String userName = request.getParameter("username").trim();
 		int uid = (int) userDao.selectIdByName(userName).getRetData();
 		String state = request.getParameter("isDisable");
-		boolean status = (state == "0") ? true : false;
+		boolean status = state.equals("0") ? false : true;
 		int level = Integer.parseInt(request.getParameter("level"));
 		
-		Result result = adminDao.insertSelective(uid, status, level);
+		if (uid <= 0) {
+			out.println("用户不存在！");
+		}
 		
-		PrintWriter out;
-		response.setHeader("refresh", "3;url=" +request.getContextPath()+ "/yiQiBangWeb/admin/admin.jsp");
-		try {
-			out = response.getWriter();
-			if(result.isRetMsg()){
-				out.println("添加成功,3秒后跳转到主页。。。。");
-			}else{
-				out.println("添加失败！3秒后跳转到主页。。。。");
+		Result result = new Result();
+		if (id <= 0) {
+			if (adminDao.selectByUid(uid).getRetData() != null){
+				out.println("管理员已存在！");
+				
+			} else {
+				result = adminDao.insertSelective(uid, status, level);
 			}
 			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} else {
+			result = adminDao.updateByPrimaryKeySelective(id, uid, status, level);
+		}		
+		
+		response.setHeader("refresh", "3;url=" +request.getContextPath()+ "/yiQiBangWeb/admin/admin.jsp");
+		if(result.isRetMsg()){
+			out.println("操作成功,3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/admin.jsp\">跳转到主页</a>。。。。");
+		}else{
+			out.println("操作失败！3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/admin.jsp\">跳转到主页</a>。。。。");
 		}
 	}
 	

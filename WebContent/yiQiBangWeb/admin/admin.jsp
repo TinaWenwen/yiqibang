@@ -75,7 +75,7 @@
                     </ul>
                     <form method="get">
                     <div class="searchUser">
-                    	<input type="text" placeholder="用户名/级别" name="searchStr">
+                    	<input type="text" placeholder="用户名/级别" name="searchStr" value="<%=searchStr %>">
                         <a id="selectImg"><img src="../html/backendImg/public/fangdajing.png"></a>
                     </div>
                     </form>
@@ -104,7 +104,7 @@
                                 <td><%=data.get(i).getState()?"禁用":"可用"%></td>
                                 <td><%=data.get(i).getUser().getUsername() %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getUser().getCreatetime()) %></td>
-                                <td><a href="adminEdit.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
+                                <td><a href="adminEdit.jsp?id=<%=data.get(i).getId()%>"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a class="deleteBtn" data-id="<%=data.get(i).getId()%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
                             <% } %>

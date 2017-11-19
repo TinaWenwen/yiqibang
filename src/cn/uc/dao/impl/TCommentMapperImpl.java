@@ -81,7 +81,7 @@ public class TCommentMapperImpl implements TCommentMapper {
 		Result result = new Result();
 		result.setRetCode(Constants.RETCODE_FAILED);
 		SqlSession session = MyBatisUtils.openSession();
-		int row = session.insert(Constants.COMMMAPPER_UPDATE, record);
+		int row = session.update(Constants.COMMMAPPER_UPDATE, record);
 		session.commit();
 		session.close();
 		if (row > 0) {

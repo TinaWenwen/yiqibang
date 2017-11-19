@@ -67,7 +67,7 @@
                 <div class="tableTop">
                 <form method="get">
                     <div class="searchUser">
-                        <input type="text" placeholder="新闻类型" name="searchStr">
+                        <input type="text" placeholder="新闻类型" name="searchStr" value="<%=searchStr %>">
                         <a id="selectImg"><img src="../html/backendImg/public/fangdajing.png"></a>
                     </div>
                 </form>
@@ -91,7 +91,7 @@
                                 <td><%=i+1%></td>
                                 <td><%=data.get(i).getName() %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getCreatetime()) %></td>
-                                <td><a href="typeEdit.jsp"><img src="../html/backendImg/public/xiugai.png"></a>
+                                <td><a href="typeEdit.jsp?id=<%=data.get(i).getId()%>"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a class="deleteBtn" data-id="<%=data.get(i).getId()%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
                             <% } %>

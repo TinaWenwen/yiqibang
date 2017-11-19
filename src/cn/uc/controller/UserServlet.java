@@ -50,12 +50,12 @@ public class UserServlet extends BaseServlet {
 		String phone = request.getParameter("phone").trim();
 		String sex = request.getParameter("sex");
 		/*System.out.println(sex);*/
-		boolean isMan = (sex == "0")? false : true;
+		boolean isMan = sex.equals("0") ? false : true;
 		/*System.out.println(isMan);*/
 		String birthday = request.getParameter("birthday").trim();
 		String address = request.getParameter("address").trim();
 		String state = request.getParameter("isDisable");
-		boolean status = (state == "0") ? false : true;
+		boolean status = state.equals("0") ? false : true;
 		String remark = request.getParameter("remark").trim();
 		String headImg = request.getParameter("headImg");
 		
@@ -95,9 +95,9 @@ public class UserServlet extends BaseServlet {
 		try {
 			out = response.getWriter();
 			if(result.isRetMsg()){
-				out.println("操作成功,3秒后跳转到主页。。。。");
-			}else{
-				out.println("操作失败！3秒后跳转到主页。。。。");
+				out.println("操作成功,3秒后<a href=\"" + request.getContextPath() + "/yiQiBangWeb/admin/member.jsp\">跳转到主页</a>。。。。");
+			}else{ 
+				out.println("操作失败！3秒后<a href=\"" + request.getContextPath() + "/yiQiBangWeb/admin/member.jsp\">跳转到主页</a>。。。。");
 			}
 			
 		} catch (IOException e) {

@@ -74,7 +74,7 @@
                     </ul>
                     <form method="get">
                     <div class="searchUser">
-                        <input type="text" placeholder="昵称/用户名/手机" name="searchStr">
+                        <input type="text" placeholder="昵称/用户名/手机" name="searchStr" value="<%=searchStr %>">
                         <a id="selectImg"><img src="../html/backendImg/public/fangdajing.png"></a>
                     </div>
                     </form>

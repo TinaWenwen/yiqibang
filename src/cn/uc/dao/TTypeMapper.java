@@ -18,7 +18,7 @@ public interface TTypeMapper {
 
     Result insertSelective(TType record);
     
-    TType selectByPrimaryKey(Integer id);
+    Result selectByPrimaryKey(Integer id);
 
     Result updateByPrimaryKeySelective(TType record);
 

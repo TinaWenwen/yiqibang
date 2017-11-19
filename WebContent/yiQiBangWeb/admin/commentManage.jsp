@@ -71,7 +71,7 @@
                 <div class="tableTop">
                  <form method="get">
                     <div class="searchUser">
-                        <input type="text" placeholder="新闻/评分/内容" name="searchStr">
+                        <input type="text" placeholder="新闻/评分/内容" name="searchStr" value="<%=searchStr %>">
                         <a id="selectImg"><img src="../html/backendImg/public/fangdajing.png"></a>
                     </div>
                   </form>

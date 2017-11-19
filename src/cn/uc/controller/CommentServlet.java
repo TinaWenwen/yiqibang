@@ -55,8 +55,7 @@ public class CommentServlet extends BaseServlet {
 		String username = request.getParameter("username");
 		String score = request.getParameter("score");
 		String content = request.getParameter("content");
-		int isShow = request.getParameter("isShow") == "0" ? 0 : 1;
-		
+		int isShow = request.getParameter("isShow").equals("0") ? 0 : 1;
 		TComment comm = new TComment();
 		comm.setId(id);
 		comm.setContent(content);
@@ -66,9 +65,9 @@ public class CommentServlet extends BaseServlet {
 		try {
 			out = response.getWriter();
 			if(result.isRetMsg()){
-				out.println("更新成功,3秒后跳转到主页。。。。");
+				out.println("更新成功,3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/commentManage.jsp\">跳转到主页</a>。。。。");
 			}else{
-				out.println("更新成功！3秒后跳转到主页。。。。");
+				out.println("更新成功！3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/commentManage.jsp\">跳转到主页</a>。。。。");
 			}
 			
 		} catch (IOException e) {

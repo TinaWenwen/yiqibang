@@ -19,10 +19,10 @@ public interface TNewsMapper {
     
     int insert(TNews record);
    
-    TNews selectByPrimaryKey(Integer id);
+    Result selectByPrimaryKey(Integer id);
 
     
-    int updateByPrimaryKeySelective(TNews record);
+    Result updateByPrimaryKeySelective(NewsMap record);
 
   
     int updateByPrimaryKeyWithBLOBs(TNews record);

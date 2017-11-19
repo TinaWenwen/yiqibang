@@ -23,20 +23,42 @@ public class TypeServlet extends BaseServlet {
 	
 	TTypeMapper typeDao = new TTypeMapperImpl();
 	
-	public void typeInsert(HttpServletRequest request, HttpServletResponse response){
+	public void typeEdit(HttpServletRequest request, HttpServletResponse response){
+		int id = 0;
+		try{
+			id = Integer.parseInt(request.getParameter("id"));
+		} catch (NumberFormatException e){
+			
+		}
+		
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e){
+			return;
+		}
+		
 		String typeName = request.getParameter("type").trim();
+		TType type = new TType();
 		
-		TType type = new TType(typeName,new Date());
-		Result result = typeDao.insertSelective(type);
+		Result result = new Result();
+		if ( id <= 0) {
+			type.setName(typeName);
+			type.setCreatetime(new Date());
+			result = typeDao.insertSelective(type);
+		} else {
+			type.setId(id);
+			type.setName(typeName);
+			result = typeDao.updateByPrimaryKeySelective(type);
+		}
 		
-		PrintWriter out;
 		response.setHeader("refresh", "3;url=" +request.getContextPath()+ "/yiQiBangWeb/admin/newsClassifyManage.jsp");
 		try {
 			out = response.getWriter();
 			if(result.isRetMsg()){
-				out.println("添加成功,3秒后跳转到主页。。。。");
+				out.println("操作成功,3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/newsClassifyManage.jsp\">跳转到主页</a>。。。。");
 			}else{
-				out.println("添加失败！3秒后跳转到主页。。。。");
+				out.println("操作失败！3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/newsClassifyManage.jsp\">跳转到主页</a>。。。。");
 			}
 			
 		} catch (IOException e) {

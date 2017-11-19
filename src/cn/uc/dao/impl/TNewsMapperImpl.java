@@ -10,6 +10,7 @@ import cn.uc.dao.TNewsMapper;
 import cn.uc.model.NewsMap;
 import cn.uc.model.TAdmin;
 import cn.uc.model.TNews;
+import cn.uc.model.TUser;
 import cn.uc.util.Constants;
 import cn.uc.util.MyBatisUtils;
 import cn.uc.util.Result;
@@ -42,15 +43,35 @@ public class TNewsMapperImpl implements TNewsMapper {
 
 
 	@Override
-	public TNews selectByPrimaryKey(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result selectByPrimaryKey(Integer id) {
+		Result result = new Result();
+		SqlSession session = MyBatisUtils.openSession();
+		TNews news = session.selectOne(Constants.NEWSMAPPER_SELECT_BYID, id);
+		session.close();
+		if(news != null){
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(news);
+		}else{
+			result.setRetCode(Constants.RETCODE_FAILED);
+			result.setRetMsg(false);
+		}
+		return result;
 	}
 
 	@Override
-	public int updateByPrimaryKeySelective(TNews record) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Result updateByPrimaryKeySelective(NewsMap record) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.update(Constants.NEWSMAPPER_UPDATE, record);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
+		return result;
 	}
 
 	@Override

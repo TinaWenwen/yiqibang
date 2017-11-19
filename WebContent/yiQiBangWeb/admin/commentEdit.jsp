@@ -24,8 +24,6 @@
 		TCommentMapper commDao = new TCommentMapperImpl();
 		commentData = (TComment)commDao.selectByPrimaryKey(id).getRetData();	
 	}
-
-	
 %>
 <!DOCTYPE html>
 <html>

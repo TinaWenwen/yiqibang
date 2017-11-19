@@ -88,6 +88,7 @@ header{
 }
 /*----main----------------*/
 .main{
+	padding-left: 140px;
     height: 520px;
     background-color: white;
 }
@@ -131,9 +132,7 @@ header{
     font-weight: 300;
 }
 .table{
-    float:left;
     width:1000px;
-    /*margin-top:-10px;*/
     text-align: center;
 }
 th{
@@ -141,7 +140,8 @@ th{
 }
 
 .main #myPagination{
-	margin:300px 0 0 650px;
+	float: right;
+	margin-right: 150px;
 }
 
 
