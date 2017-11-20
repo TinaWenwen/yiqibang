@@ -17,14 +17,16 @@ public interface TAdminMapper {
     Result deleteByPrimaryKey(Integer id);
 
     Result selectByUid(int uid);
-    
-    int insert(TAdmin record);
 
+    Result selectAdminByUid(int uid);
+    
     Result selectByPrimaryKey(Integer id);
 
-   
     Result updateByPrimaryKeySelective(int id, int uid, boolean state, int level);
-
-   
+    
+    Result adminUsernameCheck(String username);
+    
+    int insert(TAdmin record);
+    
     int updateByPrimaryKey(TAdmin record);
 }

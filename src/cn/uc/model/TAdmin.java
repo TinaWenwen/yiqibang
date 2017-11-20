@@ -4,16 +4,12 @@ public class TAdmin {
    
     private Integer id;
 
-    
     private TUser user;
 
-   
     private Boolean state;
 
-  
     private Integer level;
 
-   
     public Integer getId() {
         return id;
     }

@@ -12,16 +12,18 @@ public interface TUserMapper {
 	Result selectNameById(Integer id);
 	
 	Result selectIdByName(String name);
+	//根据用户验证密码
+	Result selectPwdByName(String name);
 	
 	Result selectByPrimaryKey(Integer id);
 	
     Result deleteByPrimaryKey(Integer id);
     
     Result insertSelective(TUser record);
- 
-    int insert(TUser record);
 
     Result updateByPrimaryKeySelective(TUser record);
 
     int updateByPrimaryKey(TUser record);
+    
+    int insert(TUser record);
 }

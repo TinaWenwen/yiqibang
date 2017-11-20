@@ -151,6 +151,41 @@ public class TAdminMapperImpl implements TAdminMapper {
 		return result;
 	}
 
+	//管理员登录用户名验证
+	@Override
+	public Result adminUsernameCheck(String username) {
+		Result result = new Result();
+		SqlSession session = MyBatisUtils.openSession();
+		TAdmin admin = session.selectOne(Constants.ADMINMAPPER_USERNAME_CHECK, username);
+		session.close();
+		if(admin != null){
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(admin);
+		}else{
+			result.setRetCode(Constants.RETCODE_FAILED);
+			result.setRetMsg(false);
+		}
+		return result;
+	}
+
+	@Override
+	public Result selectAdminByUid(int uid) {
+		Result result = new Result();
+		SqlSession session = MyBatisUtils.openSession();
+		TAdmin admin = session.selectOne(Constants.ADMINMAPPER_SELECTADMIN_BYUID, uid);
+		session.close();
+		if(admin != null){
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(admin);
+		}else{
+			result.setRetCode(Constants.RETCODE_FAILED);
+			result.setRetMsg(false);
+		}
+		return result;
+	}
+
 }
 
 

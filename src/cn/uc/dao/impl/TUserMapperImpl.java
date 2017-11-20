@@ -157,4 +157,20 @@ public class TUserMapperImpl implements TUserMapper {
 		return result;
 	}
 
+
+	@Override
+	public Result selectPwdByName(String username) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		String pwd = session.selectOne(Constants.USERMAPPER_SELECTPWD_BYNAME, username);
+		if (pwd != null) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(pwd);
+		}
+		return result;
+	}
+
+
 }

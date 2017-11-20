@@ -27,29 +27,38 @@ public class AdminServlet extends BaseServlet {
 	TUserMapper userDao = new TUserMapperImpl();
 	
 	public void adminLogin(HttpServletRequest request, HttpServletResponse response){
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String username = request.getParameter("username").trim();
+		String password = request.getParameter("password").trim();
 		String code = request.getParameter("code");
-		
 		//获取验证码生成的4个正确数组
 		HttpSession session = request.getSession();
 		String code1 = (String) session.getAttribute("code1");
-		
 		//从AdminDao中将用户输入的用户名密码跟数据库中的对比 
-		
+		Result result = null;		
 		//验证
 		try{
-			if(code != null && code.equals(code1)){
+			if (code != null && code.equals(code1)) {
 //				System.out.println("验证码正确！");
-				if("tina".equals(username) && "1234".equals(password)){
-					response.sendRedirect(request.getContextPath()+"/yiQiBangWeb/admin/admin.jsp");
-				}else{
-					session.setAttribute("tip", "用户名或者密码错误");
-					response.sendRedirect(request.getContextPath()+"/yiQiBangWeb/admin/login.jsp");
+				result = adminDao.adminUsernameCheck(username);
+				//System.out.println(result.getRetData());
+				if (result.isRetMsg()) {
+					String pwd = (String) userDao.selectPwdByName(username).getRetData();
+					if (password.equals(pwd)) {//登录成功进入后台页面
+						int uid = (int) userDao.selectIdByName(username).getRetData();
+						//设置sessionid保持登录状态
+						session.setAttribute("uid", uid);
+						response.sendRedirect(request.getContextPath() + "/yiQiBangWeb/admin/admin.jsp");
+					} else {
+						session.setAttribute("tip", "密码错误");
+						response.sendRedirect(request.getContextPath() + "/yiQiBangWeb/admin/login.jsp");
+					}
+				} else {
+					session.setAttribute("tip", "没有该管理员");
+					response.sendRedirect(request.getContextPath() + "/yiQiBangWeb/admin/login.jsp");
 				}
-			}else{
+			} else {
 				session.setAttribute("tip", "验证码错误");
-				response.sendRedirect(request.getContextPath()+"/yiQiBangWeb/admin/login.jsp");
+				response.sendRedirect(request.getContextPath() + "/yiQiBangWeb/admin/login.jsp");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -110,10 +119,14 @@ public class AdminServlet extends BaseServlet {
 		WriteResultToCilent.writeMethod(result, response);
 	}
 	
-	public void adminUpdate(HttpServletRequest request, HttpServletResponse response){
-		
+	//注销
+	public void adminLogout(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		Object obj = session.getAttribute("uid");
+		if (obj != null) {
+			session.removeAttribute("uid");
+		}
 	}
-	
 }
 
 
