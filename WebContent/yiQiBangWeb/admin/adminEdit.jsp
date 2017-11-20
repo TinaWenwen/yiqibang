@@ -19,7 +19,7 @@
 	if (id > 0) {
 		TAdminMapper adminDao = new TAdminMapperImpl();
 		adminData = (TAdmin)adminDao.selectByPrimaryKey(id).getRetData();
-		//System.out.print(adminData.getUser());
+		System.out.print(adminData.getUser());
 	}
 %>    
 <!DOCTYPE html">
@@ -55,18 +55,18 @@ body {
 			<div class="form-group">
 				<label>状态:   </label> 
 				<label class="radio-inline">
-				 <input type="radio" name="isDisable" id="yesState" value="1" <%=adminData.getState() ? "checked" : null %>>禁用
+				 <input type="radio" name="isDisable" id="yesState" value="1" <%=id > 0? (adminData.getState() ? "checked": ""): "checked"  %>>禁用
 				</label> 
 				<label class="radio-inline">
-				 <input type="radio" name="isDisable" id="noState" value="0" <%=!adminData.getState() ? "checked" : null %>>可用
+				 <input type="radio" name="isDisable" id="noState" value="0" <%=id > 0? (!adminData.getState() ? "checked": ""): ""  %>>可用
 				</label>
 			</div>
 			<div class="form-group">
 				<label>等级</label> 
 				<select class="form-control" id="level" name="level">
-					<option <%=adminData.getLevel() == 1 ? "selected" : "" %>>1</option>
-					<option <%=adminData.getLevel() == 2 ? "selected" : "" %>>2</option>
-					<option <%=adminData.getLevel() == 3 ? "selected" : "" %>>3</option>
+					<option <%=id > 0 ? (adminData.getLevel() == 1 ? "selected" : ""): "1" %>>1</option>
+					<option <%=id > 0 ? (adminData.getLevel() == 2 ? "selected" : ""): "" %>>2</option>
+					<option <%=id > 0 ? (adminData.getLevel() == 3 ? "selected" : ""): "" %>>3</option>
 				</select>
 			</div>
 			<button type="submit" class="btn btn-primary">确认</button>

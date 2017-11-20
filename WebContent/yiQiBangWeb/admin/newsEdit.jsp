@@ -9,7 +9,7 @@
     cn.uc.util.Result,
     cn.uc.util.Constants"%>
 
-<%!List<TType> typeData;
+<%!	List<TType> typeData;
 	TNews newsData = new TNews();
 	TNewsMapper newsDao = new TNewsMapperImpl();
 	Result result = new Result();
@@ -29,7 +29,7 @@
 	//编辑
 	if (id > 0) {
 		newsData = (TNews) newsDao.selectByPrimaryKey(id).getRetData();
-		System.out.print(newsData.getType());
+		//System.out.print(newsData.getType());
 	}
 %>
 <!DOCTYPE html>
@@ -65,42 +65,42 @@ body {
 				<label>类型</label>
 				<select class="form-control" id="newType" name="newType">
 				<% for(int i = 0; i < typeData.size(); i++) {%>
-					<option value="<%=typeData.get(i).getId() %>" <%=newsData.getType().getId().equals(typeData.get(i).getId()) ? "selected" : null %>><%=typeData.get(i).getName() %></option>
+					<option value="<%=typeData.get(i).getId() %>" <%=id > 0 ? (newsData.getType().getId().equals(typeData.get(i).getId()) ? "selected" : ""): "" %>><%=typeData.get(i).getName() %></option>
 				<%} %>
 				</select>
 			</div>
 			<div class="form-group">
 				<label>标题</label> <input type="text"
-					class="form-control" name="title" id="titile" value="<%=newsData.getTitle() %>" placeholder="请输入标题">
+					class="form-control" name="title" id="titile" value="<%=id > 0 ? newsData.getTitle(): "" %>" placeholder="请输入标题">
 			</div>
 			<div class="form-group">
 				<label>作者</label> <input type="text"
-					class="form-control" name="author" id="author" value="<%=newsData.getAuthor() %>" placeholder="请输入作者">
+					class="form-control" name="author" id="author" value="<%=id > 0 ? newsData.getAuthor(): "" %>" placeholder="请输入作者">
 			</div>
 			<div class="form-group">
 				<label>来源</label> <input type="text"
-					class="form-control" name="source" id="source" value="<%=newsData.getSource() %>" placeholder="请输入新闻来源">
+					class="form-control" name="source" id="source" value="<%=id > 0 ? newsData.getSource(): "" %>" placeholder="请输入新闻来源">
 			</div>
 			<div class="form-group">
 				<label>新闻内容</label>
 				<script id="content_container" name="content" type="text/plain">
-				<%=newsData.getContent() %>
+				<%=id > 0 ? newsData.getContent(): "" %>
     			</script>
 			</div>
 		
 			<div class="form-group">
 				<label>是否热门: </label> <label class="radio-inline"> <input
-					type="radio" name="isHot" id="yes" value="1" <%=newsData.getIfhot()? "checked" : null %>>是
+					type="radio" name="isHot" id="yes" value="1" <%=id > 0 ? (newsData.getIfhot()? "checked" : ""): "checked" %>>是
 				</label> <label class="radio-inline"> <input type="radio"
-					name="isHot" id="no" value="0" <%=!newsData.getIfhot()? "checked" : null %>>否
+					name="isHot" id="no" value="0" <%=id > 0 ? (!newsData.getIfhot()? "checked" : ""): "" %>  >否
 				</label>
 			</div>
 
 			<div class="form-group">
 				<label>是否举报: </label> <label class="radio-inline"> <input
-					type="radio" name="isReport" id="yes" value="1" <%=newsData.getIfreport()? "checked" : null %>>是
+					type="radio" name="isReport" id="yes" value="1" <%=id > 0 ? (newsData.getIfreport()? "checked" : ""): "" %>>是
 				</label> <label class="radio-inline"> <input type="radio"
-					name="isReport" id="no" value="0" <%=!newsData.getIfreport()? "checked" : null %>>否
+					name="isReport" id="no" value="0" <%=id > 0 ? (!newsData.getIfreport()? "checked" : ""): "checked" %>>否
 				</label>
 			</div>
 

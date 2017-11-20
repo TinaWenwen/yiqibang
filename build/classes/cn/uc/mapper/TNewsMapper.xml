@@ -17,6 +17,7 @@
     <result column="sharecount" property="sharecount" jdbcType="INTEGER" />
     <result column="ifhot" property="ifhot" jdbcType="BIT" />
     <result column="ifreport" property="ifreport" jdbcType="BIT" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
     <association property="type" javaType="TType">
     	<id column="type_id" property="id" jdbcType="INTEGER" />
     	<result column="name" property="name" jdbcType="VARCHAR"/>
@@ -32,7 +33,7 @@
       This element was generated on Sun Nov 12 17:27:42 CST 2017.
     -->
     id, type_id, title, source, createtime, commcount, readcount, author, sharecount, 
-    ifhot, ifreport
+    ifhot, ifreport, pic
   </sql>
   <sql id="Blob_Column_List" >
     <!--
@@ -94,12 +95,12 @@
     insert into t_news (id, type_id, title, 
       source, createtime, commcount, 
       readcount, author, sharecount, 
-      ifhot, ifreport, content
+      ifhot, ifreport, pic, content
       )
     values (#{id,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
       #{source,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{commcount,jdbcType=INTEGER}, 
       #{readcount,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{sharecount,jdbcType=INTEGER}, 
-      #{ifhot,jdbcType=BIT}, #{ifreport,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
+      #{ifhot,jdbcType=BIT}, #{ifreport,jdbcType=BIT}, #{pic}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.uc.model.NewsMap" useGeneratedKeys="true" keyProperty="id">
@@ -143,6 +144,9 @@
       <if test="ifreport != null" >
         ifreport,
       </if>
+      <if test="pic !=null">
+      	pic,
+      </if>
       <if test="content != null" >
         content,
       </if>
@@ -180,6 +184,9 @@
       </if>
       <if test="ifreport != null" >
         #{ifreport,jdbcType=BIT},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
@@ -223,6 +230,9 @@
       </if>
       <if test="ifreport != null" >
         ifreport = #{ifreport,jdbcType=BIT},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
       </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},

@@ -38,10 +38,20 @@ public class TNews {
 
     
     private String content;
+    //新闻图片的路径
+    private String pic;
+    
+    public String getPic() {
+		return pic;
+	}
 
-    
-    
-    public TType getType() {
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+
+
+	public TType getType() {
 		return type;
 	}
 
@@ -312,7 +322,7 @@ public class TNews {
 		return "TNews [id=" + id + ", type=" + type + ", title=" + title + ", source=" + source + ", createtime="
 				+ createtime + ", commcount=" + commcount + ", readcount=" + readcount + ", author=" + author
 				+ ", sharecount=" + sharecount + ", ifhot=" + ifhot + ", ifreport=" + ifreport + ", content=" + content
-				+ "]";
+				+ ", pic=" + pic + "]";
 	}
 
 }

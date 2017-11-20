@@ -65,9 +65,9 @@ public class CommentServlet extends BaseServlet {
 		try {
 			out = response.getWriter();
 			if(result.isRetMsg()){
-				out.println("更新成功,3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/commentManage.jsp\">跳转到主页</a>。。。。");
+				out.println("操作成功,3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/commentManage.jsp\">跳转到主页</a>。。。。");
 			}else{
-				out.println("更新成功！3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/commentManage.jsp\">跳转到主页</a>。。。。");
+				out.println("操作成功！3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/commentManage.jsp\">跳转到主页</a>。。。。");
 			}
 			
 		} catch (IOException e) {

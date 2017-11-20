@@ -49,6 +49,7 @@
 		//获取查询列表
  		result = newsDao.selectNewsByLike(searchStr,pageParam);
 		data = (List<TNews>)result.getRetData();
+		System.out.println(data);
 %> 
 
 <!DOCTYPE html>
@@ -61,6 +62,7 @@
     <script src="../jquery/jquery-3.2.1.min.js"></script>
     <script src="../bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../bootstrap/bootstrap/js/bootstrap-paginator.min.js"></script>
+ 
 </head>
 <body>
     <div class="my_container">
@@ -93,7 +95,6 @@
                             <th>浏览数量</th>
                             <th>评论数量</th>
                             <th>分享数量</th>
-                            <th>图片</th>
                             <th>作者</th>
                             <th>创建时间</th> 
                             <th>内容</th>
@@ -108,15 +109,14 @@
                                 <td><%=data.get(i).getTitle() %></td>
                                 <td><%=data.get(i).getSource() %></td>
                                 <td><%=data.get(i).getType().getName() %></td>
-                                <td><%=data.get(i).getReadcount() %></td>
-                                <td><%=data.get(i).getCommcount()%></td>
-                                <td><%=data.get(i).getSharecount() %></td>
-                                <td>图片1</td>
+                                <td><%=data.get(i).getReadcount() == null? "0": data.get(i).getReadcount() %></td>
+                                <td><%=data.get(i).getCommcount() == null? "0": data.get(i).getCommcount()%></td>
+                                <td><%=data.get(i).getSharecount() == null? "0": data.get(i).getSharecount() %></td>
                                 <td><%=data.get(i).getAuthor() %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getCreatetime()) %></td>
-                                <td><%=data.get(i).getContent() %></td>
-                                <td><%=data.get(i).getIfhot()?"是":"否" %></td>
-                                <td><%=data.get(i).getIfreport()?"是":"否" %></td>
+                                <td><pre><%=data.get(i).getContent().length() > 10 ? data.get(i).getContent().substring(0,10) + "。。。" : data.get(i).getContent()%></pre></td>
+                                <td><%=data.get(i).getIfhot()?"是" : "否" %></td>
+                                <td><%=data.get(i).getIfreport()?"是" : "否" %></td>
                                 <td><a href="newsEdit.jsp?id=<%=data.get(i).getId()%>"><img src="../html/backendImg/public/xiugai.png"></a>
                                 <a class="deleteBtn" data-id="<%=data.get(i).getId()%>"><img src="../html/backendImg/public/shanchu.png"></a></td>
                             </tr>
@@ -136,7 +136,7 @@
       	}); 
     	//删除绑定事件
 		$('.deleteBtn').click(function(e) {
-			if (!confirm('确认删除？')) {
+			if (!confirm('删除新闻也将删除该新闻所有评论，确认删除？')) {
 				return false;
 			}
 			var id = $(this).data('id');

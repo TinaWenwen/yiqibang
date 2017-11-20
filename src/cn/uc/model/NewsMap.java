@@ -39,125 +39,110 @@ public class NewsMap {
     
     private String content;
 
+    private String pic;
 
-	public final Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 
-
-	public final void setId(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
-	public final int gettypeId() {
+	public int getTypeId() {
 		return typeId;
 	}
 
-
-	public final void setTypeid(int typeId) {
+	public void setTypeId(int typeId) {
 		this.typeId = typeId;
 	}
 
-
-	public final String getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
-
-	public final void setTitle(String title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-
-	public final String getSource() {
+	public String getSource() {
 		return source;
 	}
 
-
-	public final void setSource(String source) {
+	public void setSource(String source) {
 		this.source = source;
 	}
 
-
-	public final Date getCreatetime() {
+	public Date getCreatetime() {
 		return createtime;
 	}
 
-
-	public final void setCreatetime(Date createtime) {
+	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
 	}
 
-
-	public final Integer getCommcount() {
+	public Integer getCommcount() {
 		return commcount;
 	}
 
-
-	public final void setCommcount(Integer commcount) {
+	public void setCommcount(Integer commcount) {
 		this.commcount = commcount;
 	}
 
-
-	public final Integer getReadcount() {
+	public Integer getReadcount() {
 		return readcount;
 	}
 
-
-	public final void setReadcount(Integer readcount) {
+	public void setReadcount(Integer readcount) {
 		this.readcount = readcount;
 	}
 
-
-	public final String getAuthor() {
+	public String getAuthor() {
 		return author;
 	}
 
-
-	public final void setAuthor(String author) {
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 
-
-	public final Integer getSharecount() {
+	public Integer getSharecount() {
 		return sharecount;
 	}
 
-
-	public final void setSharecount(Integer sharecount) {
+	public void setSharecount(Integer sharecount) {
 		this.sharecount = sharecount;
 	}
 
-
-	public final Boolean getIfhot() {
+	public Boolean getIfhot() {
 		return ifhot;
 	}
 
-
-	public final void setIfhot(Boolean ifhot) {
+	public void setIfhot(Boolean ifhot) {
 		this.ifhot = ifhot;
 	}
 
-
-	public final Boolean getIfreport() {
+	public Boolean getIfreport() {
 		return ifreport;
 	}
 
-
-	public final void setIfreport(Boolean ifreport) {
+	public void setIfreport(Boolean ifreport) {
 		this.ifreport = ifreport;
 	}
 
-
-	public final String getContent() {
+	public String getContent() {
 		return content;
 	}
 
-
-	public final void setContent(String content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
-    
-    
+
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+     
 }

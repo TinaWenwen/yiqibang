@@ -48,7 +48,7 @@ body {
 			<input type="hidden" name="id" value="<%=id%>">
 			<div class="form-group">
 				<label>新闻类型</label> 
-				<input type="text" class="form-control" id="InputType" name="type" value="<%=typeData.getName() %>"
+				<input type="text" class="form-control" id="InputType" name="type" value="<%=id > 0 ? typeData.getName(): "" %>"
 					placeholder="新闻类型">
 			</div>
 			<button type="submit" class="btn btn-primary">确认</button>

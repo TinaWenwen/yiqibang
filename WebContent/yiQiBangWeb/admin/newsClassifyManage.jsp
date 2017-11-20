@@ -111,7 +111,7 @@
     	
     	//删除绑定事件
 		$('.deleteBtn').click(function(e) {
-			if (!confirm('确认删除？')) {
+			if (!confirm('该操作将同样删除相关类型下所有新闻信息,确认删除？')) {
 				return false;
 			}
 			var id = $(this).data('id');

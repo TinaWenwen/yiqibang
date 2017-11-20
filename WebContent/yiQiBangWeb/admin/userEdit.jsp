@@ -51,64 +51,64 @@ body {
 			<input type="hidden" name="id" value="<%=id%>">
 			<div class="form-group">
 				<label>邮箱</label> <input
-					type="email" name="email" class="form-control" id="InputEmail1" value="<%=userData.getEmail() %>"
+					type="email" name="email" class="form-control" id="InputEmail1" value="<%=id > 0 ? userData.getEmail(): "" %>"
 					placeholder="Email">
 			</div>
 			<div class="form-group">
 				<label>用户名</label> <input
-					type="text" name="username" class="form-control" id="InputUsername" value="<%=userData.getUsername() %>"
+					type="text" name="username" class="form-control" id="InputUsername" value="<%=id > 0 ? userData.getUsername(): "" %>"
 					placeholder="用户名">
 			</div>
 			<div class="form-group">
 				<label>昵称</label> <input
-					type="text" name="nikcname" class="form-control" id="InputNickname" value="<%=userData.getNickname() %>"
+					type="text" name="nikcname" class="form-control" id="InputNickname" value="<%=id > 0? userData.getNickname(): "" %>"
 					placeholder="昵称">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">密码</label> <input
-					type="password" name="password" class="form-control" id="InputPassword" value="<%=userData.getPassword() %>"
+					type="password" name="password" class="form-control" id="InputPassword" value="<%=id > 0 ? userData.getPassword(): "" %>"
 					placeholder="Password">
 			</div>
 			<div class="form-group">
 				<label>电话号码</label> <input
-					type="number" name="phone" class="form-control" id="InputPhone" value="<%=userData.getBindtel() %>"
+					type="number" name="phone" class="form-control" id="InputPhone" value="<%=id > 0 ? userData.getBindtel(): "" %>"
 					placeholder="telephone">
 			</div>
 			<div class="form-group">
 				<label>性别:   </label> 
 				<label class="radio-inline">
-				 <input type="radio" name="sex" id="yes" value="1" <%=userData.getSex() ? "checked" : null %>>男
+				 <input type="radio" name="sex" id="yes" value="1" <%=id > 0 ? (userData.getSex() ? "checked" : ""): "checked" %>>男
 				</label> 
 				<label class="radio-inline">
-				 <input type="radio" name="sex" id="no" value="0" <%=!userData.getSex() ? "checked" : null %>>女
+				 <input type="radio" name="sex" id="no" value="0" <%=id > 0 ? (!userData.getSex() ? "checked" : ""): "" %>>女
 				</label>
 			</div>
 			<div class="form-group">
 				<label>生日</label>
-				<input type="text" name="birthday" class="form-control" id="iptBirthday" value="<%=userData.getBirthday() %>"
+				<input type="text" name="birthday" class="form-control" id="iptBirthday" value="<%=id > 0 ? userData.getBirthday(): "" %>"
 					placeholder="2017-11-01">
 			</div>
 			<div class="form-group">
 				<label>地址</label>
-				<input type="text" name="address" class="form-control" value="<%=userData.getAreaid() %>"
+				<input type="text" name="address" class="form-control" value="<%=id > 0 ? userData.getAreaid(): "" %>"
 					placeholder="地址">
 			</div>
 			<div class="form-group">
 				<label>状态:   </label> 
 				<label class="radio-inline">
-				 <input type="radio" name="isDisable" id="yesState" value="1" <%=userData.getSex() ? "checked" : null %>>禁用
+				 <input type="radio" name="isDisable" id="yesState" value="1" <%=id > 0 ? (userData.getSex() ? "checked" : ""): "checked" %>>禁用
 				</label> 
 				<label class="radio-inline">
-				 <input type="radio" name="isDisable" id="noState" value="0" <%=!userData.getSex() ? "checked" : null %>>可用
+				 <input type="radio" name="isDisable" id="noState" value="0" <%=id > 0 ? (!userData.getSex() ? "checked" : ""): "" %>>可用
 				</label>
 			</div>
 			<div class="form-group">
 				<label>备注</label>
-				<input type="text" name="remark" class="form-control" id="iptRemark" value="<%=userData.getRemark() %>"
+				<input type="text" name="remark" class="form-control" id="iptRemark" value="<%=id > 0 ? userData.getRemark(): "" %>"
 					placeholder="备注">
 			</div>
 			<div class="form-group">
-				<label>上传头像</label> <input type="file" name="headImg" value="<%=userData.getHeadimg() %>"
+				<label>上传头像</label> <input type="file" name="headImg" value="<%=id > 0 ? userData.getHeadimg(): "" %>"
 					id="exampleInputFile">
 			</div>
 			

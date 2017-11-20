@@ -61,19 +61,19 @@ body {
 			</div>
 			<div class="form-group">
 				<label>评分</label> <input type="text"
-					class="form-control" disabled name="score" id="score" value="<%=commentData.getScore()%>">
+					class="form-control" disabled name="score" id="score" value="<%=id > 0 ? commentData.getScore(): ""%>">
 			</div>
 			<div class="form-group">
 				<label>评论内容</label> 
 				<input type="text"
-					class="form-control" name="content" id="content" value="<%=commentData.getContent()%>">
+					class="form-control" name="content" id="content" value="<%=id > 0 ? commentData.getContent(): ""%>">
 			</div>
 		
 			<div class="form-group">
 				<label>状态可见 </label> <label class="radio-inline"> <input
-					type="radio" name="isShow" id="isShow" value="1" <%=commentData.getStatus() == 1 ? "checked" : null %>>是
+					type="radio" name="isShow" id="isShow" value="1" <%=id > 0 ?(commentData.getStatus() == 1 ? "checked" : ""): "checked" %>>是
 				</label> <label class="radio-inline"> <input type="radio"
-					name="isShow" id="isShow" value="0" <%=commentData.getStatus() == 0 ? "checked" : null %>>否
+					name="isShow" id="isShow" value="0" <%=id > 0 ? (commentData.getStatus() == 0 ? "checked" : ""): "" %>>否
 				</label>
 			</div>
 

@@ -79,7 +79,6 @@ public class UserServlet extends BaseServlet {
 			user.setId(id);
 			user.setBindtel(phone);
 			user.setBirthday(birthday);
-			user.setCreatetime(new Date());
 			user.setEmail(email);
 			user.setHeadimg(headImg);
 			user.setNickname(nickName);

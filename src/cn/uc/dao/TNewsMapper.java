@@ -16,15 +16,13 @@ public interface TNewsMapper {
     Result deleteByPrimaryKey(Integer id);
 
     Result insertSelective(NewsMap record);
-    
-    int insert(TNews record);
-   
+
     Result selectByPrimaryKey(Integer id);
 
-    
     Result updateByPrimaryKeySelective(NewsMap record);
 
-  
+    int insert(TNews record);
+    
     int updateByPrimaryKeyWithBLOBs(TNews record);
 
    

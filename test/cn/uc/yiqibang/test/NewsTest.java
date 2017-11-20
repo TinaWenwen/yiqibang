@@ -30,7 +30,6 @@ public class NewsTest {
 		news.setSharecount(12);
 		news.setSource("腾讯新闻");
 		news.setTitle("1212");
-		news.setTypeid(5);
 		
 		Result result = newsDao.insertSelective(news);
 		System.out.println(result.isRetMsg());
