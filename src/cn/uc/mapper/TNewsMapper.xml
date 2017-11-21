@@ -68,6 +68,10 @@
   		</if>
   	</where>
   </select>
+  <select id="selectByTypeId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select * from t_news join t_type on t_news.type_id=t_type.id 
+    where t_news.type_id = #{typeid,jdbcType=INTEGER}
+  </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated

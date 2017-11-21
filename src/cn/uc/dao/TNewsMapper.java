@@ -13,6 +13,8 @@ public interface TNewsMapper {
 	
 	Result selectAllCounts(String likeStr);
 	
+	Result selectNewsByTypeId(int typeid);
+	
     Result deleteByPrimaryKey(Integer id);
 
     Result insertSelective(NewsMap record);

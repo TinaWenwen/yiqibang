@@ -107,5 +107,11 @@ public class NewsServlet extends BaseServlet {
 		Result result = newsDao.deleteByPrimaryKey(id);
 		WriteResultToCilent.writeMethod(result, response);
 	}
+	
+	public void getNewsByTypeId(HttpServletRequest request,HttpServletResponse response){
+		int typeid = Integer.parseInt(request.getParameter("typeid"));
+		Result result = newsDao.selectNewsByTypeId(typeid);
+		WriteResultToCilent.writeMethod(result, response);
+	}
 
 }

@@ -13,6 +13,8 @@ import cn.uc.dao.TAdminMapper;
 import cn.uc.dao.TUserMapper;
 import cn.uc.dao.impl.TAdminMapperImpl;
 import cn.uc.dao.impl.TUserMapperImpl;
+import cn.uc.model.TAdmin;
+import cn.uc.util.Constants;
 import cn.uc.util.Result;
 import cn.uc.util.WriteResultToCilent;;
 
@@ -40,13 +42,15 @@ public class AdminServlet extends BaseServlet {
 			if (code != null && code.equals(code1)) {
 //				System.out.println("验证码正确！");
 				result = adminDao.adminUsernameCheck(username);
+				TAdmin admin = (TAdmin) result.getRetData();
 				//System.out.println(result.getRetData());
 				if (result.isRetMsg()) {
-					String pwd = (String) userDao.selectPwdByName(username).getRetData();
+					//String pwd = (String) userDao.selectPwdByName(username).getRetData();
+					String pwd = admin.getUser().getPassword();
 					if (password.equals(pwd)) {//登录成功进入后台页面
-						int uid = (int) userDao.selectIdByName(username).getRetData();
+						//int uid = (int) userDao.selectIdByName(username).getRetData();
 						//设置sessionid保持登录状态
-						session.setAttribute("uid", uid);
+						session.setAttribute("admin", admin);
 						response.sendRedirect(request.getContextPath() + "/yiQiBangWeb/admin/admin.jsp");
 					} else {
 						session.setAttribute("tip", "密码错误");
@@ -115,16 +119,33 @@ public class AdminServlet extends BaseServlet {
 	
 	public void adminDelete(HttpServletRequest request, HttpServletResponse response){
 		int id = Integer.parseInt(request.getParameter("id"));
-		Result result = adminDao.deleteByPrimaryKey(id);
+		//管理员删除需要判断level
+		Result result = new Result();
+		HttpSession session = request.getSession();
+		TAdmin admin = (TAdmin) session.getAttribute("admin");
+		int myLevel = admin.getLevel();
+		TAdmin delAdmin = (TAdmin) adminDao.selectByPrimaryKey(id).getRetData();
+		int delLevel = delAdmin.getLevel();
+		if (myLevel > delLevel) {
+			result = adminDao.deleteByPrimaryKey(id);
+		}else {
+			result.setRetCode(Constants.RETCODE_FAILED);
+		}
 		WriteResultToCilent.writeMethod(result, response);
 	}
 	
 	//注销
 	public void adminLogout(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
-		Object obj = session.getAttribute("uid");
+		Object obj = session.getAttribute("admin");
 		if (obj != null) {
-			session.removeAttribute("uid");
+			session.removeAttribute("admin");
+		}
+		try {
+			response.sendRedirect(request.getContextPath()+ "/yiQiBangWeb/admin/login.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

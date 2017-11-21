@@ -145,6 +145,9 @@
 							if (data.retCode == 0) {
 								location.reload();
 							}
+							if (data.retCode == 2000) {
+								alert("权限不足！");
+							}
 						},
 						error : function(e) {
 							alert("删除失败" + e);

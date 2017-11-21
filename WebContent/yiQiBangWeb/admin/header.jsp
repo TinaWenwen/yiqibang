@@ -12,7 +12,7 @@
             </div>
 
             <div class="rightDiv">
-                <span>注销</span>
+                <a href="<%=request.getContextPath() %>/AdminServlet?action=adminLogout"><span>注销</span></a>
                 <img src="../html/backendImg/public/suoxiaochuankou.png">
                 <img src="../html/backendImg/public/guanbi.png">
             </div>

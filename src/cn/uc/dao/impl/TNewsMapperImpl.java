@@ -155,4 +155,20 @@ public class TNewsMapperImpl implements TNewsMapper {
 		return result;
 	}
 
+
+	@Override
+	public Result selectNewsByTypeId(int typeid) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		List<TNews> news = session.selectList(Constants.NEWSMAPPER_SELECTBY_TYPEID, typeid);
+		session.close();
+		if (news != null) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(news);
+		}
+		return result;
+	}
+
 }

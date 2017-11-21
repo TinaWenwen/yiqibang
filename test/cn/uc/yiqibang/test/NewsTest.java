@@ -16,7 +16,7 @@ public class NewsTest {
 
 	TNewsMapper newsDao = new TNewsMapperImpl();
 	
-	
+	@Ignore
 	@Test
 	public void insert() {
 		NewsMap news = new NewsMap();
@@ -36,10 +36,10 @@ public class NewsTest {
 		Assert.assertTrue(result.isRetMsg());
 	}
 
-	@Ignore
+	
 	@Test
 	public void selectAllCounts(){
-		Result result = newsDao.selectAllCounts("");
+		Result result = newsDao.selectNewsByTypeId(1);
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
 	}

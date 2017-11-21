@@ -67,6 +67,7 @@ public class Constants {
 	 public static final String NEWSMAPPER_DELETE = ROOT + NEWS_MAPPER + DELETE;
 	 public static final String NEWSMAPPER_SELECT_BYID = ROOT + NEWS_MAPPER + SELECT_BYID;
 	 public static final String NEWSMAPPER_UPDATE = ROOT + NEWS_MAPPER + UPDATE;
+	 public static final String NEWSMAPPER_SELECTBY_TYPEID = ROOT + NEWS_MAPPER + ".selectByTypeId";
 	 //comment的操作语句路径
 	 public static final String COMMMAPPER_SELECTBYLIKE = ROOT + COMMENT_MAPPER + SELECT_BY_LIKE;
 	 public static final String COMMMAPPER_SELECT_COUNT = ROOT + COMMENT_MAPPER + SELECT_COUNTS;
