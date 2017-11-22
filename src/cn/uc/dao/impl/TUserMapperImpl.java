@@ -68,7 +68,7 @@ public class TUserMapperImpl implements TUserMapper {
 		SqlSession session = MyBatisUtils.openSession();
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("likeStr", "%"+likeStr+"%");
-		params.put("startIndex",Constants.PAGE_SIZE * (pageNum -1));
+		params.put("startIndex", Constants.PAGE_SIZE * (pageNum -1));
 		params.put("pageSize", Constants.PAGE_SIZE);
 		List<TUser> userList = session.selectList(Constants.USERMAPPER_SELECTBYLIKE, params);
 		session.close();

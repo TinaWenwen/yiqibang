@@ -51,7 +51,7 @@ header{
 /*-------leftContext---------------------*/
 .leftContext{
     width:140px;
-    height: 520px;
+    height: 550px;
     float:left;
     background-color: #1b2531;
     color: #bebebe;
@@ -80,7 +80,7 @@ header{
 }
 .leftContext>img{
     width:120px;
-    margin:250px 10px 0 10px;
+    margin:280px 10px 0 10px;
 }
 .my_container{
 	width:1140px;
@@ -89,7 +89,7 @@ header{
 /*----main----------------*/
 .main{
 	padding-left: 140px;
-    height: 520px;
+    height: 550px;
     background-color: white;
 }
 .tableTop ul, .searchUser{

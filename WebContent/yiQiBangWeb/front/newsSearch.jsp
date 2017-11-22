@@ -73,7 +73,9 @@
                     <!-- 轮播（Carousel）指标 -->
                     <ol class="carousel-indicators">
                     <% for(int i = 0; i < newsData.size(); i++) {%>
+                    <%	if (i < 3) {%>
                         <li data-target="#myCarousel" data-slide-to="<%=i %>" class="<%=i == 0? "active":"" %>"></li>
+                         	<% } %>
                          <% } %>
                     </ol>
                     <!-- 轮播（Carousel）导航 -->
@@ -100,7 +102,26 @@
                     </a>
                 </div>
             </div>
+            <% for(int i = 0; i < newsData.size(); i++) {%>
+            <% 		if (i >= 3 && i < 6) {%>
+            <% 		TNews news = newsData.get(i); %>
+            <% 		String picArr[] = news.getPic().split(",");%>
             <div class="news">
+                <p><%=news.getTitle() %></p>
+                <div class="newsImgs">
+                    <img src="<%=picArr[0] %>">
+                    <img src="<%=picArr[1] %>">
+                    <img src="<%=picArr[2] %>">
+                </div>
+                <div class="comments">
+                    <img src="../html/frontImg/xiaokeai.png">
+                    <span>钻石王老六·30分钟前·评论380次</span>
+                </div>
+            </div>
+            	<% } %>
+            <% } %>
+
+          <!--   <div class="news">
                 <p>实拍德国的真实农村， 百闻不如一见！</p>
                 <div class="newsImgs">
                     <img src="../html/frontImg/village1.png">
@@ -125,20 +146,7 @@
                     <span>钻石王老六·30分钟前·评论380次</span>
                 </div>
             </div>
-
-            <div class="news">
-                <p>实拍德国的真实农村， 百闻不如一见！</p>
-                <div class="newsImgs">
-                    <img src="../html/frontImg/village1.png">
-                    <img src="../html/frontImg/content_tu_02_13.jpg">
-                    <img src="../html/frontImg/content_tu_03_15.jpg">
-                </div>
-                <div class="comments">
-                    <img src="../html/frontImg/xiaokeai.png">
-                    <span>钻石王老六·30分钟前·评论380次</span>
-                </div>
-            </div>
-
+ -->
             <!--底部-->
             <div class="downNew">
                 <img src="../html/frontImg/content_tu_10_41.jpg">
@@ -256,7 +264,7 @@
                                         <span style="white-space:pre"></span><span class="line"></span>
                                     </div>
                                     <img src="../html/frontImg/qq.png" alt="">
-                                    <a href="weChatLogin.html"><img src="../html/frontImg/weixin.png" alt=""></a>
+                                    <a href="../html/weChatLogin.html"><img src="../html/frontImg/weixin.png" alt=""></a>
                                     <img src="../html/frontImg/xinlang.png" alt="">
                                 </div>
                             </div>

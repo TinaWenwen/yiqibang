@@ -49,7 +49,7 @@
 		//获取查询列表
  		result = newsDao.selectNewsByLike(searchStr,pageParam);
 		data = (List<TNews>)result.getRetData();
-		System.out.println(data);
+		//System.out.println(data);
 %> 
 
 <!DOCTYPE html>

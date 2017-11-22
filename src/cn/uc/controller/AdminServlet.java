@@ -35,7 +35,6 @@ public class AdminServlet extends BaseServlet {
 		//获取验证码生成的4个正确数组
 		HttpSession session = request.getSession();
 		String code1 = (String) session.getAttribute("code1");
-		//从AdminDao中将用户输入的用户名密码跟数据库中的对比 
 		Result result = null;		
 		//验证
 		try{
@@ -48,7 +47,6 @@ public class AdminServlet extends BaseServlet {
 					//String pwd = (String) userDao.selectPwdByName(username).getRetData();
 					String pwd = admin.getUser().getPassword();
 					if (password.equals(pwd)) {//登录成功进入后台页面
-						//int uid = (int) userDao.selectIdByName(username).getRetData();
 						//设置sessionid保持登录状态
 						session.setAttribute("admin", admin);
 						response.sendRedirect(request.getContextPath() + "/yiQiBangWeb/admin/admin.jsp");

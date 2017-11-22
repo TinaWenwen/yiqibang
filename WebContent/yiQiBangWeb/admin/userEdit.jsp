@@ -31,6 +31,50 @@
 <link rel="stylesheet" href="../bootstrap/bootstrap/dist/css/bootstrap.min.css">
 <script src="../jquery/jquery-3.2.1.min.js"></script>
 <script src="../bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+   $(function(){
+	   //使用form表单
+	   //使用FormData对象
+	   $("#uploadBtn").click(function(){
+		   var result = checkImg();
+		   if(result){
+			   //表单数据
+			  var formData = new FormData(document.getElementById("editForm"));
+			  $.ajax({
+				  url : "/yiQiBang/UserServlet?action=addUserPhoto",
+				  type : "post",
+				  data : formData,
+				  processData : false,
+				  contentType : false,
+				  success : function(data){
+					 // console.log(data);
+					  //将json字符串转化为js的对象
+					 var result = JSON.parse(data);
+					  if(result.retMsg){
+						  $("#myhead").attr("src","/yiQiBang/yiQiBangWeb/upload_imgs/"+result.imgName);
+					  }else{
+						  alert("上传失败");
+					  }
+					 
+				  },
+				  error:function(e){
+					  console.log(data);
+				  }
+			  });
+		   }
+	   });
+   });
+   
+   function checkImg() {
+		if ($("#headImg").val() == "") {//文件选择器没有选择文件
+			alert("请选择文件");
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+</script>
 <style>
 body {
 	background: #F1F0EE;
@@ -42,12 +86,15 @@ body {
 	border: 1px solid gray;
 	padding: 10px;
 }
+.uploadBtn {
+	margin-top:10px;
+}
 </style>
 </head>
 <body>
 
 	<div class="main">
-		<form action="<%=request.getContextPath() %>/UserServlet?action=userEdit" method=post>
+		<form id="editForm" action="<%=request.getContextPath() %>/UserServlet?action=userEdit" method=post>
 			<input type="hidden" name="id" value="<%=id%>">
 			<div class="form-group">
 				<label>邮箱</label> <input
@@ -108,10 +155,10 @@ body {
 					placeholder="备注">
 			</div>
 			<div class="form-group">
-				<label>上传头像</label> <input type="file" name="headImg" value="<%=id > 0 ? userData.getHeadimg(): "" %>"
-					id="exampleInputFile">
+				<img src="../upload_imgs/avatar_def.jpg" id="myhead">
+				<input type="file" name="headImg" id="headImg">
+				<button type="button" class="btn btn-primary" id="uploadBtn" style="margin-top: 10px;">上传头像</button>
 			</div>
-			
 			<button type="submit" class="btn btn-primary">确认</button>
 			<input type="button" class="btn btn-primary" value="取消" onClick="location.href='member.jsp'"/>
 		</form>

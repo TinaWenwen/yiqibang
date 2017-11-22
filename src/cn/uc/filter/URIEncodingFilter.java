@@ -28,6 +28,7 @@ public class URIEncodingFilter implements Filter {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");	
 		
+		//后台url过滤
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
@@ -41,7 +42,6 @@ public class URIEncodingFilter implements Filter {
 			}
 		//进行过滤
 		TAdmin admin = (TAdmin) session.getAttribute("admin");
-		//System.out.println(username);
 		if (admin == null){
 			httpResponse.sendRedirect(contextPath + "/yiQiBangWeb/admin/login.jsp");
 			return;
