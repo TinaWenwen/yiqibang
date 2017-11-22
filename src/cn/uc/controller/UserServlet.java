@@ -163,6 +163,7 @@ public class UserServlet extends BaseServlet {
 					    //获取文件后缀
 					    String nextFix = fileName.substring(fileName.lastIndexOf("."));
 					    saveName = time + nextFix;//文件名称
+					    System.out.println(saveName);
 					    String fileRealPath = fileImgPath + File.separator + saveName;
 					    File file1 = new File(fileRealPath);//文件的全路径所表示的File对象-文件
 					    

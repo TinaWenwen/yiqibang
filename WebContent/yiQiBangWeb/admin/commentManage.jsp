@@ -84,6 +84,7 @@
                     <div role="tabpanel" class="tab-pane active">
                         <table class="table table-bordered">
                             <thead>
+                            <tr>
                             <th>序号</th>
                             <th>评论新闻</th>
                             <th>评论用户</th>
@@ -93,6 +94,7 @@
                             <th>点赞数</th>
                             <th>评论时间</th>
                             <th>操作</th>
+                            </tr>
                             </thead>
                             <tbody>
                             <% for(int i = 0; i < data.size(); i++) {%>

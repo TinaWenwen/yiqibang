@@ -39,19 +39,19 @@
 		   var result = checkImg();
 		   if(result){
 			   //表单数据
-			  var formData = new FormData(document.getElementById("editForm"));
+			  var formData = new FormData();
+			  formData.append("userfile", document.getElementById('headImg').files[0]);
 			  $.ajax({
 				  url : "/yiQiBang/UserServlet?action=addUserPhoto",
 				  type : "post",
 				  data : formData,
+				  dataType: 'json',  
 				  processData : false,
 				  contentType : false,
 				  success : function(data){
 					 // console.log(data);
-					  //将json字符串转化为js的对象
-					 var result = JSON.parse(data);
-					  if(result.retMsg){
-						  $("#myhead").attr("src","/yiQiBang/yiQiBangWeb/upload_imgs/"+result.imgName);
+					  if(data.retMsg){
+						  $("#myhead").attr("src","/yiQiBang/upload_imgs/"+data.imgName);
 					  }else{
 						  alert("上传失败");
 					  }
@@ -94,7 +94,7 @@ body {
 <body>
 
 	<div class="main">
-		<form id="editForm" action="<%=request.getContextPath() %>/UserServlet?action=userEdit" method=post>
+		<form action="<%=request.getContextPath() %>/UserServlet?action=userEdit" method=post>
 			<input type="hidden" name="id" value="<%=id%>">
 			<div class="form-group">
 				<label>邮箱</label> <input
@@ -156,7 +156,8 @@ body {
 			</div>
 			<div class="form-group">
 				<img src="../upload_imgs/avatar_def.jpg" id="myhead">
-				<input type="file" name="headImg" id="headImg">
+				<input type="file" id="headImg">
+				<input type="hidden" name="headUrl" value="">
 				<button type="button" class="btn btn-primary" id="uploadBtn" style="margin-top: 10px;">上传头像</button>
 			</div>
 			<button type="submit" class="btn btn-primary">确认</button>

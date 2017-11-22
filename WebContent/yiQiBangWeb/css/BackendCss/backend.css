@@ -51,7 +51,7 @@ header{
 /*-------leftContext---------------------*/
 .leftContext{
     width:140px;
-    height: 550px;
+    height: 570px;
     float:left;
     background-color: #1b2531;
     color: #bebebe;
@@ -89,7 +89,7 @@ header{
 /*----main----------------*/
 .main{
 	padding-left: 140px;
-    height: 550px;
+     height: 570px;
     background-color: white;
 }
 .tableTop ul, .searchUser{

@@ -89,12 +89,14 @@
                     <div role="tabpanel" class="tab-pane active">
                         <table class="table table-bordered">
                             <thead>
+                            <tr>
                             <th>序号</th>
                             <th>级别</th>
                             <th>状态</th>
                             <th>用户名</th>
                             <th>添加时间</th>
                             <th>操作</th>
+                            </tr>
                             </thead>
                             <tbody>
                             <% for(int i = 0; i < data.size(); i++) {%>
@@ -162,7 +164,7 @@
 						if (arr[i] == '')
 							continue;
 						var tmp = arr[i].split('=');
-						map[tmp[0]] = tmp[1] ? tmp[1] : '';
+						map[tmp[0]] = tmp[1] ? decodeURIComponent(tmp[1]) : '';
 					}
 
 					if (key) {
