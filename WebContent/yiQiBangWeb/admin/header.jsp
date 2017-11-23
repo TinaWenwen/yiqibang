@@ -21,7 +21,7 @@
 %>
     <header>
             <div class="userImg">
-                <img src="/yiQiBang/headImg/<%=imgName %>" style="width:40px;height:40px;">
+                <img src="/yiQiBang/headImg/<%=imgName %>" style="width:30px;height:30px;">
                 <span>欢迎您,<%=levelName%>&nbsp;<%=userName %></span>
             </div>
 

@@ -1,4 +1,4 @@
-/*----样式初始化-----------------*/
+/*----鏍峰紡鍒濆鍖�-----------------*/
 *{
     padding:0;
     margin:0;
@@ -13,7 +13,7 @@ body{
 ol,ul,li{
     list-style: none;
 }
-/*--------header样式------------------------------*/
+/*--------header鏍峰紡------------------------------*/
 header{
     height:32px;
     background-color: black;
@@ -39,7 +39,7 @@ header div a{
 header a:hover{
     background-color:#289ddb;
 }
-/*--------search样式---------------------*/
+/*--------search鏍峰紡---------------------*/
 .search{
     width:552px;
     margin:34px auto 39px;
@@ -54,7 +54,7 @@ header a:hover{
     margin-top:-2px;
     background-color: #398fe6;
 }
-/*------container属性-------------------------------*/
+/*------container灞炴��-------------------------------*/
 .container{
     width: 1200px;
     padding:0;
@@ -146,8 +146,6 @@ ol{
 .newsTitle{
     float:left;
     margin:52px 0 29px 14px;
-    font-size: 16px;
-    font-weight: 600;
 }
 .downNew .comments{
     float:left;

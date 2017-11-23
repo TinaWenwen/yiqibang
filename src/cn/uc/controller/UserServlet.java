@@ -58,7 +58,12 @@ public class UserServlet extends BaseServlet {
 		boolean isMan = sex.equals("0") ? false : true;
 		/*System.out.println(isMan);*/
 		String birthday = request.getParameter("birthday").trim();
-		String address = request.getParameter("address").trim();
+		
+		String province = request.getParameter("province");
+		String city = request.getParameter("city");
+		String district = request.getParameter("district");
+		String address = province + "/" + city + "/" + district;
+		
 		String state = request.getParameter("isDisable");
 		boolean status = state.equals("0") ? false : true;
 		String remark = request.getParameter("remark").trim();
@@ -78,6 +83,7 @@ public class UserServlet extends BaseServlet {
 			user.setSex(isMan);
 			user.setState(status);
 			user.setUsername(userName);
+			user.setAddress(address);
 			result = userDao.insertSelective(user);
 		} else {
 			TUser user  = new TUser();
@@ -92,6 +98,7 @@ public class UserServlet extends BaseServlet {
 			user.setSex(isMan);
 			user.setState(status);
 			user.setUsername(userName);
+			user.setAddress(address);
 			result = userDao.updateByPrimaryKeySelective(user);
 		}
 		
@@ -152,16 +159,14 @@ public class UserServlet extends BaseServlet {
 						if(!imgPath.exists()){
 							imgPath.mkdirs();
 						}*/
-					    System.out.println("要存放文件的真实路径为："+fileImgPath);
-//					    C:\Users\12644\workspace_eclipse_jee\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\java_web_pro\img\img1.jpg
-					   
+					   // System.out.println("要存放文件的真实路径为："+fileImgPath);
 					    //修改保存的文件的文件名为：当前时间+后缀
 					    //当前时间获取：new Date().getTime()    /   System.currentTimeMillis
 					    long time = System.currentTimeMillis();
 					    //获取文件后缀
 					    String nextFix = fileName.substring(fileName.lastIndexOf("."));
 					    saveName = time + nextFix;//文件名称
-					    System.out.println(saveName);
+					    //System.out.println(saveName);
 					    String fileRealPath = fileImgPath + File.separator + saveName;
 					    File file1 = new File(fileRealPath);//文件的全路径所表示的File对象-文件
 					    
@@ -185,9 +190,4 @@ public class UserServlet extends BaseServlet {
 		}
 		    
 	   }
-	
-	
-		public void updateHeadImg() {
-			
-		}
 }

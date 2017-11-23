@@ -31,9 +31,13 @@
 <link rel="stylesheet" href="../bootstrap/bootstrap/dist/css/bootstrap.min.css">
 <script src="../jquery/jquery-3.2.1.min.js"></script>
 <script src="../bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../js/distpicker.data.min.js"></script>
+<script src="../js/distpicker.min.js"></script>
+<script src="../js/My97DatePicker/WdatePicker.js"></script>
+
 <script>
    $(function(){
-	   //使用form表单
+		
 	   //使用FormData对象
 	   $("#uploadBtn").click(function(){
 		   var result = checkImg();
@@ -92,6 +96,9 @@ body {
 .uploadBtn {
 	margin-top:10px;
 }
+.addressSelect{
+	padding:5px 5px;
+}
 </style>
 </head>
 <body>
@@ -133,15 +140,15 @@ body {
 				 <input type="radio" name="sex" id="no" value="0" <%=id > 0 ? (!userData.getSex() ? "checked" : ""): "" %>>女
 				</label>
 			</div>
-			<div class="form-group">
-				<label>生日</label>
-				<input type="text" name="birthday" class="form-control" id="iptBirthday" value="<%=id > 0 ? userData.getBirthday(): "" %>"
-					placeholder="2017-11-01">
+			<div class="sample form-group">
+				<span>生日：</span>
+				<input id="birthday" name="birthday" type="text" class="Wdate" style="height:30px" onclick="WdatePicker()"/>
 			</div>
-			<div class="form-group">
-				<label>地址</label>
-				<input type="text" name="address" class="form-control" value="<%=id > 0 ? userData.getAreaid(): "" %>"
-					placeholder="地址">
+			<div class="form-group" data-toggle="distpicker" id="target">
+				<label>地址：</label>
+				<select data-province="---- 选择省 ----" name="province" id="province" class="addressSelect"></select>
+				<select data-city="---- 选择市 ----" name="city" id="city" class="addressSelect"></select>
+				<select data-district="---- 选择区 ----" name=district id="district" class="addressSelect"></select>
 			</div>
 			<div class="form-group">
 				<label>状态:   </label> 
@@ -158,15 +165,14 @@ body {
 					placeholder="备注">
 			</div>
 			<div class="form-group">
-				<img src="../upload_imgs/avatar_def.jpg" id="myhead">
+				<img src="/yiQiBang/headImg/<%=id >0? userData.getHeadimg() : "avatar_def.jpg" %>" id="myhead" style="width:180px;height:180px;">
 				<input type="file" id="headImg">
-				<input type="hidden" name="headUrl" value="" id="headUrl">
+				<input type="hidden" name="headUrl" id="headUrl">
 				<button type="button" class="btn btn-primary" id="uploadBtn" style="margin-top: 10px;">上传头像</button>
 			</div>
 			<button type="submit" class="btn btn-primary">确认</button>
 			<input type="button" class="btn btn-primary" value="取消" onClick="location.href='member.jsp'"/>
 		</form>
 	</div>
-
 </body>
 </html>

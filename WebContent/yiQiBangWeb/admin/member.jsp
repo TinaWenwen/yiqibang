@@ -112,7 +112,7 @@
                                 <td><%=data.get(i).getNickname() %></td>
                                 <td><%=data.get(i).getSex()? "男" : "女" %></td>
                                 <td><%=data.get(i).getBirthday()%></td>
-                                <td><%=provinceDao.selectProvinceById("" + (data.get(i).getProvinceid()) + "").getRetData() %>/<%=cityDao.selectCityById(("" + data.get(i).getCityid() +"")).getRetData()%>/<%=areaDao.selectAreaByAreaId(("" + data.get(i).getAreaid() + "")).getRetData() %></td>
+                                <td><%=data.get(i).getAddress()%></td>
                                 <td><%=data.get(i).getBindtel() %></td>
                                 <td><%=data.get(i).getEmail() %></td>
                                 <td><%=data.get(i).getState()? "禁用" : "可用" %></td>

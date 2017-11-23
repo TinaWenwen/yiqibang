@@ -30,12 +30,7 @@ public class TUser {
  
     private Date update;
 
-    private Integer provinceid;
- 
-    private Integer cityid;
-
-    private Integer areaid;
-
+    private String address;
     
     public Integer getId() {
         return id;
@@ -165,34 +160,15 @@ public class TUser {
     }
 
     
-    public Integer getProvinceid() {
-        return provinceid;
-    }
 
-   
-    public void setProvinceid(Integer provinceid) {
-        this.provinceid = provinceid;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-   
-    public Integer getCityid() {
-        return cityid;
-    }
 
-    
-    public void setCityid(Integer cityid) {
-        this.cityid = cityid;
-    }
-
-    
-    public Integer getAreaid() {
-        return areaid;
-    }
-
-   
-    public void setAreaid(Integer areaid) {
-        this.areaid = areaid;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 
 	public TUser() {
@@ -201,52 +177,13 @@ public class TUser {
 	}
 
 
-	public TUser(String username, String nickname, String password, Boolean sex, String bindtel, String email,
-			String headimg, Boolean state, Date createtime, String birthday, String remark, Date update,
-			Integer provinceid, Integer cityid, Integer areaid) {
-		super();
-		this.username = username;
-		this.nickname = nickname;
-		this.password = password;
-		this.sex = sex;
-		this.bindtel = bindtel;
-		this.email = email;
-		this.headimg = headimg;
-		this.state = state;
-		this.createtime = createtime;
-		this.birthday = birthday;
-		this.remark = remark;
-		this.update = update;
-		this.provinceid = provinceid;
-		this.cityid = cityid;
-		this.areaid = areaid;
-	}
-
-	public TUser(String username, String nickname, String password, Boolean sex, String bindtel, String email,
-			String headimg, Boolean state, Date createtime, String birthday, String remark) {
-		super();
-		this.username = username;
-		this.nickname = nickname;
-		this.password = password;
-		this.sex = sex;
-		this.bindtel = bindtel;
-		this.email = email;
-		this.headimg = headimg;
-		this.state = state;
-		this.createtime = createtime;
-		this.birthday = birthday;
-		this.remark = remark;
-	
-	}
-
-
 	@Override
 	public String toString() {
 		return "TUser [id=" + id + ", username=" + username + ", nickname=" + nickname + ", password=" + password
 				+ ", sex=" + sex + ", bindtel=" + bindtel + ", email=" + email + ", headimg=" + headimg + ", state="
 				+ state + ", createtime=" + createtime + ", birthday=" + birthday + ", remark=" + remark + ", update="
-				+ update + ", provinceid=" + provinceid + ", cityid=" + cityid + ", areaid=" + areaid + "]";
+				+ update + ", address=" + address + "]";
 	}
-    
+
     
 }

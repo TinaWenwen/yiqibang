@@ -81,6 +81,7 @@
                     <!-- 轮播（Carousel）导航 -->
                     <div class="carousel-inner">
                     <% for(int i = 0; i < newsData.size(); i++) {%>
+                    <%		if (i < 3) {%>
                     <% 		TNews news = newsData.get(i); %>
                     <% 		String picArr[] = news.getPic().split(","); %>
                         <div class="item <%=i == 0? "active": "" %>">
@@ -89,6 +90,7 @@
                                 <p><%=news.getTitle() %></p>
                             </div>
                         </div>
+                        	 <% } %>
                         <% } %>
                     </div>
 
@@ -110,7 +112,9 @@
                 <p><%=news.getTitle() %></p>
                 <div class="newsImgs">
                 <% for(int j = 0; j < picArr.length; j++) {%>
+                <%		if (j < 3) { %>
                     <img src="<%=picArr[j] %>" style="height:140px;width:228px;">
+                   		 <% } %>
                     <% } %>
                 </div>
                 <div class="comments">
@@ -121,39 +125,15 @@
             	<% } %>
             <% } %>
 
-          <!--   <div class="news">
-                <p>实拍德国的真实农村， 百闻不如一见！</p>
-                <div class="newsImgs">
-                    <img src="../html/frontImg/village1.png">
-                    <img src="../html/frontImg/content_tu_02_13.jpg">
-                    <img src="../html/frontImg/content_tu_03_15.jpg">
-                </div>
-                <div class="comments">
-                    <img src="../html/frontImg/xiaokeai.png">
-                    <span>钻石王老六·30分钟前·评论380次</span>
-                </div>
-            </div>
-
-            <div class="news">
-                <p>实拍德国的真实农村， 百闻不如一见！</p>
-                <div class="newsImgs">
-                    <img src="../html/frontImg/village1.png">
-                    <img src="../html/frontImg/content_tu_02_13.jpg">
-                    <img src="../html/frontImg/content_tu_03_15.jpg">
-                </div>
-                <div class="comments">
-                    <img src="../html/frontImg/xiaokeai.png">
-                    <span>钻石王老六·30分钟前·评论380次</span>
-                </div>
-            </div>
- -->
             <!--底部-->
             <div class="downNew">
-                <img src="../html/frontImg/content_tu_10_41.jpg">
-                <div class="newsTitle"><p>女人有这三个表现，绝对是和不少男人纠缠过，早就不纯了！</p></div>
-                <div class="comments">
-                    <img src="../html/frontImg/xiaokeai.png">
-                    <span>钻石王老六·30分钟前·评论380次</span>
+            <%  TNews newsDown = newsData.get(6); %>
+            <% 	String picArrDown[] = newsDown.getPic().split(",");%>
+                <img src="<%=picArrDown[0] %>" style="height:140px;width:228px;">
+                <div class="newsTitle">
+                	<p style="font-size: 16px; font-weight: 600;"><%=newsDown.getTitle() %></p>
+               	 	<img src="../html/frontImg/xiaokeai.png" style="margin-top:0px;">
+               		<span>钻石王老六·30分钟前·评论380次</span>
                 </div>
             </div>
         </div>
