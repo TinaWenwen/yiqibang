@@ -45,13 +45,16 @@
 				  url : "/yiQiBang/UserServlet?action=addUserPhoto",
 				  type : "post",
 				  data : formData,
-				  dataType: 'json',  
 				  processData : false,
 				  contentType : false,
 				  success : function(data){
-					 // console.log(data);
-					  if(data.retMsg){
-						  $("#myhead").attr("src","/yiQiBang/upload_imgs/"+data.imgName);
+					  console.log(data);
+					  //将json字符串转化为js的对象
+					 var result = JSON.parse(data);
+					  if(result.retMsg){
+						  $("#myhead").attr("src","/yiQiBang/headImg/"+result.imgName);
+						  var imgName = result.imgName;
+						  $('#headUrl').val(imgName);
 					  }else{
 						  alert("上传失败");
 					  }
@@ -157,7 +160,7 @@ body {
 			<div class="form-group">
 				<img src="../upload_imgs/avatar_def.jpg" id="myhead">
 				<input type="file" id="headImg">
-				<input type="hidden" name="headUrl" value="">
+				<input type="hidden" name="headUrl" value="" id="headUrl">
 				<button type="button" class="btn btn-primary" id="uploadBtn" style="margin-top: 10px;">上传头像</button>
 			</div>
 			<button type="submit" class="btn btn-primary">确认</button>

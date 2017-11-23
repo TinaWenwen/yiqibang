@@ -66,7 +66,7 @@ body {
 				<select class="form-control" id="level" name="level">
 					<option <%=id > 0 ? (adminData.getLevel() == 1 ? "selected" : ""): "1" %>>1</option>
 					<option <%=id > 0 ? (adminData.getLevel() == 2 ? "selected" : ""): "" %>>2</option>
-					<option <%=id > 0 ? (adminData.getLevel() == 3 ? "selected" : ""): "" %>>3</option>
+					<%-- <option <%=id > 0 ? (adminData.getLevel() == 3 ? "selected" : ""): "" %>>3</option> --%>
 				</select>
 			</div>
 			<button type="submit" class="btn btn-primary">确认</button>

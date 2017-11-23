@@ -14,6 +14,7 @@
     	<id column="u_id" property="id" jdbcType="INTEGER" />
     	<result column="username" property="username" jdbcType="VARCHAR" />
     	<result column="password" property="password" jdbcType="VARCHAR" />
+    	<result column="headimg" property="headimg" jdbcType="VARCHAR" />
     	<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
     </association>
   </resultMap>

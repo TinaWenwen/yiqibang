@@ -118,7 +118,7 @@
                                 <td><%=data.get(i).getState()? "禁用" : "可用" %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getCreatetime()) %></td>
                                 <td><%=DateSimpleStr.getStringDate(data.get(i).getUpdate()) %></td>
-                                <td><%=data.get(i).getHeadimg() %></td>
+                                <td><img src="/yiQiBang/headImg/<%=data.get(i).getHeadimg() %>" style="max-height:40px;max-width:40px;"></td>
                                 <td><%=data.get(i).getRemark() %></td>
                                 <td>
                                 <a href="userEdit.jsp?id=<%=data.get(i).getId()%>"><img src="../html/backendImg/public/xiugai.png"></a>

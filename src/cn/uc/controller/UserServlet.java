@@ -6,8 +6,6 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -64,8 +62,8 @@ public class UserServlet extends BaseServlet {
 		String state = request.getParameter("isDisable");
 		boolean status = state.equals("0") ? false : true;
 		String remark = request.getParameter("remark").trim();
-		String headImg = request.getParameter("headImg");
-		
+		String headUrl = request.getParameter("headUrl");
+		System.out.println(headUrl);
 		Result result = null;
 		if (id <= 0) {
 			TUser user  = new TUser();
@@ -73,7 +71,7 @@ public class UserServlet extends BaseServlet {
 			user.setBirthday(birthday);
 			user.setCreatetime(new Date());
 			user.setEmail(email);
-			user.setHeadimg(headImg);
+			user.setHeadimg(headUrl);
 			user.setNickname(nickName);
 			user.setPassword(password);
 			user.setRemark(remark);
@@ -87,7 +85,7 @@ public class UserServlet extends BaseServlet {
 			user.setBindtel(phone);
 			user.setBirthday(birthday);
 			user.setEmail(email);
-			user.setHeadimg(headImg);
+			user.setHeadimg(headUrl);
 			user.setNickname(nickName);
 			user.setPassword(password);
 			user.setRemark(remark);
@@ -149,7 +147,7 @@ public class UserServlet extends BaseServlet {
 					if(fileName != null){
 						//将文件保存写入到当前项目的某个目录--img
 						//获取项目中某个资源文件夹的真实/绝对路径，使用servletContext对象.getRealPath(资源文件夹名)
-						String fileImgPath = request.getServletContext().getRealPath("upload_imgs");
+						String fileImgPath = request.getServletContext().getRealPath("headImg");
 						/*File imgPath = new File(fileImgPath);
 						if(!imgPath.exists()){
 							imgPath.mkdirs();
@@ -187,4 +185,9 @@ public class UserServlet extends BaseServlet {
 		}
 		    
 	   }
+	
+	
+		public void updateHeadImg() {
+			
+		}
 }

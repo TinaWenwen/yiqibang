@@ -124,7 +124,7 @@ public class AdminServlet extends BaseServlet {
 		int myLevel = admin.getLevel();
 		TAdmin delAdmin = (TAdmin) adminDao.selectByPrimaryKey(id).getRetData();
 		int delLevel = delAdmin.getLevel();
-		if (myLevel > delLevel) {
+		if (myLevel < delLevel) {
 			result = adminDao.deleteByPrimaryKey(id);
 		}else {
 			result.setRetCode(Constants.RETCODE_FAILED);

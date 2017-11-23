@@ -63,7 +63,6 @@
 <body>
 	<div class="my_container">
         <%@ include file="header.jsp" %>
-
         <div class="context">
             <%@ include file="menu.jsp" %>
 

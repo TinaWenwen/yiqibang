@@ -84,7 +84,7 @@
                     <% 		TNews news = newsData.get(i); %>
                     <% 		String picArr[] = news.getPic().split(","); %>
                         <div class="item <%=i == 0? "active": "" %>">
-                            <img src="<%=picArr[0] %>">
+                            <img src="<%=picArr[0] %>" style="max-height:240px;max-width:714px;">
                             <div class="carousel-caption">
                                 <p><%=news.getTitle() %></p>
                             </div>
@@ -109,9 +109,9 @@
             <div class="news">
                 <p><%=news.getTitle() %></p>
                 <div class="newsImgs">
-                    <img src="<%=picArr[0] %>">
-                    <img src="<%=picArr[1] %>">
-                    <img src="<%=picArr[2] %>">
+                <% for(int j = 0; j < picArr.length; j++) {%>
+                    <img src="<%=picArr[j] %>" style="height:140px;width:228px;">
+                    <% } %>
                 </div>
                 <div class="comments">
                     <img src="../html/frontImg/xiaokeai.png">
