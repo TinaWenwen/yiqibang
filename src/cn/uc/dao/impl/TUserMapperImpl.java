@@ -173,4 +173,22 @@ public class TUserMapperImpl implements TUserMapper {
 	}
 
 
+	@Override
+	public Result userLogin(String username) {
+		Result result = new Result();
+		SqlSession session = MyBatisUtils.openSession();
+		TUser user = session.selectOne(Constants.USERMAPPER_USERNAME_CHECK, username);
+		session.close();
+		if(user != null){
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(user);
+		}else{
+			result.setRetCode(Constants.RETCODE_FAILED);
+			result.setRetMsg(false);
+		}
+		return result;
+	}
+
+
 }

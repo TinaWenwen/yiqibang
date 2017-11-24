@@ -59,6 +59,7 @@ public class Constants {
 	 public static final String USERMAPPER_UPDATE = ROOT + MEMBER_MAPPER + UPDATE;
 	 public static final String USERMAPPER_SELECTPWD_BYNAME = ROOT + MEMBER_MAPPER + ".selectPwdByName";
 	 public static final String USERMAPPER_SELECT_BYNAME = ROOT + MEMBER_MAPPER + ".selectByName";
+	 public static final String USERMAPPER_USERNAME_CHECK = ROOT + MEMBER_MAPPER + ".selectByUsername";
 	 //news的操作语句路径
 	 public static final String NEWSMAPPER_SELECTALL = ROOT + NEWS_MAPPER + SELECTALL;
 	 public static final String NEWSMAPPER_SELECTBYLIKE = ROOT + NEWS_MAPPER + SELECT_BY_LIKE;
@@ -68,6 +69,7 @@ public class Constants {
 	 public static final String NEWSMAPPER_SELECT_BYID = ROOT + NEWS_MAPPER + SELECT_BYID;
 	 public static final String NEWSMAPPER_UPDATE = ROOT + NEWS_MAPPER + UPDATE;
 	 public static final String NEWSMAPPER_SELECTBY_TYPEID = ROOT + NEWS_MAPPER + ".selectByTypeId";
+	 public static final String NEWSMAPPER_ADDREADCOUNT = ROOT + NEWS_MAPPER + ".addReadCount";
 	 //comment的操作语句路径
 	 public static final String COMMMAPPER_SELECTBYLIKE = ROOT + COMMENT_MAPPER + SELECT_BY_LIKE;
 	 public static final String COMMMAPPER_SELECT_COUNT = ROOT + COMMENT_MAPPER + SELECT_COUNTS;

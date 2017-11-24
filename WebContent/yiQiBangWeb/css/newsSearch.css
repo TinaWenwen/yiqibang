@@ -19,12 +19,13 @@ header{
     background-color: black;
   /*  overflow: hidden;*/
 }
-header img{
+#logoheadImg{
     padding:17px 11px;
     margin-left:20px;
     background-color:#289ddb;
     float:left;
 }
+
 header div{
     float:right;
     margin-right: 30px;

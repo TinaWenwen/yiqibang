@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -18,6 +19,7 @@ import cn.uc.dao.TAdminMapper;
 import cn.uc.dao.TUserMapper;
 import cn.uc.dao.impl.TAdminMapperImpl;
 import cn.uc.dao.impl.TUserMapperImpl;
+import cn.uc.model.TAdmin;
 import cn.uc.model.TUser;
 import cn.uc.util.Result;
 import cn.uc.util.WriteResultToCilent;
@@ -190,4 +192,51 @@ public class UserServlet extends BaseServlet {
 		}
 		    
 	   }
+	
+
+	public void userLogin (HttpServletRequest request, HttpServletResponse response){
+		String username = request.getParameter("username").trim();
+		String password = request.getParameter("password").trim();
+		HttpSession session = request.getSession();
+		Result result = null;
+		
+		result = userDao.userLogin(username);
+		try{
+			if (result.isRetMsg()) {
+				TUser user = (TUser) result.getRetData();
+				String pwd = user.getPassword();
+				if (password.equals(pwd)){
+					session.setAttribute("user", user);
+					response.sendRedirect(request.getContextPath() + "/yiQiBangWeb/front/newsSearch.jsp");
+				} else {
+					session.setAttribute("tip", "密码错误");
+					response.sendRedirect(request.getContextPath() + "/yiQiBangWeb/front/newsSearch.jsp");
+				}
+			} else {
+				session.setAttribute("tip", "没有该用户,请先注册！");
+				response.sendRedirect(request.getContextPath() + "/yiQiBangWeb/front/newsSearch.jsp");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("跳转失败");
+		}
+	}
+	
+	public void userLogout(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		Object obj = session.getAttribute("user");
+		if (obj != null) {
+			session.removeAttribute("user");
+		}
+		try {
+			response.sendRedirect(request.getContextPath()+ "/yiQiBangWeb/front/newsSearch.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeUserPhoto(HttpServletRequest request, HttpServletResponse response) {
+		
+	}
 }

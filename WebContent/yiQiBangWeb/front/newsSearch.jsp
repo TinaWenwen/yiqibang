@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="cn.uc.model.TType,
     cn.uc.model.TNews,
+    cn.uc.model.TUser,
     java.util.*,
     cn.uc.dao.TTypeMapper,
     cn.uc.dao.TNewsMapper,
     cn.uc.dao.impl.TTypeMapperImpl,
     cn.uc.dao.impl.TNewsMapperImpl,
     cn.uc.util.Result,
-    cn.uc.util.DateSimpleStr"%>
+    cn.uc.util.DateSimpleStr,
+    javax.servlet.http.HttpSession,
+    javax.servlet.http.HttpServletRequest,
+    javax.servlet.http.HttpServletResponse"%>
 <%!
 	List<TType> data;
 	List<TNews> newsData;
@@ -28,9 +32,17 @@
 	}
 	
 	newsData = (List<TNews>)newsDao.selectNewsByTypeId(typeId).getRetData();
-	
 	result = typeDao.selectAllType();
 	data = (List<TType>) result.getRetData();
+	
+	//用户界面初始化
+	String userName = "";
+	String imgName = "default.jpg";
+	TUser user = (TUser)session.getAttribute("user");
+	if (user != null) {
+		userName = user.getUsername();
+		imgName = user.getHeadimg();
+	}
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,12 +55,31 @@
     <script src="../jquery/jquery-3.2.1.min.js"></script>
     <script src="../bootstrap/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../js/newsSearch.js"></script>
+    <script>
+    	function checkValue(){
+    		var username=$('#username').val();
+    		var password=$('#password').val();
+    		if(username=="" || password==""){
+    			$('#tip').text("用户名、密码不能为空");
+    			return false;
+    		}else{
+    			$('#tip').text("");
+    			return true;
+    		}
+    	}
+    </script>
 </head>
 <body>
     <header>
-        <img src="../html/frontImg/logo1.png">
+        <img id="logoheadImg" src="../html/frontImg/logo1.png">
+        <a href="headSet.jsp"><img src="/yiQiBang/headImg/<%=imgName %>" style="width:25px;height:25px;margin-left:950px;"></a>
+        <span style="color:white;line-height:30px;"><%=userName %></span>
         <div>
-            <a href="" class="a1" data-toggle="modal" data-target="#myModal">登录</a>
+        	<% if (user != null) { %>
+        		<a href="<%=request.getContextPath() %>/UserServlet?action=userLogout">退出</a>
+        	<% } else {%>
+            <a href="" class="a1" data-toggle="modal" data-target="#myModal" >登录</a>
+            		<% } %>
             <a href="" >下载APP</a>
             <a href="" >反馈</a>
         </div>
@@ -85,7 +116,7 @@
                     <% 		TNews news = newsData.get(i); %>
                     <% 		String picArr[] = news.getPic().split(","); %>
                         <div class="item <%=i == 0? "active": "" %>">
-                            <img src="<%=picArr[0] %>" style="max-height:240px;max-width:714px;">
+                            <a href="news.jsp?newsid=<%=news.getId()%>"><img src="<%=picArr[0] %>" style="max-height:240px;max-width:714px;"></a>
                             <div class="carousel-caption">
                                 <p><%=news.getTitle() %></p>
                             </div>
@@ -109,13 +140,11 @@
             <% 		TNews news = newsData.get(i); %>
             <% 		String picArr[] = news.getPic().split(",");%>
             <div class="news">
-                <p><%=news.getTitle() %></p>
+                <a href="news.jsp?newsid=<%=news.getId()%>"><p><%=news.getTitle() %></p></a>
                 <div class="newsImgs">
-                <% for(int j = 0; j < picArr.length; j++) {%>
-                <%		if (j < 3) { %>
-                    <img src="<%=picArr[j] %>" style="height:140px;width:228px;">
-                   		 <% } %>
-                    <% } %>
+                    <a href="news.jsp?newsid=<%=news.getId()%>"><img src="<%=picArr[0] %>" style="height:140px;width:228px;"></a>
+                    <a href="news.jsp?newsid=<%=news.getId()%>"><img src="<%=picArr[1] %>" style="height:140px;width:228px;"></a>
+                    <a href="news.jsp?newsid=<%=news.getId()%>"><img src="<%=picArr[2] %>" style="height:140px;width:228px;"></a>
                 </div>
                 <div class="comments">
                     <img src="../html/frontImg/xiaokeai.png">
@@ -126,16 +155,20 @@
             <% } %>
 
             <!--底部-->
-            <div class="downNew">
+             <div class="downNew">
+            <% for(int i = 0; i < newsData.size(); i++) {%>
+            <% 		if (i == 6) {%>
             <%  TNews newsDown = newsData.get(6); %>
             <% 	String picArrDown[] = newsDown.getPic().split(",");%>
-                <img src="<%=picArrDown[0] %>" style="height:140px;width:228px;">
+                <a href="news.jsp?newsid=<%=newsDown.getId()%>"><img src="<%=picArrDown[0] %>" style="height:140px;width:228px;"></a>
                 <div class="newsTitle">
-                	<p style="font-size: 16px; font-weight: 600;"><%=newsDown.getTitle() %></p>
+                	<a href="news.jsp?newsid=<%=newsDown.getId()%>"><p style="font-size: 16px; font-weight: 600;color:black;"><%=newsDown.getTitle() %></p></a>
+                		<% } %>
+                    <% } %>
                	 	<img src="../html/frontImg/xiaokeai.png" style="margin-top:0px;">
                		<span>钻石王老六·30分钟前·评论380次</span>
                 </div>
-            </div>
+            </div> 
         </div>
 
         <div class="rightDiv">
@@ -213,19 +246,21 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="home">
-                                <form class="form-horizontal">
+                                <form class="form-horizontal" action="/yiQiBang/UserServlet?action=userLogin" method="post" onsubmit="return checkValue()">
                                     <div class="form-group sjhm username">
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="username" placeholder="用户名/手机/邮箱">
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="用户名/手机/邮箱">
                                         </div>
                                     </div>
                                     <div class="form-group sjhm ">
                                         <div class="col-sm-12 pwd">
-                                            <input type="text" class="form-control" id="password" placeholder="请输入密码">
+                                            <input type="text" class="form-control" id="password" name="password" placeholder="请输入密码">
                                             <a href="#">找回密码</a>
                                         </div>
                                     </div>
-                                </form>
+                                    <div class="form-group">
+									<p id="tip" class="col-sm-offset-4">${sessionScope.tip}<%session.setAttribute("tip", ""); %></p>
+									</div>
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox">记住密码
@@ -236,7 +271,7 @@
                                     <label> <a href="register.jsp">注册账号</a></label>
                                 </div>
                                 <div><input type="submit" value="登录" id="dl" class="btn"></div>
-
+							</form>
                                 <div class="pic">
                                     <div class="order">
                                         <span style="white-space:pre"></span><span class="line"></span>

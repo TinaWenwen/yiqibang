@@ -39,8 +39,6 @@ public class NewsTest {
 	
 	@Test
 	public void selectAllCounts(){
-		Result result = newsDao.selectNewsByTypeId(1);
-		System.out.println(result.getRetData());
-		Assert.assertNotNull(result.getRetData());
+		newsDao.updateReadCounts(12);
 	}
 }

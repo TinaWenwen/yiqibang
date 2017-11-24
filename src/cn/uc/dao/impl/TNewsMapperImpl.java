@@ -49,6 +49,8 @@ public class TNewsMapperImpl implements TNewsMapper {
 		TNews news = session.selectOne(Constants.NEWSMAPPER_SELECT_BYID, id);
 		session.close();
 		if(news != null){
+			int newsid = news.getId();
+			updateReadCounts(newsid);
 			result.setRetCode(Constants.RETCODE_SUCCESS);
 			result.setRetMsg(true);
 			result.setRetData(news);
@@ -59,6 +61,12 @@ public class TNewsMapperImpl implements TNewsMapper {
 		return result;
 	}
 
+	public void updateReadCounts(int id){
+		SqlSession session = MyBatisUtils.openSession();
+		session.update(Constants.NEWSMAPPER_ADDREADCOUNT, id);
+		session.commit();
+		session.close();
+	}
 	@Override
 	public Result updateByPrimaryKeySelective(NewsMap record) {
 		Result result = new Result();
@@ -170,5 +178,5 @@ public class TNewsMapperImpl implements TNewsMapper {
 		}
 		return result;
 	}
-
+	
 }

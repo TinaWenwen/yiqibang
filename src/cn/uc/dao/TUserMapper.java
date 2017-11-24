@@ -23,6 +23,8 @@ public interface TUserMapper {
 
     Result updateByPrimaryKeySelective(TUser record);
 
+    Result userLogin(String username);
+    
     int updateByPrimaryKey(TUser record);
     
     int insert(TUser record);

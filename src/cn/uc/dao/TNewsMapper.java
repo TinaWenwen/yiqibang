@@ -26,7 +26,8 @@ public interface TNewsMapper {
     int insert(TNews record);
     
     int updateByPrimaryKeyWithBLOBs(TNews record);
-
+    
+    public void updateReadCounts(int id);
    
     int updateByPrimaryKey(TNews record);
 }

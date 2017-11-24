@@ -57,6 +57,9 @@
   <select id="selectUserNameById" resultType="java.lang.String" parameterType="java.lang.Integer">
   select username from t_user where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select * from t_user where username = #{username,jdbcType=VARCHAR}
+  </select>
   <select id="selectIdByName" resultType="java.lang.Integer" parameterType="java.lang.String">
   select id from t_user where username = #{name}
   </select>
