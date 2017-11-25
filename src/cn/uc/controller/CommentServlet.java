@@ -8,11 +8,13 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cn.uc.dao.TCommentMapper;
 import cn.uc.dao.impl.TCommentMapperImpl;
 import cn.uc.model.NewsMap;
 import cn.uc.model.TComment;
+import cn.uc.model.TUser;
 import cn.uc.util.Result;
 import cn.uc.util.WriteResultToCilent;
 
@@ -67,7 +69,7 @@ public class CommentServlet extends BaseServlet {
 			if(result.isRetMsg()){
 				out.println("操作成功,3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/commentManage.jsp\">跳转到主页</a>。。。。");
 			}else{
-				out.println("操作成功！3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/commentManage.jsp\">跳转到主页</a>。。。。");
+				out.println("操作失败！3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/admin/commentManage.jsp\">跳转到主页</a>。。。。");
 			}
 			
 		} catch (IOException e) {
@@ -75,4 +77,34 @@ public class CommentServlet extends BaseServlet {
 			e.printStackTrace();
 		}
 	} 
+	
+	public void insertComment(HttpServletRequest request, HttpServletResponse response){
+		String content = request.getParameter("content");
+		int newsid = Integer.parseInt(request.getParameter("newsId"));
+		HttpSession session = request.getSession();
+		TUser user = (TUser) session.getAttribute("user");
+		if (user == null) {
+			response.setHeader("refresh", "3;url=" +request.getContextPath()+ "/yiQiBangWeb/front/news.jsp");
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+				out.println("登录才能评论噢,3秒后<a href=\""+request.getContextPath()+ "/yiQiBangWeb/front/news.jsp?newsid=" + newsid +"\">返回</a>");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			int uid = user.getId();
+			Result result = commDao.insertComment(newsid, uid, content);
+			if (result.isRetMsg()) {
+				try {
+					response.sendRedirect(request.getContextPath() + "/yiQiBangWeb/front/news.jsp?newsid=" + newsid + "");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
 }

@@ -12,9 +12,11 @@ public interface TCommentMapper {
 	
 	Result deleteByPrimaryKey(Integer id);
 
-   
+    Result selectByNewsid(int newsid);
+	
     int insert(TComment record);
 
+    Result insertComment(int nid, int uid, String content);
     
     int insertSelective(TComment record);
 

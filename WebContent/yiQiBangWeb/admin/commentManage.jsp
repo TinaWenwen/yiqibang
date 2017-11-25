@@ -75,10 +75,7 @@
                         <a id="selectImg"><img src="../html/backendImg/public/fangdajing.png"></a>
                     </div>
                   </form>
-                   <!--  <div class="addDiv">
-                        <span class="glyphicon glyphicon-plus"></span>
-                        添加
-                    </div> -->
+         
                 </div>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active">

@@ -15,7 +15,7 @@
     <result column="score" property="score" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <association property="tnew" javaType="TNews">
-		<id column="id" property="id" jdbcType="INTEGER"/>
+		<id column="n_id" property="id" jdbcType="INTEGER"/>
 		<result column="title" property="title" jdbcType="VARCHAR"></result>
 	</association >
   </resultMap>
@@ -60,6 +60,9 @@
       This element was generated on Sun Nov 12 17:27:42 CST 2017.
     -->
     select * from t_comment inner join t_news on t_comment.n_id=t_news.id where t_comment.id=#{id}	
+  </select>
+  <select id="selectByNewsid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * from t_comment inner JOIN t_news on t_comment.n_id=t_news.id where t_comment.n_id=#{newsid}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--

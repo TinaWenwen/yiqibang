@@ -72,10 +72,12 @@
 <body>
     <header>
         <img id="logoheadImg" src="../html/frontImg/logo1.png">
-        <a href="headSet.jsp"><img src="/yiQiBang/headImg/<%=imgName %>" style="width:25px;height:25px;margin-left:950px;"></a>
+        <% if (user != null) { %>
+        <a href="headSet.jsp" style="width:30px;height:30px;"><img src="/yiQiBang/headImg/<%=imgName %>" style="width:25px;height:25px;margin-left:950px;"></a>
         <span style="color:white;line-height:30px;"><%=userName %></span>
+        	<%} %>
         <div>
-        	<% if (user != null) { %>
+        <% if (user != null) { %>
         		<a href="<%=request.getContextPath() %>/UserServlet?action=userLogout">退出</a>
         	<% } else {%>
             <a href="" class="a1" data-toggle="modal" data-target="#myModal" >登录</a>
@@ -149,6 +151,9 @@
                 <div class="comments">
                     <img src="../html/frontImg/xiaokeai.png">
                     <span>钻石王老六·30分钟前·评论380次</span>
+                    <% if (news.getIfhot()) { %>
+                    <span class="label label-danger">热点</span>
+                    <% } %>
                 </div>
             </div>
             	<% } %>
@@ -156,18 +161,21 @@
 
             <!--底部-->
              <div class="downNew">
-            <% for(int i = 0; i < newsData.size(); i++) {%>
-            <% 		if (i == 6) {%>
+            <% for(int i = 0; i < newsData.size(); i++) {%> 
+            <% 		if (i == 6) {%> 
             <%  TNews newsDown = newsData.get(6); %>
             <% 	String picArrDown[] = newsDown.getPic().split(",");%>
                 <a href="news.jsp?newsid=<%=newsDown.getId()%>"><img src="<%=picArrDown[0] %>" style="height:140px;width:228px;"></a>
                 <div class="newsTitle">
                 	<a href="news.jsp?newsid=<%=newsDown.getId()%>"><p style="font-size: 16px; font-weight: 600;color:black;"><%=newsDown.getTitle() %></p></a>
-                		<% } %>
-                    <% } %>
                	 	<img src="../html/frontImg/xiaokeai.png" style="margin-top:0px;">
                		<span>钻石王老六·30分钟前·评论380次</span>
+               		 <% if (newsDown.getIfhot()) { %>
+                    <span class="label label-danger">热点</span>
+                    <% } %>
                 </div>
+                	<% } %> 
+                 <% } %> 
             </div> 
         </div>
 
@@ -258,9 +266,9 @@
                                             <a href="#">找回密码</a>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-									<p id="tip" class="col-sm-offset-4">${sessionScope.tip}<%session.setAttribute("tip", ""); %></p>
-									</div>
+                                  <div class="form-group">
+									<span id="tip" class="col-sm-offset-4" style="color:red;margin-right:5px;">${sessionScope.tip}<%session.setAttribute("tip", ""); %></span>
+								  </div>   
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox">记住密码

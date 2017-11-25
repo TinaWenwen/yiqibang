@@ -233,7 +233,7 @@
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="update != null" >
+     <if test="update != null" >
         update = #{update,jdbcType=TIMESTAMP},
       </if>
       <if test="address != null" >
@@ -241,6 +241,9 @@
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="changePhoto" parameterType="java.util.Map">
+   update t_user set headimg = #{headUrl,jdbcType=VARCHAR} where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.uc.model.TUser" >
     <!--

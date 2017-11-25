@@ -15,22 +15,6 @@ import cn.uc.util.Result;
 
 public class TCommentMapperImpl implements TCommentMapper {
 
-	/*@Override
-	public Result selectAllComment() {
-		Result result = new Result();
-		SqlSession session = MyBatisUtils.openSession();
-		List<TComment> commList = session.selectList(Constants.COMMMAPPER_SELECTALL);
-		session.close();
-		if(commList != null){
-			result.setRetCode(Constants.RETCODE_SUCCESS);
-			result.setRetMsg(true);
-			result.setRetData(commList);
-		}else{
-			result.setRetCode(Constants.RETCODE_FAILED);
-			result.setRetMsg(false);
-		}
-		return result;
-	}*/
 
 	@Override
 	public Result deleteByPrimaryKey(Integer id) {
@@ -129,6 +113,40 @@ public class TCommentMapperImpl implements TCommentMapper {
 		result.setRetCode(Constants.RETCODE_SUCCESS);
 		result.setRetMsg(true);
 		result.setRetData(counts);
+		return result;
+	}
+
+	@Override
+	public Result selectByNewsid(int newsid) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		List<TComment> commList = session.selectList(Constants.COMMMAPPER_SELECTBY_NEWSID, newsid);
+		session.close();
+		if (commList != null) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(commList);
+		}
+		return result;
+	}
+
+	@Override
+	public Result insertComment(int nid, int uid, String content) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("nId", nid);
+		params.put("uId", uid);
+		params.put("content", content);
+		SqlSession session = MyBatisUtils.openSession();
+		int row = session.insert(Constants.COMMMAPPER_INSERT, params);
+		session.commit();
+		session.close();
+		if (row > 0) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+		}
 		return result;
 	}
 

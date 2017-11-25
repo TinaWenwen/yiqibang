@@ -53,9 +53,10 @@
 					  //将json字符串转化为js的对象
 					 var result = JSON.parse(data);
 					  if(result.retMsg){
-						  $("#myhead").attr("src","/yiQiBang/headImg/"+result.imgName);
+						  $(".myhead").attr("src","/yiQiBang/headImg/"+result.imgName);
 						  var imgName = result.imgName;
 						  $('#headUrl').val(imgName);
+						  $('form').submit();
 					  }else{
 						  alert("上传失败");
 					  }
@@ -99,7 +100,7 @@
         <div class="rightHeader">
             <img src="/yiQiBang/headImg/<%=imgName %>" style="width:25px;height:25px;">
             <span style="color:white;line-height:30px;"><%=userName %></span>
-            <a style="color:white;" href="<%=request.getContextPath() %>/UserServlet?action=userLogout">退出</a>
+            <a style="color:white;" href="newsSearch.jsp">返回</a>
         </div>
     </header>
 
@@ -127,18 +128,18 @@
         </div>
 
         <div class="headImg">
-            <div class="photo"><img id="myhead" src="/yiQiBang/headImg/<%=imgName %>" style="width:198px;height:198px;"></div>
+            <div class="photo"><img class="myhead" src="/yiQiBang/headImg/<%=imgName %>" style="width:198px;height:198px;"></div>
             <img src="../html/frontImg/fengexian.png">
             <div class="review">
                 <h5>头像预览</h5>
-                <img id="myhead" src="/yiQiBang/headImg/<%=imgName %>" style="width:115px;height:115px;">
+                <img class="myhead" src="/yiQiBang/headImg/<%=imgName %>" style="width:115px;height:115px;">
             </div>
         </div>
-        <form action="<%=request.getContextPath() %>/UserServlet?action=changeUserPhoto" method=post">
+        <form action="<%=request.getContextPath() %>/UserServlet?action=changeUserPhoto" method=post>
         <input type="file" id="headImg" style="margin-left:100px;">
 		<input type="hidden" name="headUrl" id="headUrl">
-		</form>
 		<button type="button" class="btn btn-primary" id="uploadBtn" style="margin-top: 10px;">上传头像</button>
+		</form>
     </div>
 </body>
 </html>

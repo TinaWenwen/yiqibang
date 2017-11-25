@@ -25,6 +25,8 @@ public interface TUserMapper {
 
     Result userLogin(String username);
     
+    Result changeUserPhoto(int id, String headUrl);
+    
     int updateByPrimaryKey(TUser record);
     
     int insert(TUser record);

@@ -70,7 +70,7 @@ public class UserServlet extends BaseServlet {
 		boolean status = state.equals("0") ? false : true;
 		String remark = request.getParameter("remark").trim();
 		String headUrl = request.getParameter("headUrl");
-		System.out.println(headUrl);
+		//System.out.println(headUrl);
 		Result result = null;
 		if (id <= 0) {
 			TUser user  = new TUser();
@@ -102,6 +102,13 @@ public class UserServlet extends BaseServlet {
 			user.setUsername(userName);
 			user.setAddress(address);
 			result = userDao.updateByPrimaryKeySelective(user);
+			HttpSession session = request.getSession();
+			TAdmin admin = (TAdmin) session.getAttribute("admin");
+			int uid = admin.getUser().getId();
+			if (result.isRetMsg() && uid == id) {
+				admin.setUser(user);
+				session.setAttribute("admin", admin);
+			}
 		}
 		
 		response.setHeader("refresh", "3;url=" +request.getContextPath()+ "/yiQiBangWeb/admin/member.jsp");
@@ -237,6 +244,33 @@ public class UserServlet extends BaseServlet {
 	}
 	
 	public void changeUserPhoto(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String headUrl = request.getParameter("headUrl");
+		//System.out.println(headUrl);
+		TUser user = (TUser) session.getAttribute("user");
+		//实时更新session的用户信息
+		user.setHeadimg(headUrl);
+		session.setAttribute("user", user);
 		
+		int id = user.getId();
+		Result result = userDao.changeUserPhoto(id, headUrl);
+		if (result.isRetMsg()) {
+			try {
+				response.sendRedirect(request.getContextPath()+ "/yiQiBangWeb/front/headSet.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
+

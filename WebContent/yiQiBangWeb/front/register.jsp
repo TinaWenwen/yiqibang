@@ -25,7 +25,7 @@
         <div class="contentDiv">
             <div class="topDiv">
                 <div class="phone">
-                    <img src="../html/frontImg/shoujiicon.png">手机注册
+                    <img src="../html/frontImg/shoujiicon.png">账号注册
                 </div>
                 <div class="email">
                     <img src="../html/frontImg/mailicon.png">邮箱
@@ -34,9 +34,9 @@
 
             <div class="midDiv">
                 <div class="number">
-                    <span class="pre">手机号码</span>
+                    <span class="pre">用户名</span>
                     <input type="text" class="numIpt">
-                    <span class="tips">注册成功后即可使用手机号码登陆</span>
+                    <span class="tips">注册成功后即可使用该用户名登陆</span>
                 </div>
                 <div class="number">
                     <span class="pre">设置密码</span>
@@ -44,9 +44,8 @@
                     <span class="tips">6-16位英文（区分代销写）、数字或常用字符</span>
                 </div>
                 <div class="number">
-                    <span class="pre">验证码</span>
+                    <span class="pre">确认密码</span>
                     <input type="text" class="numIpt1">
-                    <button>点击获取</button>
                     <span class="tips">免费获取手机验证码</span>
                 </div>
 

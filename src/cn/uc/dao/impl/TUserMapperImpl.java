@@ -191,4 +191,21 @@ public class TUserMapperImpl implements TUserMapper {
 	}
 
 
+	@Override
+	public Result changeUserPhoto(int id, String headUrl) {
+		Result result = new Result();
+		SqlSession session = MyBatisUtils.openSession();
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("headUrl", headUrl);
+		params.put("id",id);
+		int row = session.update(Constants.CHANGE_USERPHOTO,params);
+		if (row > 0) {
+			result.setRetMsg(true);
+		}
+		session.commit();
+		session.close();
+		return result;
+	}
+
+	
 }
