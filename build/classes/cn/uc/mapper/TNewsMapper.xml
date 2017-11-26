@@ -247,6 +247,9 @@
   <update id="addReadCount" parameterType="java.lang.Integer">
   update t_news set readcount=(readcount+1) where id=#{id,jdbcType=INTEGER}
   </update>
+  <update id="addCommentCount" parameterType="java.lang.Integer">
+  update t_news set commcount=(commcount+1) where id=#{id,jdbcType=INTEGER}
+  </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.uc.model.TNews" >
     <!--
       WARNING - @mbggenerated

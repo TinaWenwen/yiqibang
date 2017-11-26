@@ -15,14 +15,15 @@ public class CommentTest {
 
 	TCommentMapper commentDao = new TCommentMapperImpl();
 	
-	@Ignore
+	
 	@Test
 	public void selectCommByLike() {
-		Result result = commentDao.selectByNewsid(12);
+		Result result = commentDao.selectLatestComment(27);
 		System.out.println(result.getRetData());
 		Assert.assertNotNull(result.getRetData());
 	}
 	
+	@Ignore
 	@Test
 	public void insert() {
 		Result result = commentDao.insertComment(22, 9, "这些娃娃真可爱");

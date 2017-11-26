@@ -207,5 +207,22 @@ public class TUserMapperImpl implements TUserMapper {
 		return result;
 	}
 
+
+	@Override
+	public Result userRegister(String username, String password) {
+		Result result = new Result();
+		SqlSession session = MyBatisUtils.openSession();
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("username", username);
+		params.put("password",password);
+		int row = session.insert(Constants.USERMAPPER_REGISTER,params);
+		if (row > 0) {
+			result.setRetMsg(true);
+		}
+		session.commit();
+		session.close();
+		return result;
+	}
+
 	
 }

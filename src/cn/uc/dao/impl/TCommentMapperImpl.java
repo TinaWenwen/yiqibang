@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import cn.uc.dao.TCommentMapper;
+import cn.uc.dao.TNewsMapper;
 import cn.uc.model.TAdmin;
 import cn.uc.model.TComment;
 import cn.uc.util.Constants;
@@ -14,8 +15,9 @@ import cn.uc.util.MyBatisUtils;
 import cn.uc.util.Result;
 
 public class TCommentMapperImpl implements TCommentMapper {
-
-
+	
+	TNewsMapper newsDao = new TNewsMapperImpl();
+	
 	@Override
 	public Result deleteByPrimaryKey(Integer id) {
 		Result result = new Result();
@@ -144,8 +146,24 @@ public class TCommentMapperImpl implements TCommentMapper {
 		session.commit();
 		session.close();
 		if (row > 0) {
+			newsDao.addCommentCounts(nid);
 			result.setRetCode(Constants.RETCODE_SUCCESS);
 			result.setRetMsg(true);
+		}
+		return result;
+	}
+
+	@Override
+	public Result selectLatestComment(int newsid) {
+		Result result = new Result();
+		result.setRetCode(Constants.RETCODE_FAILED);
+		SqlSession session = MyBatisUtils.openSession();
+		TComment comment = session.selectOne(Constants.COMMMAPPER_SELECT_LATESTCOMM, newsid);
+		session.close();
+		if (comment != null) {
+			result.setRetCode(Constants.RETCODE_SUCCESS);
+			result.setRetMsg(true);
+			result.setRetData(comment);
 		}
 		return result;
 	}

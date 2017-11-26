@@ -18,6 +18,8 @@ public interface TCommentMapper {
 
     Result insertComment(int nid, int uid, String content);
     
+    Result selectLatestComment(int newsid);
+    
     int insertSelective(TComment record);
 
    

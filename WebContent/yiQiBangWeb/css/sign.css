@@ -1,4 +1,4 @@
-/*----样式初始化-----------------*/
+/*----鏍峰紡鍒濆鍖�-----------------*/
 *{
     padding:0;
     margin:0;
@@ -14,7 +14,7 @@ ol,ul,li{
     list-style: none;
 }
 
-/*--------header样式--------------------------*/
+/*--------header鏍峰紡--------------------------*/
 header{
     height: 32px;
     background-color: #1f1f20;
@@ -52,7 +52,7 @@ header a{
     float:left;
     margin:40px 0 0 45px;
     padding-right: 30px;
-    border-right:1px solid grey;
+   /*  border-right:1px solid grey; */
     color: #289ddb;
 }
 .email{
@@ -104,7 +104,7 @@ header a{
 .btn{
     width: 239px;
     height: 45px;
-    margin:40px 0 0 85px;
+    margin:16px 0 0 85px;
 }
 /*--------footer----------------------------------------------*/
 .footer{

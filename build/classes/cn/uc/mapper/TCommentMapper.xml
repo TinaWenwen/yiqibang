@@ -43,6 +43,9 @@
   	</where>
   	limit #{startIndex},#{pageSize}
   </select>
+  <select id="selectLatest" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  SELECT * FROM t_comment WHERE t_comment.n_id=#{newsid} ORDER BY createtime desc LIMIT 0,1
+  </select>
   <select id="selectAllCounts" resultType="java.lang.Integer"  parameterType="java.util.Map">
   	select count(1) from t_comment inner join t_news on t_comment.n_id=t_news.id 
   	<where>

@@ -2,11 +2,16 @@
     pageEncoding="UTF-8" import="cn.uc.model.TType,
     cn.uc.model.TNews,
     cn.uc.model.TUser,
+    cn.uc.model.TComment,
     java.util.*,
     cn.uc.dao.TTypeMapper,
     cn.uc.dao.TNewsMapper,
+    cn.uc.dao.TCommentMapper,
+    cn.uc.dao.TUserMapper,
     cn.uc.dao.impl.TTypeMapperImpl,
     cn.uc.dao.impl.TNewsMapperImpl,
+    cn.uc.dao.impl.TCommentMapperImpl,
+    cn.uc.dao.impl.TUserMapperImpl,
     cn.uc.util.Result,
     cn.uc.util.DateSimpleStr,
     javax.servlet.http.HttpSession,
@@ -15,9 +20,13 @@
 <%!
 	List<TType> data;
 	List<TNews> newsData;
+	TComment latestComment;
 	Result result = new Result();
  	TTypeMapper typeDao = new TTypeMapperImpl();
  	TNewsMapper newsDao = new TNewsMapperImpl();
+ 	TCommentMapper commentDao = new TCommentMapperImpl();
+ 	TUserMapper userDao = new TUserMapperImpl();
+ 	
 %>
 
 <%
@@ -86,11 +95,12 @@
             <a href="" >反馈</a>
         </div>
     </header>
-
+	<form method="get" id="newsSearchForm" action="newsResult.jsp">
     <div class="search">
-        <input type="text" placeholder="&nbsp;&nbsp;&nbsp;大家都在搜：优才创智获B轮投资">
-        <a href=""><img src="../html/frontImg/sousuo.png"></a>
+        <input type="text" placeholder="&nbsp;&nbsp;&nbsp;大家都在搜：优才创智获B轮投资" name="searchStr">
+        <a id="selectImg"><img src="../html/frontImg/sousuo.png"></a>
     </div>
+    </form>
     <div class="container">
         <div class="leftDiv">
             <ul id="typeList">
@@ -137,10 +147,19 @@
                     </a>
                 </div>
             </div>
-            <% for(int i = 0; i < newsData.size(); i++) {%>
-            <% 		if (i >= 3 && i < 6) {%>
-            <% 		TNews news = newsData.get(i); %>
-            <% 		String picArr[] = news.getPic().split(",");%>
+            <% for(int i = 0; i < newsData.size(); i++) {
+            		if (i >= 3 && i < 6) {
+            		TNews news = newsData.get(i);
+            		int newsid = news.getId();
+            		latestComment = (TComment)commentDao.selectLatestComment(newsid).getRetData();
+            		TUser latestCommentUser = new TUser();
+            		if (latestComment != null) {
+            			int uid = latestComment.getUserid();
+                		latestCommentUser = (TUser)userDao.selectByPrimaryKey(uid).getRetData();
+            		}
+             		String picArr[] = news.getPic().split(",");
+             		long currentTime = System.currentTimeMillis();
+             		%>
             <div class="news">
                 <a href="news.jsp?newsid=<%=news.getId()%>"><p><%=news.getTitle() %></p></a>
                 <div class="newsImgs">
@@ -149,8 +168,8 @@
                     <a href="news.jsp?newsid=<%=news.getId()%>"><img src="<%=picArr[2] %>" style="height:140px;width:228px;"></a>
                 </div>
                 <div class="comments">
-                    <img src="../html/frontImg/xiaokeai.png">
-                    <span>钻石王老六·30分钟前·评论380次</span>
+                    <img src="/yiQiBang/headImg/<%=latestComment == null? "" : latestCommentUser.getHeadimg()%>">
+                    <span><%=latestComment == null ? "" : latestCommentUser.getUsername() %>·<%=latestComment == null? "暂无评论" :+(currentTime - latestComment.getCreatetime().getTime())/(1000 * 60 * 60)+ "小时前" %>·评论<%=news.getCommcount() %>次</span>
                     <% if (news.getIfhot()) { %>
                     <span class="label label-danger">热点</span>
                     <% } %>
@@ -163,13 +182,21 @@
              <div class="downNew">
             <% for(int i = 0; i < newsData.size(); i++) {%> 
             <% 		if (i == 6) {%> 
-            <%  TNews newsDown = newsData.get(6); %>
-            <% 	String picArrDown[] = newsDown.getPic().split(",");%>
+            <%  TNews newsDown = newsData.get(6);
+            	int newsid = newsDown.getId();
+    			latestComment = (TComment)commentDao.selectLatestComment(newsid).getRetData();
+    			TUser latestCommentUser = new TUser();
+    			if (latestComment != null) {
+    				int uid = latestComment.getUserid();
+        			latestCommentUser = (TUser)userDao.selectByPrimaryKey(uid).getRetData();
+    			}
+            	String picArrDown[] = newsDown.getPic().split(",");
+            	long currentTime = System.currentTimeMillis(); %>
                 <a href="news.jsp?newsid=<%=newsDown.getId()%>"><img src="<%=picArrDown[0] %>" style="height:140px;width:228px;"></a>
                 <div class="newsTitle">
                 	<a href="news.jsp?newsid=<%=newsDown.getId()%>"><p style="font-size: 16px; font-weight: 600;color:black;"><%=newsDown.getTitle() %></p></a>
-               	 	<img src="../html/frontImg/xiaokeai.png" style="margin-top:0px;">
-               		<span>钻石王老六·30分钟前·评论380次</span>
+               	 	<img src="/yiQiBang/headImg/<%=latestComment == null? "" : latestCommentUser.getHeadimg()%>" style="margin-top:0px;">
+               		<span><%=latestComment == null ? "" : latestCommentUser.getUsername() %>·<%=latestComment == null? "暂无评论" :+(currentTime - latestComment.getCreatetime().getTime())/(1000 * 60 * 60)+ "小时前" %>·评论<%=newsDown.getCommcount() %>次</span>
                		 <% if (newsDown.getIfhot()) { %>
                     <span class="label label-danger">热点</span>
                     <% } %>
@@ -183,31 +210,31 @@
             <div class="rightNews">
                 <div class="hours"><p>24 小时热闻</p></div>
                 <div class="rightNew">
-                    <img src="../html/frontImg/right_tu_01_03.jpg">
+                    <img style="width:66px;height:66px;" src="../html/frontImg/taylor.jpg">
                     <div class="rigNewsTitle"><p>笑死人不偿命的一百种作死的方式，你知道几种？</p></div>
                 </div>
                 <div class="rightNew">
-                    <img src="../html/frontImg/right_tu_01_03.jpg">
+                    <img style="width:66px;height:66px;" src="../html/frontImg/taylor.jpg">
                     <div class="rigNewsTitle"><p>笑死人不偿命的一百种作死的方式，你知道几种？</p></div>
                 </div>
                 <div class="rightNew">
-                    <img src="../html/frontImg/right_tu_01_03.jpg">
+                    <img style="width:66px;height:66px;" src="../html/frontImg/taylor.jpg">
                     <div class="rigNewsTitle"><p>笑死人不偿命的一百种作死的方式，你知道几种？</p></div>
                 </div>
             </div>
 
             <div class="rightNews">
-                <div class="hours"><p>24 小时热闻</p></div>
+                <div class="hours"><p>热搜排行榜</p></div>
                 <div class="rightNew">
-                    <img src="../html/frontImg/right_tu_01_03.jpg">
+                    <img style="width:66px;height:66px;" src="../html/frontImg/taylor.jpg">
                     <div class="rigNewsTitle"><p>笑死人不偿命的一百种作死的方式，你知道几种？</p></div>
                 </div>
                 <div class="rightNew">
-                    <img src="../html/frontImg/right_tu_01_03.jpg">
+                    <img style="width:66px;height:66px;" src="../html/frontImg/taylor.jpg">
                     <div class="rigNewsTitle"><p>笑死人不偿命的一百种作死的方式，你知道几种？</p></div>
                 </div>
                 <div class="rightNew">
-                    <img src="../html/frontImg/right_tu_01_03.jpg">
+                    <img style="width:66px;height:66px;" src="../html/frontImg/taylor.jpg">
                     <div class="rigNewsTitle"><p>笑死人不偿命的一百种作死的方式，你知道几种？</p></div>
                 </div>
             </div>
@@ -299,6 +326,13 @@
         </div>
     </div>
 </div>
+<script>
+	$(document).ready(function(){
+		jQuery('#selectImg').click(function(e){
+    		jQuery('#newsSearchForm').submit();
+      	}); 
+	});
+</script>
 </body>
 
 </html>

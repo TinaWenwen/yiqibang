@@ -84,17 +84,7 @@
 <body>
     <header>
         <ul class="list-inline">
-            <li>推荐</li>
-            <li>热点</li>
-            <li>图片</li>
-            <li>科技</li>
-            <li>社会</li>
-            <li>娱乐</li>
-            <li>体育</li>
-            <li>游戏</li>
-            <li>汽车</li>
-            <li>财经</li>
-            <li>更多</li>
+            <li><a style="color:white;" href="userCenter.jsp">个人中心</a></li>
         </ul>
 
         <div class="rightHeader">
@@ -115,10 +105,7 @@
 
         <div class="settingLists">
             <ul class="setList list-inline">
-                <li>个人资料</li>
                 <li><a href="">修改头像</a></li>
-                <li>修改密码</li>
-                <li>账号安全</li>
             </ul>
         </div>
 

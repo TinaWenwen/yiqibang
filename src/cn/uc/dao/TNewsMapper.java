@@ -28,6 +28,8 @@ public interface TNewsMapper {
     int updateByPrimaryKeyWithBLOBs(TNews record);
     
     public void updateReadCounts(int id);
+    
+    public void addCommentCounts(int id);
    
     int updateByPrimaryKey(TNews record);
 }

@@ -1,7 +1,7 @@
 package cn.uc.yiqibang.test;
 
 
-import java.util.Date;
+
 
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import cn.uc.dao.TUserMapper;
 import cn.uc.dao.impl.TUserMapperImpl;
-import cn.uc.model.TUser;
+
 import cn.uc.util.Result;
 
 public class UserTest {
@@ -24,5 +24,9 @@ public class UserTest {
 		Assert.assertNotNull(result.getRetData());
 	}
 
-
+	@Test
+	public void registerUser(){
+		Result result = userDao.userRegister("test", "123");
+		Assert.assertTrue(result.isRetMsg());
+	}
 }

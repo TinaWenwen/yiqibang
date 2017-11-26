@@ -67,6 +67,14 @@ public class TNewsMapperImpl implements TNewsMapper {
 		session.commit();
 		session.close();
 	}
+	
+	public void addCommentCounts(int id){
+		SqlSession session = MyBatisUtils.openSession();
+		session.update(Constants.NEWSMAPPER_ADDCOMM_COUNT, id);
+		session.commit();
+		session.close();
+	} 
+	
 	@Override
 	public Result updateByPrimaryKeySelective(NewsMap record) {
 		Result result = new Result();

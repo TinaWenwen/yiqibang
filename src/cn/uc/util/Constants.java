@@ -61,6 +61,7 @@ public class Constants {
 	 public static final String USERMAPPER_SELECT_BYNAME = ROOT + MEMBER_MAPPER + ".selectByName";
 	 public static final String USERMAPPER_USERNAME_CHECK = ROOT + MEMBER_MAPPER + ".selectByUsername";
 	 public static final String CHANGE_USERPHOTO = ROOT + MEMBER_MAPPER + ".changePhoto";
+	 public static final String USERMAPPER_REGISTER = ROOT + MEMBER_MAPPER + ".userRegister";
 	 //news的操作语句路径
 	 public static final String NEWSMAPPER_SELECTALL = ROOT + NEWS_MAPPER + SELECTALL;
 	 public static final String NEWSMAPPER_SELECTBYLIKE = ROOT + NEWS_MAPPER + SELECT_BY_LIKE;
@@ -71,6 +72,7 @@ public class Constants {
 	 public static final String NEWSMAPPER_UPDATE = ROOT + NEWS_MAPPER + UPDATE;
 	 public static final String NEWSMAPPER_SELECTBY_TYPEID = ROOT + NEWS_MAPPER + ".selectByTypeId";
 	 public static final String NEWSMAPPER_ADDREADCOUNT = ROOT + NEWS_MAPPER + ".addReadCount";
+	 public static final String NEWSMAPPER_ADDCOMM_COUNT = ROOT + NEWS_MAPPER + ".addCommentCount";
 	 //comment的操作语句路径
 	 public static final String COMMMAPPER_SELECTBYLIKE = ROOT + COMMENT_MAPPER + SELECT_BY_LIKE;
 	 public static final String COMMMAPPER_SELECT_COUNT = ROOT + COMMENT_MAPPER + SELECT_COUNTS;
@@ -79,6 +81,7 @@ public class Constants {
 	 public static final String COMMMAPPER_UPDATE = ROOT + COMMENT_MAPPER + UPDATE;
 	 public static final String COMMMAPPER_SELECTBY_NEWSID = ROOT + COMMENT_MAPPER + ".selectByNewsid";
 	 public static final String COMMMAPPER_INSERT = ROOT + COMMENT_MAPPER + INSERT;
+	 public static final String COMMMAPPER_SELECT_LATESTCOMM = ROOT + COMMENT_MAPPER + ".selectLatest";
 	 //newtype的操作语句路径
 	 public static final String TYPEMAPPER_SELECTALL = ROOT + NEWSTYPE_MAPPER + SELECTALL;
 	 public static final String TYPEMAPPER_SELECTBYLIKE = ROOT + NEWSTYPE_MAPPER + SELECT_BY_LIKE;

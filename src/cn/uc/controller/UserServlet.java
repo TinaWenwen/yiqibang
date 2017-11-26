@@ -263,6 +263,87 @@ public class UserServlet extends BaseServlet {
 			}
 		}
 	}
+	
+	public void userRegister(HttpServletRequest request, HttpServletResponse response){
+		String userName = request.getParameter("username").trim();
+		String password = request.getParameter("password").trim();
+		
+		Result result = userDao.userRegister(userName, password);
+		response.setHeader("refresh", "3;url=" +request.getContextPath()+ "/yiQiBangWeb/front/newsSearch.jsp");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+			if (result.isRetMsg()) {
+				out.println("注册成功,3秒后<a href=\"" + request.getContextPath() + "/yiQiBangWeb/front/newsSearch.jsp\">跳转到主页</a>。。。。");
+			} else {
+				out.println("注册失败,3秒后<a href=\"" + request.getContextPath() + "/yiQiBangWeb/front/newsSearch.jsp\">跳转到主页</a>。。。。");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	 
+	}
+	
+	public void userEditData(HttpServletRequest request, HttpServletResponse response){
+		int id = 0;
+		try{
+			id = Integer.parseInt(request.getParameter("id"));
+		} catch (NumberFormatException e){
+			
+		}
+		
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e){
+			return;
+		}
+		
+		String email = request.getParameter("email").trim();;
+		String userName = request.getParameter("username").trim();
+		String nickName = request.getParameter("nikcname").trim();
+		String password = request.getParameter("password").trim();
+		String phone = request.getParameter("phone").trim();
+		String sex = request.getParameter("sex");
+		/*System.out.println(sex);*/
+		boolean isMan = sex.equals("0") ? false : true;
+		/*System.out.println(isMan);*/
+		String birthday = request.getParameter("birthday").trim();
+		
+		String province = request.getParameter("province");
+		String city = request.getParameter("city");
+		String district = request.getParameter("district");
+		String address = province + "/" + city + "/" + district;
+		String remark = request.getParameter("remark").trim();
+		Result result = null;
+		
+		TUser user  = new TUser();
+		user.setId(id);
+		user.setBindtel(phone);
+		user.setBirthday(birthday);
+		user.setEmail(email);
+		user.setNickname(nickName);
+		user.setPassword(password);
+		user.setRemark(remark);
+		user.setSex(isMan);
+		user.setUsername(userName);
+		user.setAddress(address);
+		result = userDao.updateByPrimaryKeySelective(user);
+		
+		response.setHeader("refresh", "3;url=" +request.getContextPath()+ "/yiQiBangWeb/front/userCenter.jsp");
+		try {
+			out = response.getWriter();
+			if(result.isRetMsg()){
+				out.println("操作成功,3秒后<a href=\"" + request.getContextPath() + "/yiQiBangWeb/front/userCenter.jsp\">跳转到主页</a>。。。。");
+			}else{ 
+				out.println("操作失败！3秒后<a href=\"" + request.getContextPath() + "/yiQiBangWeb/front/userCenter.jsp\">跳转到主页</a>。。。。");
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 
 

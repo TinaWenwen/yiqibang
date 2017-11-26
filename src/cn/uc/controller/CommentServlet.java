@@ -53,9 +53,9 @@ public class CommentServlet extends BaseServlet {
 			return;
 		}
 		
-		String title = request.getParameter("title");
+		/*String title = request.getParameter("title");
 		String username = request.getParameter("username");
-		String score = request.getParameter("score");
+		String score = request.getParameter("score");*/
 		String content = request.getParameter("content");
 		int isShow = request.getParameter("isShow").equals("0") ? 0 : 1;
 		TComment comm = new TComment();
