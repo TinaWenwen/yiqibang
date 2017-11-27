@@ -120,7 +120,7 @@
                     <a href="news.jsp?newsid=<%=news.getId()%>"><img src="<%=picArr[0] %>" style="height:140px;width:228px;"></a>
                 </div>
                 <div class="comments">
-                    <img src="/yiQiBang/headImg/<%=latestComment == null? "" : latestCommentUser.getHeadimg()%>">
+                    <img src="/yiQiBang/headImg/<%=latestComment == null? "" : latestCommentUser.getHeadimg()%>" style="width:20px;height:20px;">
                     <span><%=latestComment == null ? "" : latestCommentUser.getUsername() %>·<%=latestComment == null? "暂无评论" :+(currentTime - latestComment.getCreatetime().getTime())/(1000 * 60 * 60)+ "小时前" %>·评论<%=news.getCommcount() %>次</span>
                     <% if (news.getIfhot()) { %>
                     <span class="label label-danger">热点</span>
